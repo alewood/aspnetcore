@@ -9,3 +9,14 @@ D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.dll
 D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.pdb
 D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.dll
 D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.pdb
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.deps.json
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.runtimeconfig.json
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.runtimeconfig.dev.json
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.dll
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.pdb
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.dll
+C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.pdb

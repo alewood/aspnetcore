@@ -28,10 +28,20 @@ namespace exp
 
         };
         context.Strumento.Add(strumento);
+           var strumento1 = new Strumento
+        {
+          Nome = "Penna",
+          Descrizione = "scrive",
+          Marca = "Bic",
+          Modello ="P12"
+
+        };
+        context.Strumento.Add(strumento1);
 
        var utente= new Utente
         {
           Nome = "Marco",
+          Cognome="Rossi"
         };
         context.Utente.Add(utente);
         var prenotazione=new Prenotazione
@@ -43,8 +53,18 @@ namespace exp
         context.Prenotazione.Add(prenotazione);
        context.DettaglioPrenotazione.Add(new DettaglioPrenotazione
        {
+           IdPrenotazione=prenotazione.ID,
+           IdStrumento=strumento.ID,
            Prenotazione=prenotazione,
            Strumento=strumento
+
+       });
+           context.DettaglioPrenotazione.Add(new DettaglioPrenotazione
+       {
+           IdPrenotazione=prenotazione.ID,
+           IdStrumento=strumento1.ID,
+           Prenotazione=prenotazione,
+           Strumento=strumento1
 
        });
         // Saves changes
@@ -57,13 +77,14 @@ namespace exp
       using (var context = new LabContext())
       {
         var prenotazioni = context.DettaglioPrenotazione
-          .Include(d => d.Strumento).Include(d=> d.Prenotazione);
+          .Include(d => d.Strumento).Include(d=> d.Prenotazione).Include(p=>p.Prenotazione.Utente);
         foreach(var p in prenotazioni)
         {
           var data = new StringBuilder();
-          data.AppendLine($"ID: {p.IdStrumento} {p.IdPrenotazione}");
+          data.AppendLine($"ID: {p.Strumento} {p.Prenotazione}");
           data.AppendLine($"Prenotazione: {p.Prenotazione.dataInizio} {p.Prenotazione.dataFine}");
           data.AppendLine($"Strumento: {p.Strumento.Nome}  {p.Strumento.Descrizione}  {p.Strumento.Marca}  {p.Strumento.Modello}");
+           data.AppendLine($"Utente: {p.Prenotazione.Utente.Nome} {p.Prenotazione.Utente.Cognome}");
           Console.WriteLine(data.ToString());
         }
       }

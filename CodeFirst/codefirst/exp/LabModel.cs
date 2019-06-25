@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 namespace exp
 {
     public class Utente
     {
+    [Key]
+   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
     public string Nome { get; set; }
     public string Cognome { get; set; }
@@ -13,6 +17,8 @@ namespace exp
         
     }
     public class Strumento{
+        [Key]
+       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
     public string Nome { get; set; }
     public string Descrizione { get; set; }
@@ -22,6 +28,8 @@ namespace exp
 
     }
     public class Prenotazione{
+        [Key]
+       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
     public DateTime dataInizio { get; set; }
     public DateTime dataFine { get; set; }   

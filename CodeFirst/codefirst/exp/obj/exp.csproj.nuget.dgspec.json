@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CodeFirst\\codefirst\\exp\\exp.csproj": {}
+    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\codefirst\\exp\\exp.csproj": {}
   },
   "projects": {
-    "D:\\CodeFirst\\codefirst\\exp\\exp.csproj": {
+    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\codefirst\\exp\\exp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeFirst\\codefirst\\exp\\exp.csproj",
+        "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\codefirst\\exp\\exp.csproj",
         "projectName": "exp",
-        "projectPath": "D:\\CodeFirst\\codefirst\\exp\\exp.csproj",
+        "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\codefirst\\exp\\exp.csproj",
         "packagesPath": "C:\\Users\\Alexa\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeFirst\\codefirst\\exp\\obj\\",
+        "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\codefirst\\exp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
