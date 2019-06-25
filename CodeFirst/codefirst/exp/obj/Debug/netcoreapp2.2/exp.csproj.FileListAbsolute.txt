@@ -1,0 +1,11 @@
+D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.csprojAssemblyReference.cache
+D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.csproj.CoreCompileInputs.cache
+D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.AssemblyInfoInputs.cache
+D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.AssemblyInfo.cs
+D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.deps.json
+D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.runtimeconfig.json
+D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.runtimeconfig.dev.json
+D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.dll
+D:\CodeFirst\codefirst\exp\bin\Debug\netcoreapp2.2\exp.pdb
+D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.dll
+D:\CodeFirst\codefirst\exp\obj\Debug\netcoreapp2.2\exp.pdb

@@ -1,0 +1,11 @@
+D:\CodeFirst\codefirst\mysqlefcore\bin\Debug\netcoreapp2.2\mysqlefcore.deps.json
+D:\CodeFirst\codefirst\mysqlefcore\bin\Debug\netcoreapp2.2\mysqlefcore.runtimeconfig.json
+D:\CodeFirst\codefirst\mysqlefcore\bin\Debug\netcoreapp2.2\mysqlefcore.runtimeconfig.dev.json
+D:\CodeFirst\codefirst\mysqlefcore\bin\Debug\netcoreapp2.2\mysqlefcore.dll
+D:\CodeFirst\codefirst\mysqlefcore\bin\Debug\netcoreapp2.2\mysqlefcore.pdb
+D:\CodeFirst\codefirst\mysqlefcore\obj\Debug\netcoreapp2.2\mysqlefcore.csprojAssemblyReference.cache
+D:\CodeFirst\codefirst\mysqlefcore\obj\Debug\netcoreapp2.2\mysqlefcore.csproj.CoreCompileInputs.cache
+D:\CodeFirst\codefirst\mysqlefcore\obj\Debug\netcoreapp2.2\mysqlefcore.AssemblyInfoInputs.cache
+D:\CodeFirst\codefirst\mysqlefcore\obj\Debug\netcoreapp2.2\mysqlefcore.AssemblyInfo.cs
+D:\CodeFirst\codefirst\mysqlefcore\obj\Debug\netcoreapp2.2\mysqlefcore.dll
+D:\CodeFirst\codefirst\mysqlefcore\obj\Debug\netcoreapp2.2\mysqlefcore.pdb
