@@ -31,8 +31,6 @@ namespace exp
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
-    public DateTime dataInizio { get; set; }
-    public DateTime dataFine { get; set; }   
     public virtual Utente Utente {get;set;}
     public virtual ICollection<DettaglioPrenotazione> Strumenti { get; set; }
     }
@@ -41,6 +39,8 @@ namespace exp
          public int IdPrenotazione{get;set;}
         public virtual Strumento Strumento{get;set;}
         public virtual Prenotazione Prenotazione{get;set;}
+        public DateTime dataInizio { get; set; }
+        public DateTime dataFine { get; set; }   
         
     }
 

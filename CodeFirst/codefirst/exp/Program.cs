@@ -46,17 +46,19 @@ namespace exp
         context.Utente.Add(utente);
         var prenotazione=new Prenotazione
         {
-            dataFine=new DateTime(2008, 6, 1, 7, 47, 0),
-            dataInizio=new DateTime(2008, 6, 1, 0, 0, 0),
             Utente= utente
  };
+
         context.Prenotazione.Add(prenotazione);
+         context.SaveChanges();// otherwise it will save a negative temporary id on DettaglioPrenotazione
        context.DettaglioPrenotazione.Add(new DettaglioPrenotazione
        {
            IdPrenotazione=prenotazione.ID,
            IdStrumento=strumento.ID,
            Prenotazione=prenotazione,
-           Strumento=strumento
+           Strumento=strumento,
+           dataFine=new DateTime(2008, 6, 1, 7, 47, 0),
+           dataInizio=new DateTime(2008, 6, 1, 0, 0, 0),
 
        });
            context.DettaglioPrenotazione.Add(new DettaglioPrenotazione
@@ -64,7 +66,9 @@ namespace exp
            IdPrenotazione=prenotazione.ID,
            IdStrumento=strumento1.ID,
            Prenotazione=prenotazione,
-           Strumento=strumento1
+           Strumento=strumento1,
+           dataFine=new DateTime(2007, 6, 1, 7, 47, 0),
+           dataInizio=new DateTime(2007, 6, 1, 0, 0, 0),
 
        });
         // Saves changes
@@ -81,8 +85,8 @@ namespace exp
         foreach(var p in prenotazioni)
         {
           var data = new StringBuilder();
-          data.AppendLine($"ID: {p.Strumento} {p.Prenotazione}");
-          data.AppendLine($"Prenotazione: {p.Prenotazione.dataInizio} {p.Prenotazione.dataFine}");
+          data.AppendLine($"ID: {p.IdStrumento} {p.IdPrenotazione}");
+          data.AppendLine($"Periodo Prenotazione: {p.dataInizio} {p.dataFine}");
           data.AppendLine($"Strumento: {p.Strumento.Nome}  {p.Strumento.Descrizione}  {p.Strumento.Marca}  {p.Strumento.Modello}");
            data.AppendLine($"Utente: {p.Prenotazione.Utente.Nome} {p.Prenotazione.Utente.Cognome}");
           Console.WriteLine(data.ToString());
