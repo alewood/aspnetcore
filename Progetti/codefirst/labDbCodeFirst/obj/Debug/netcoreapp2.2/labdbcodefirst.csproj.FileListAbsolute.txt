@@ -1,0 +1,11 @@
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\bin\Debug\netcoreapp2.2\labdbcodefirst.deps.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\bin\Debug\netcoreapp2.2\labdbcodefirst.runtimeconfig.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\bin\Debug\netcoreapp2.2\labdbcodefirst.runtimeconfig.dev.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\bin\Debug\netcoreapp2.2\labdbcodefirst.dll
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\bin\Debug\netcoreapp2.2\labdbcodefirst.pdb
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\obj\Debug\netcoreapp2.2\labdbcodefirst.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\obj\Debug\netcoreapp2.2\labdbcodefirst.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\obj\Debug\netcoreapp2.2\labdbcodefirst.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\obj\Debug\netcoreapp2.2\labdbcodefirst.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\obj\Debug\netcoreapp2.2\labdbcodefirst.dll
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\codefirst\labDbCodeFirst\obj\Debug\netcoreapp2.2\labdbcodefirst.pdb
