@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\ToDoAPi\\ToDoAPi.csproj": {}
+    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\ToDoAPi\\ToDoAPi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\ToDoAPi\\ToDoAPi.csproj": {
+    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\ToDoAPi\\ToDoAPi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\ToDoAPi\\ToDoAPi.csproj",
+        "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\ToDoAPi\\ToDoAPi.csproj",
         "projectName": "ToDoAPi",
-        "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\ToDoAPi\\ToDoAPi.csproj",
+        "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\ToDoAPi\\ToDoAPi.csproj",
         "packagesPath": "C:\\Users\\Alexa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\ToDoAPi\\obj\\",
+        "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\ToDoAPi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

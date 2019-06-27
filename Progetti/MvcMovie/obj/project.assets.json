@@ -12645,11 +12645,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\mvcmovie\\MvcMovie.csproj",
+      "projectUniqueName": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\MvcMovie\\MvcMovie.csproj",
       "projectName": "MvcMovie",
-      "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\mvcmovie\\MvcMovie.csproj",
+      "projectPath": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\MvcMovie\\MvcMovie.csproj",
       "packagesPath": "C:\\Users\\Alexa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\mvcmovie\\obj\\",
+      "outputPath": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\MvcMovie\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\MvcMovie\\MvcMovie.csproj": {}
+    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\mvcmovie\\MvcMovie.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\MvcMovie\\MvcMovie.csproj": {
+    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\mvcmovie\\MvcMovie.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\MvcMovie\\MvcMovie.csproj",
+        "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\mvcmovie\\MvcMovie.csproj",
         "projectName": "MvcMovie",
-        "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\MvcMovie\\MvcMovie.csproj",
+        "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\mvcmovie\\MvcMovie.csproj",
         "packagesPath": "C:\\Users\\Alexa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\CodeFirst\\MvcMovie\\obj\\",
+        "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\mvcmovie\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

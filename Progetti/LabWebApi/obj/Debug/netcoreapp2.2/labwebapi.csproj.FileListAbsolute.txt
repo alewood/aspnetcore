@@ -1,0 +1,14 @@
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\bin\Debug\netcoreapp2.2\labwebapi.deps.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\bin\Debug\netcoreapp2.2\labwebapi.runtimeconfig.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\bin\Debug\netcoreapp2.2\labwebapi.runtimeconfig.dev.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\bin\Debug\netcoreapp2.2\labwebapi.dll
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\bin\Debug\netcoreapp2.2\labwebapi.pdb
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.RazorAssemblyInfo.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.RazorAssemblyInfo.cs
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.RazorTargetAssemblyInfo.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.dll
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\LabWebApi\obj\Debug\netcoreapp2.2\labwebapi.pdb

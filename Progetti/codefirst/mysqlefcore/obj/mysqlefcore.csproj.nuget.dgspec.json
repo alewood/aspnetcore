@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CodeFirst\\codefirst\\mysqlefcore\\mysqlefcore.csproj": {}
+    "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\mysqlefcore\\mysqlefcore.csproj": {}
   },
   "projects": {
-    "D:\\CodeFirst\\codefirst\\mysqlefcore\\mysqlefcore.csproj": {
+    "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\mysqlefcore\\mysqlefcore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeFirst\\codefirst\\mysqlefcore\\mysqlefcore.csproj",
+        "projectUniqueName": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\mysqlefcore\\mysqlefcore.csproj",
         "projectName": "mysqlefcore",
-        "projectPath": "D:\\CodeFirst\\codefirst\\mysqlefcore\\mysqlefcore.csproj",
+        "projectPath": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\mysqlefcore\\mysqlefcore.csproj",
         "packagesPath": "C:\\Users\\Alexa\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeFirst\\codefirst\\mysqlefcore\\obj\\",
+        "outputPath": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\mysqlefcore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

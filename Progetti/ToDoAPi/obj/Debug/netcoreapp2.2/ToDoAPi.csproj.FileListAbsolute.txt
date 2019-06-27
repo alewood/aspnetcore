@@ -12,3 +12,17 @@ C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\ToDoAPi\obj\Debug\netcoreapp2.2\ToDo
 C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\ToDoAPi\obj\Debug\netcoreapp2.2\ToDoAPi.RazorTargetAssemblyInfo.cache
 C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\ToDoAPi\obj\Debug\netcoreapp2.2\ToDoAPi.dll
 C:\Users\Alexa\Desktop\aspnetcore\CodeFirst\ToDoAPi\obj\Debug\netcoreapp2.2\ToDoAPi.pdb
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\bin\Debug\netcoreapp2.2\ToDoAPi.deps.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\bin\Debug\netcoreapp2.2\ToDoAPi.runtimeconfig.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\bin\Debug\netcoreapp2.2\ToDoAPi.runtimeconfig.dev.json
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\bin\Debug\netcoreapp2.2\ToDoAPi.dll
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\bin\Debug\netcoreapp2.2\ToDoAPi.pdb
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.RazorAssemblyInfo.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.RazorAssemblyInfo.cs
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.RazorTargetAssemblyInfo.cache
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.dll
+C:\Users\Alexa\Desktop\aspnetcore\Progetti\todoapi\obj\Debug\netcoreapp2.2\ToDoAPi.pdb

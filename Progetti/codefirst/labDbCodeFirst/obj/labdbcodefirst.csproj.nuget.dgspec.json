@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj": {}
+    "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj": {
+    "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj",
+        "projectUniqueName": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj",
         "projectName": "labdbcodefirst",
-        "projectPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj",
+        "projectPath": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\labdbcodefirst.csproj",
         "packagesPath": "C:\\Users\\Alexa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\obj\\",
+        "outputPath": "c:\\Users\\Alexa\\Desktop\\aspnetcore\\Progetti\\codefirst\\labDbCodeFirst\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
