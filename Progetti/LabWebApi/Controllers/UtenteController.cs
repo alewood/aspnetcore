@@ -65,14 +65,14 @@ public async Task<IActionResult> PutUtente(int id, Utente utente)
 [HttpDelete("{id}")]
 public async Task<IActionResult> DeleteUtente(int id)
 {
-    var todoItem = await _context.Utente.FindAsync(id);
+    var utente = await _context.Utente.FindAsync(id);
 
-    if (todoItem == null)
+    if (utente == null)
     {
         return NotFound();
     }
 
-    _context.Utente.Remove(todoItem);
+    _context.Utente.Remove(utente);
     await _context.SaveChangesAsync();
 
     return NoContent();
