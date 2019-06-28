@@ -36,13 +36,13 @@ namespace LabWebApi.Models
        modelBuilder.Entity<Prenotazione>(entity =>
       {
         entity.HasKey(p => p.ID);
-        entity.HasOne(p => p.Utente).WithMany(u=> u.Prenotazioni);
+        entity.HasOne(p => p.Utente);
       });
 
  modelBuilder.Entity<DettaglioPrenotazione>(entity =>
       {
         entity.HasKey(e=> new{e.IdStrumento,e.IdPrenotazione});
-        entity.HasOne(e =>e.Strumento).WithMany(s => s.Prenotazioni);
+        entity.HasOne(e =>e.Strumento);
         entity.HasOne(e=> e.Prenotazione).WithMany(p => p.Strumenti);
       });
       
