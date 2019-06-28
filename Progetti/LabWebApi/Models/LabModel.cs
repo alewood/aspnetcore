@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Runtime.Serialization;
 namespace LabWebApi.Models
 {
+    [JsonObject(IsReference=true)]
     public class Utente
     {
     [Key]
@@ -16,8 +17,11 @@ namespace LabWebApi.Models
     public string Username { get; set; }   
     public string Password { get; set; }
 
+    public virtual ICollection<Prenotazione> Prenotazioni {get;set;}
+
         
     }
+    [JsonObject(IsReference=true)]
     public class Strumento{
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -41,8 +45,6 @@ namespace LabWebApi.Models
         public int IdStrumento{get;set;}
          public int IdPrenotazione{get;set;}
         public virtual Strumento Strumento{get;set;}
-        [JsonIgnore]
-        [IgnoreDataMember]
         public virtual Prenotazione Prenotazione{get;set;}
         public DateTime dataInizio { get; set; }
         public DateTime dataFine { get; set; }   

@@ -25,12 +25,12 @@ namespace LabWebApi.Controllers
           Nome = "Luigi",
           Cognome="Rossi"
         };
-        context.Utente.Add(utente);
+        _context.Utente.Add(utente);
                 _context.Prenotazione.Add(new Prenotazione {Utente=utente  });
                 _context.SaveChanges();
             }
         }
-        [HttpGet]
+[HttpGet]
 public async Task<ActionResult<IEnumerable<Prenotazione>>> GetPrenotazioni()
 {
     return await _context.Prenotazione.ToListAsync();
@@ -61,7 +61,6 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject
 
         await _context.SaveChangesAsync();
    }
-   prenotazione.Strumenti.Concat(strumenti);
 
    await _context.SaveChangesAsync();
 
