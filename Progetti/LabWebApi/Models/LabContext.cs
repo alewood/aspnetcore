@@ -11,8 +11,7 @@ namespace LabWebApi.Models
         public DbSet<Strumento> Strumento { get; set; }
         public DbSet<Prenotazione> Prenotazione { get; set; }
         public DbSet<DettaglioPrenotazione> DettaglioPrenotazione { get; set; }
-          public LabContext(DbContextOptions<LabContext> options)
-            : base(options)
+        public LabContext(DbContextOptions<LabContext> options) : base(options)
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

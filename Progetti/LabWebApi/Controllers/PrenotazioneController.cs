@@ -58,13 +58,12 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject
        d.Prenotazione=prenotazione;
         d.Strumento=s;
         _context.DettaglioPrenotazione.Add(d);
-
         await _context.SaveChangesAsync();
    }
 
    await _context.SaveChangesAsync();
 
-    return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID }, prenotazione);
+    return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID });
 }
 [HttpPut("{id}")]
 public async Task<IActionResult> PutPrenotazione(int id,Prenotazione prenotazione)
