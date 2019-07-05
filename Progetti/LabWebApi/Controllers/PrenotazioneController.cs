@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using LabWebApi.Helpers;
 
 namespace LabWebApi.Controllers
 {
@@ -52,7 +53,7 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject
 {
     Prenotazione prenotazione=data["prenotazione"].ToObject<Prenotazione>();
     prenotazione.Utente=_context.Utente.Find(data["utenteID"].ToObject<int>());
-   ICollection<DettaglioPrenotazione> strumenti=data["strumenti"].ToObject<ICollection<DettaglioPrenotazione>>();
+   ICollection<DettaglioPrenotazione> strumenti=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
    foreach(var d in strumenti){
        var s=_context.Strumento.Find(d.IdStrumento);
        d.Prenotazione=prenotazione;
@@ -60,10 +61,12 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject
         _context.DettaglioPrenotazione.Add(d);
         await _context.SaveChangesAsync();
    }
+   prenotazione.Strumenti=strumenti;
+   
 
    await _context.SaveChangesAsync();
 
-    return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID });
+    return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID }, prenotazione);
 }
 [HttpPut("{id}")]
 public async Task<IActionResult> PutPrenotazione(int id,Prenotazione prenotazione)

@@ -28,9 +28,10 @@ namespace labwebapi
         public void ConfigureServices(IServiceCollection services)
         {
               services.AddDbContext<LabContext>(options =>
-        options.UseMySQL("server=localhost;database=todo;user=root;password=mySql"));
+        options.UseMySQL("server=localhost;database=labwebapi;user=root;password=mySql"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +48,9 @@ namespace labwebapi
             }
 
             app.UseHttpsRedirection();
+             app.UseSession();
             app.UseMvc();
+           
         }
     }
 }

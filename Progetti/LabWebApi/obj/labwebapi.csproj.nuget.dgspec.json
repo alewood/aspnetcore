@@ -39,6 +39,10 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.dependencyinjection": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -63,6 +67,10 @@
             "NewtonSoft.Json": {
               "target": "Package",
               "version": "[12.0.2, )"
+            },
+            "automapper": {
+              "target": "Package",
+              "version": "[8.1.1, )"
             }
           },
           "imports": [
