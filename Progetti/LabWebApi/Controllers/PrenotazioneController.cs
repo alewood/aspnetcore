@@ -23,8 +23,7 @@ namespace LabWebApi.Controllers
             {
                  var utente= new Utente
         {
-          Nome = "Luigi",
-          Cognome="Rossi"
+         FullName="Luigi Rossi"
         };
         _context.Utente.Add(utente);
                 _context.Prenotazione.Add(new Prenotazione {Utente=utente  });

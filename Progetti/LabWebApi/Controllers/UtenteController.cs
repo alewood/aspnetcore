@@ -1,9 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using LabWebApi.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json.Linq;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Options;
+using System;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
 namespace LabWebApi.Controllers
 {
      [Route("api/utente")]
@@ -11,73 +18,70 @@ namespace LabWebApi.Controllers
 
     public class UtenteController :ControllerBase
     {
-         private readonly LabContext _context;
-         public UtenteController(LabContext context)
+         private UserManager<Utente> _userManager;
+         private SignInManager<Utente> _signInManager;
+         private readonly ApplicationSettings _appSettings;
+         public UtenteController(SignInManager<Utente> signInManager,UserManager<Utente> userManager,IOptions<ApplicationSettings> appSettings)
         {
-            _context = context;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _appSettings= appSettings.Value;
 
-             if (_context.Utente.Count() == 0)
-            {
-                // Create a new TodoItem if collection is empty,
-                // which means you can't delete all TodoItems.
-                _context.Utente.Add(new Utente { Nome = "Utente1" });
-                _context.SaveChanges();
-            }
+           
         }
-[HttpGet]
-public async Task<ActionResult<IEnumerable<Utente>>> GetUtenti()
-{
-    return await _context.Utente.ToListAsync();
-}
-[HttpGet("{id}")]
-public async Task<ActionResult<Utente>> GetUtente(int id)
-{
-    var utente = await _context.Utente.FindAsync(id);
-
-    if (utente == null)
+        [HttpPost]
+    [Route("login")]
+    public async Task<IActionResult> Login([FromBody]JObject data)
     {
-        return NotFound();
-    }
+        var user= await _userManager.FindByNameAsync(data["Username"].ToObject<string>());
+        if(user!=null && await _userManager.CheckPasswordAsync(user,data["Password"].ToObject<string>()))
+        {
+            var role= await _userManager.GetRolesAsync(user);
 
-    return utente;
-}
-[HttpPost]
-public async Task<ActionResult<Utente>> PostUtente(Utente utente)
-{
-    _context.Utente.Add(utente);
-    await _context.SaveChangesAsync();
+            IdentityOptions _options= new IdentityOptions();
+            var tokenDescriptor = new SecurityTokenDescriptor{
+                Subject= new ClaimsIdentity(new Claim[]{
+                    new Claim("UserID",user.Id.ToString()),
+                    new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
+                }),
+                Expires= DateTime.UtcNow.AddDays(1),
+                SigningCredentials= new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_secret)),SecurityAlgorithms.HmacSha256Signature)
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken= tokenHandler.CreateToken(tokenDescriptor);
+            var token= tokenHandler.WriteToken(securityToken);
+            return Ok( new{token});
 
-    return CreatedAtAction(nameof(GetUtente), new { id = utente.ID }, utente);
-}
-[HttpPut("{id}")]
-public async Task<IActionResult> PutUtente(int id, Utente utente)
-{
-    if (id != utente.ID)
-    {
-        return BadRequest();
-    }
-
-    _context.Entry(utente).State = EntityState.Modified;
-    await _context.SaveChangesAsync();
-
-    return NoContent();
-}
-[HttpDelete("{id}")]
-public async Task<IActionResult> DeleteUtente(int id)
-{
-    var utente = await _context.Utente.FindAsync(id);
-
-    if (utente == null)
-    {
-        return NotFound();
-    }
-
-    _context.Utente.Remove(utente);
-    await _context.SaveChangesAsync();
-
-    return NoContent();
-}
-
+        }
+        else 
+        return BadRequest(new {message= "Username or Password is Incorrect"});
         
     }
+    [HttpPost]
+    [Authorize(Roles="Admin")]
+    [Route("register")]
+    public async Task<Object> PostUtente([FromBody]JObject data)
+    {
+        var user= new Utente(){
+            UserName= data["Username"].ToObject<string>(),
+            Email=data["Email"].ToObject<string>(),
+            FullName=data["FullName"].ToObject<string>()
+        };
+
+        try
+        {
+            var result= await _userManager.CreateAsync(user,data["Password"].ToObject<string>());
+            await _userManager.AddToRoleAsync(user,data["Role"].ToObject<string>());
+            return Ok(result);
+            
+        }
+        catch (Exception ex)
+        {
+            
+            throw ex;
+        }
+
+    }
+    }
+    
 }

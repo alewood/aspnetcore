@@ -2,26 +2,19 @@ using System.Collections.Generic;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
-using System.Runtime.Serialization;
+using Microsoft.AspNetCore.Identity;
 namespace LabWebApi.Models
 {
-    [JsonObject(IsReference=true)]
-    public class Utente
+    public class Utente :IdentityUser
     {
-    [Key]
-   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { get; set; }
-    public string Nome { get; set; }
-    public string Cognome { get; set; }
-    public string Username { get; set; }   
-    public string Password { get; set; }
+        public string FullName{get;set;}
+   
+    
 
     public virtual ICollection<Prenotazione> Prenotazioni {get;set;}
 
         
     }
-    [JsonObject(IsReference=true)]
     public class Strumento{
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,7 +27,7 @@ namespace LabWebApi.Models
    
 
     }
-    [JsonObject(IsReference=true)]
+    
     public class Prenotazione{
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -42,7 +35,7 @@ namespace LabWebApi.Models
     public virtual Utente Utente {get;set;}
     public virtual ICollection<DettaglioPrenotazione> Strumenti { get; set; }
     }
-    [JsonObject(IsReference=true)]
+   
     public class DettaglioPrenotazione{
         public int IdStrumento{get;set;}
          public int IdPrenotazione{get;set;}

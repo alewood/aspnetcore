@@ -1,9 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace LabWebApi.Models
 {
-    public class LabContext: DbContext
+    public class LabContext: IdentityDbContext
     {
        
         public DbSet<Utente> Utente{ get; set; }
@@ -14,19 +14,9 @@ namespace LabWebApi.Models
         public LabContext(DbContextOptions<LabContext> options) : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-      optionsBuilder.UseMySQL("server=localhost;database=labwebapi;user=root;password=mySql");
-    }
      protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
-
-      modelBuilder.Entity<Utente>(entity =>
-      {
-        entity.HasKey(e => e.ID);
-        entity.Property(e => e.Nome).IsRequired();
-      });
 
       modelBuilder.Entity<Strumento>(entity =>
       {

@@ -9,17 +9,11 @@ namespace labwebapi
     {
         public static void Main(string[] args)
         {
-            var host=  CreateWebHostBuilder(args).Build();
-              using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-            using(var context=services.GetRequiredService<LabContext>()){
-                context.Database.EnsureCreated();
-            }
-            
-           host.Run();
+           CreateWebHostBuilder(args).Build()
+           .Run();
+           
         }
-        }
+        
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
