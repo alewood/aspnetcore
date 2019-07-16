@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using LabWebApi.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LabWebApi.Controllers
 {
@@ -31,11 +32,13 @@ namespace LabWebApi.Controllers
             }
         }
 [HttpGet]
+[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<ActionResult<IEnumerable<Prenotazione>>> GetPrenotazioni()
 {
     return await _context.Prenotazione.ToListAsync();
 }
 [HttpGet("{id}")]
+[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<ActionResult<Prenotazione>> GetPrenotazione(int id)
 {
     var prenotazione = await _context.Prenotazione.FindAsync(id);
@@ -48,6 +51,7 @@ public async Task<ActionResult<Prenotazione>> GetPrenotazione(int id)
     return prenotazione;
 }
 [HttpPost]
+[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject data)
 {
     Prenotazione prenotazione=data["prenotazione"].ToObject<Prenotazione>();
@@ -68,6 +72,7 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject
     return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID }, prenotazione);
 }
 [HttpPut("{id}")]
+[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<IActionResult> PutPrenotazione(int id,Prenotazione prenotazione)
 {
     if (id != prenotazione.ID)
@@ -81,6 +86,7 @@ public async Task<IActionResult> PutPrenotazione(int id,Prenotazione prenotazion
     return NoContent();
 }
 [HttpDelete("{id}")]
+[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<IActionResult> DeletePrenotazione(int id)
 {
     var prenotazione = await _context.Prenotazione.FindAsync(id);
