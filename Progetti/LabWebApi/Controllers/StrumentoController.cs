@@ -28,6 +28,7 @@ public async Task<ActionResult<IEnumerable<Strumento>>> GetStrumenti()
 }
 [HttpGet]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
+[Route("/filter")]
 public async Task<ActionResult<IEnumerable<Strumento>>> FilterStrumento(string searchString){
     return await _context.Strumento.Where(s => s.Nome.Contains(searchString)).ToListAsync();
 }
@@ -46,12 +47,12 @@ public async Task<ActionResult<Strumento>> GetStrumento(int id)
 }
 [HttpPost]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<ActionResult<Utente>> PostStrumento(Strumento strumento)
+public async Task<ActionResult<Strumento>> PostStrumento(Strumento strumento)
 {
-    _context.Strumento.Add(strumento);
+   var result= _context.Strumento.Add(strumento);
     await _context.SaveChangesAsync();
 
-    return CreatedAtAction(nameof(GetStrumento), new { id = strumento.ID }, strumento);
+    return Ok(result);
 }
 [HttpPut("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]

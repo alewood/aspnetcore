@@ -1,0 +1,35 @@
+
+<div class="container">
+    <h1>Strumento <Form></Form></h1>
+    <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+      <div class="form-group required">
+        <label>Nome</label>
+            <input type="text" class="form-control" formControlName="Nome" required>
+            <label class="text-danger" *ngIf="service.formModel.get('Nome').touched && service.formModel.get('Nome').errors?.required">This field is mandatory.</label>
+      
+      </div>
+
+      <div class="form-group">
+        <label>Descrizione</label>
+        <input type="text" class="form-control" formControlName="Descrizione">
+      
+      </div>
+      <div class="form-group required">
+        <label>Marca</label>
+        <input type="text" class="form-control" formControlName="Marca">
+        <label class="text-danger" *ngIf="service.formModel.get('Marca').touched && service.formModel.get('Marca').errors?.required">This field is mandatory.</label>
+      
+      </div>
+      <div class="form-group required">
+        <label>Modello</label>
+        <input type="text" class="form-control" formControlName="Modello">
+        <label class="text-danger" *ngIf="service.formModel.get('Modello').touched && service.formModel.get('Modello').errors?.required">This field is mandatory.</label>
+      
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!service.formModel.valid">Submit</button>
+
+    </form>
+</div>
+
+

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 namespace LabWebApi.Controllers
 {
      [Route("api/utente")]
@@ -82,6 +83,25 @@ namespace LabWebApi.Controllers
         }
 
     }
+     [HttpGet]
+    [Authorize]
+      public async Task<Object> GetUserProfile() 
+      {
+          string UserID = User.Claims.First(c =>c.Type=="UserID" ).Value;
+          var user=  await _userManager.FindByIdAsync(UserID);
+          return new 
+          {
+              user.FullName,
+              user.Email,
+              user.UserName
+          };
+      }
+       [HttpGet]
+    [Authorize(Roles="Admin")]
+    [Route("tutti")]
+      public  IEnumerable<Utente> GetUtenti(){
+          return  _userManager.Users.ToList();
+      } 
     }
     
 }

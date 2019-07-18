@@ -1,0 +1,16 @@
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Descrizione</th> 
+        <th>Marca</th>
+        <th>Modello</th>
+    </tr>
+    <tr *ngFor="let strumento of strumenti; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{strumento.nome}}</td>
+        <td>{{strumento.descrizione}}</td>
+        <td>{{strumento.marca}}</td>
+        <td>{{strumento.modello}}</td>
+    </tr>
+</table>

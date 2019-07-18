@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using LabWebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace LabWebApi.Controllers
 {
@@ -16,20 +17,12 @@ namespace LabWebApi.Controllers
     public class PrenotazioneController:ControllerBase
     {
           private readonly LabContext _context;
-         public PrenotazioneController(LabContext context)
+          private UserManager<Utente> _userManager;
+         public PrenotazioneController(LabContext context, UserManager<Utente> userManager)
         {
             _context = context;
+            _userManager=userManager;
 
-             if (_context.Prenotazione.Count() == 0)
-            {
-                 var utente= new Utente
-        {
-         FullName="Luigi Rossi"
-        };
-        _context.Utente.Add(utente);
-                _context.Prenotazione.Add(new Prenotazione {Utente=utente  });
-                _context.SaveChanges();
-            }
         }
 [HttpGet]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
@@ -55,7 +48,8 @@ public async Task<ActionResult<Prenotazione>> GetPrenotazione(int id)
 public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject data)
 {
     Prenotazione prenotazione=data["prenotazione"].ToObject<Prenotazione>();
-    prenotazione.Utente=_context.Utente.Find(data["utenteID"].ToObject<int>());
+    var user= await _userManager.FindByIdAsync(User.Claims.First(c => c.Type=="UserID").Value);
+    prenotazione.Utente=user;
    ICollection<DettaglioPrenotazione> strumenti=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
    foreach(var d in strumenti){
        var s=_context.Strumento.Find(d.IdStrumento);
@@ -68,6 +62,7 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject
    
 
    await _context.SaveChangesAsync();
+   SessionHelper.Reset(HttpContext.Session,"cart");
 
     return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID }, prenotazione);
 }
@@ -107,6 +102,15 @@ public async Task<IActionResult> DeletePrenotazione(int id)
     return NoContent();
 }
 
-        
+     [HttpGet]
+     [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
+     [Route("perUtente")]
+    public async Task<ActionResult<IEnumerable<Prenotazione>>> GetPrenotazioniPerUtente()
+{
+    var userId= User.Claims.First(c =>c.Type=="UserID").Value;
+    var user= await _userManager.FindByIdAsync(userId);
+
+    return await _context.Prenotazione.Where(p => p.Utente.Id==(user.Id)).ToListAsync();
+}
     }
 }
