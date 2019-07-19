@@ -1,4 +1,5 @@
-<table class="table">
+<form (submit)="onSubmit($event)">
+<table class="table" >
     <tr>
         <th>#</th>
         <th>Nome</th>
@@ -12,5 +13,8 @@
         <td>{{strumento.descrizione}}</td>
         <td>{{strumento.marca}}</td>
         <td>{{strumento.modello}}</td>
+        <td> <button type="submit" value="1" class="btn">Prenota</button></td>
     </tr>
+
 </table>
+</form>

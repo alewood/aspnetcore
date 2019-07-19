@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class UserService {
 
   constructor(private fb:FormBuilder,private http: HttpClient) {}
-  readonly BaseURI= 'http://localhost:5000/api' ;
+  readonly BaseURI= 'https://localhost:5001/api' ;
   formModel=this.fb.group({
     Username :['',Validators.required],
     Email :['',Validators.email],

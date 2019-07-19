@@ -19,6 +19,9 @@ import { StrumentoFormComponent } from './strumento/strumento-form/strumento-for
 import { StrumentiComponent } from './strumento/strumenti/strumenti.component';
 import { UtentiComponent } from './home/utenti/utenti.component';
 import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
+import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-prenotazione-form/dettaglio-prenotazione-form.component';
+import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
+import { DatePipe } from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,9 @@ import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.componen
     StrumentoFormComponent,
     StrumentiComponent,
     UtentiComponent,
-    PrenotazioniComponent
+    PrenotazioniComponent,
+    DettaglioPrenotazioneFormComponent,
+    CarrelloComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.componen
     provide: HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
     multi:true
-  }],
-  bootstrap: [AppComponent]
+  },DatePipe],
+  bootstrap: [AppComponent],
+ 
 })
 export class AppModule { }

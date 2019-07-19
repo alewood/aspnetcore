@@ -10,6 +10,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { StrumentoFormComponent } from './strumento/strumento-form/strumento-form.component';
 import { StrumentiComponent } from './strumento/strumenti/strumenti.component';
 import { UtentiComponent } from './home/utenti/utenti.component';
+import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-prenotazione-form/dettaglio-prenotazione-form.component';
+import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,9 @@ children:[
 {path:'strumentoForm',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'forbidden',component :ForbiddenComponent},
 {path:'strumenti',component :StrumentiComponent},
-{path:'utenti',component :UtentiComponent},
+{path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent},
+{path:'carrello',component :CarrelloComponent},
+{path:'utenti',component :UtentiComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
 {path:'adminpanel',component :AdminPanelComponent,canActivate:[AuthGuard], data :{permittedRoles:['Admin']}}
 ];
 
