@@ -33,7 +33,8 @@ namespace labwebapi
             services.Configure<IdentityOptions>( options =>
             options.Password.RequireDigit= false);
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            services.AddDistributedMemoryCache();
             services.AddSession();
             var key= Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_secret"].ToString());
             services.AddAuthentication( x =>{
@@ -50,6 +51,7 @@ namespace labwebapi
                     ClockSkew= TimeSpan.Zero
                 };
             });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,12 +63,13 @@ namespace labwebapi
             }
             else
             {
+                
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseCors(builder =>
             builder.WithOrigins(Configuration["ApplicationSettings:Client_Url"].ToString())
-            .AllowAnyHeader().AllowAnyMethod());
+            .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
             DataSeeder.SeedData(userManager,roleManager);
              app.UseSession();

@@ -22,6 +22,7 @@ import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.componen
 import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-prenotazione-form/dettaglio-prenotazione-form.component';
 import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { DatePipe } from "@angular/common";
+import { CookieService } from "ngx-cookie-service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,7 @@ import { DatePipe } from "@angular/common";
     provide: HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
     multi:true
-  },DatePipe],
+  },DatePipe,CookieService],
   bootstrap: [AppComponent],
  
 })

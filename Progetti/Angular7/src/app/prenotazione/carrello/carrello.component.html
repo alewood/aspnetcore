@@ -1,0 +1,20 @@
+
+<form (submit)="onSubmit()">
+<table class="table" >
+    <tr>
+        <th>#</th>
+        <th>Strumento</th>
+        <th>DataInizio</th> 
+        <th>DataFine</th>
+    </tr>
+    <tr *ngFor="let dettaglio of carrello; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{dettaglio.idStrumento}}</td>
+        <td>{{dettaglio.dataInizio}}</td>
+        <td>{{dettaglio.dataFine}}</td>
+    </tr>
+
+
+</table>
+<button type="submit" class="btn">Conferma Prenotazione</button>
+</form>

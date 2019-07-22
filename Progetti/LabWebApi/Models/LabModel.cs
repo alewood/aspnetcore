@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 namespace LabWebApi.Models
 {
     public class Utente :IdentityUser
@@ -24,6 +25,7 @@ namespace LabWebApi.Models
     public string Marca { get; set; }   
     public string Modello{ get; set; }
     
+  
     public virtual ICollection<DettaglioPrenotazione> Prenotazioni { get; set; }
    
 

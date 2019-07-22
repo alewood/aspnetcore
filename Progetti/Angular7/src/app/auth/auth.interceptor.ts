@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from "rxjs/operators";
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
@@ -14,7 +15,9 @@ export class AuthInterceptor implements HttpInterceptor{
  intercept(req:HttpRequest<any>,next :HttpHandler): Observable<HttpEvent<any>> {
      if(localStorage.getItem('token')!=null){
          const cloneReq= req.clone({
-             headers: req.headers.set('Authorization', 'Bearer '+localStorage.getItem('token'))
+             headers: req.headers.set('Authorization', 'Bearer '+localStorage.getItem('token')),
+              withCredentials:true
+             
          });
          return next.handle(cloneReq).pipe(
              tap(
@@ -27,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor{
                      else if(err.status==403)
                      this.router.navigateByUrl('/forbidden');
 
-
+                     
                  }
              )
              );

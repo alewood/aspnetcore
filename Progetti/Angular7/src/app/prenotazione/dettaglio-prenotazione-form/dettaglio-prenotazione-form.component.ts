@@ -20,7 +20,6 @@ export class DettaglioPrenotazioneFormComponent implements OnInit {
     this.service.prenota().subscribe(result =>
       {console.log(result)}
     );
-
       
     this.router.navigateByUrl('/carrello');
    

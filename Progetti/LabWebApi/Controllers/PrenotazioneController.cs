@@ -45,14 +45,17 @@ public async Task<ActionResult<Prenotazione>> GetPrenotazione(int id)
 }
 [HttpPost]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<Prenotazione>> PostPrenotazione([FromBody]JObject data)
+public async Task<ActionResult<Prenotazione>> PostPrenotazione()
 {
-    Prenotazione prenotazione=data["prenotazione"].ToObject<Prenotazione>();
+    Prenotazione prenotazione=new Prenotazione();
+    _context.Prenotazione.Add(prenotazione);
+    _context.SaveChanges();
     var user= await _userManager.FindByIdAsync(User.Claims.First(c => c.Type=="UserID").Value);
     prenotazione.Utente=user;
    ICollection<DettaglioPrenotazione> strumenti=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
    foreach(var d in strumenti){
        var s=_context.Strumento.Find(d.IdStrumento);
+       d.IdPrenotazione=prenotazione.ID;
        d.Prenotazione=prenotazione;
         d.Strumento=s;
         _context.DettaglioPrenotazione.Add(d);

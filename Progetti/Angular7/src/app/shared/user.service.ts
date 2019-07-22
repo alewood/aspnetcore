@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: 'root'
 })
 export class UserService {
+ 
 
   constructor(private fb:FormBuilder,private http: HttpClient) {}
   readonly BaseURI= 'https://localhost:5001/api' ;
@@ -43,7 +44,9 @@ export class UserService {
    return this.http.post(this.BaseURI +'/utente/register',body);
   }
   login(formData){
-    return this.http.post(this.BaseURI +'/utente/login',formData);
+ 
+    return this.http.post<{token:'', sessionId:''}>(this.BaseURI +'/utente/login',formData,{headers:{"set-cookie": "set-cookie"}  ,observe:'response'});
+
   }
   getUserProfile()
   {

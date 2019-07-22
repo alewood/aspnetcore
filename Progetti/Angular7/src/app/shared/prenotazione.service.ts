@@ -8,7 +8,7 @@ import { DatePipe} from '@angular/common';
 })
 export class PrenotazioneService {
   locale: string = 'en-US';
-  format: string = 'yyyy-MM-dd'
+  format: string = 'yyyy-MM-dd';
  
 
   constructor(private fb:FormBuilder,private http:HttpClient,private datepipe:DatePipe) { }
@@ -17,6 +17,11 @@ export class PrenotazioneService {
     DataInizio:['Date',Validators.required],
     DataFine:['Date',Validators.required]
   });
+
+
+  confermaPrenotazione(){
+    return this.http.post(this.BaseURI +'/prenotazione',null);
+  }
   prenota(){
     var dataInizio=this.datepipe.transform(this.formModel.value.DataInizio,this.format); 
     var dataFine=this.datepipe.transform(this.formModel.value.DataFine,this.format);
