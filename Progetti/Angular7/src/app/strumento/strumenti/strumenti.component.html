@@ -1,3 +1,9 @@
+<div>
+    <div class="filter-wrap">
+      <input [(ngModel)]="searchText" placeholder="Filter Strumenti" class="filter-input">
+      <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
+    </div>
+  </div>
 <form (submit)="onSubmit(e)">
 <table class="table" >
     <tr>
@@ -7,7 +13,7 @@
         <th>Marca</th>
         <th>Modello</th>
     </tr>
-    <tr *ngFor="let strumento of strumenti; let i = index">
+    <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index">
         <td >{{i + 1}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>

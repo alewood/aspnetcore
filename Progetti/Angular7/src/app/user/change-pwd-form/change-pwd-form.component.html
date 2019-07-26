@@ -1,0 +1,31 @@
+
+        <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
+            <div class="form-group required">
+                <label >Old Password</label>
+                <input type="password" class ="form-control" formControlName="OldPassword"> 
+                <label class="text-danger" *ngIf="formModel.get('OldPassword').touched && formModel.get('OldPassword').errors?.required">This field is mandatory</label>
+                <label class="text-danger" *ngIf="formModel.get('OldPassword').touched && formModel.get('OldPassword').hasError('minlength')">Minimum 4 characters required</label>
+            </div>
+            <div formGroupName="Passwords">
+            <div class="form-group required" >
+                <label >New Password</label>
+                <input type="password" class ="form-control" formControlName="NewPassword"> 
+                <label class="text-danger" *ngIf="formModel.get('Passwords.NewPassword').touched && formModel.get('Passwords.NewPassword').errors?.required">This field is mandatory</label>
+                <label class="text-danger" *ngIf="formModel.get('Passwords.NewPassword').touched && formModel.get('Passwords.NewPassword').hasError('minlength')">Minimum 4 characters required</label>
+            </div>
+            <div class="form-group required">
+                <label >Confirm New Password</label>
+                <input  type="password" class="form-control" formControlName="ConfirmNewPassword"> 
+                <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmNewPassword').touched && formModel.get('Passwords.ConfirmNewPassword').errors?.required">This field is mandatory</label>
+                <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmNewPassword').touched && formModel.get('Passwords.ConfirmNewPassword').hasError('passwordMismatch')">Passwords do not match</label>
+            </div>
+        </div>
+        
+     
+        <div class="form-row">
+            <div class="form-group-md-8 offset-md-2">
+                <button type="submit" class="btn btn-lg btn-block" [disabled]="!formModel.valid">Change Password</button>
+            </div>
+        </div>
+        </form>
+

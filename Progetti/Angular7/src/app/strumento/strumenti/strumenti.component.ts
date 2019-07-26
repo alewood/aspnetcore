@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StrumentoService } from 'src/app/shared/strumento.service';
 import { Router } from '@angular/router';
+import { FilterPipe } from "src/app/filter-pipe";
 
 @Component({
   selector: 'app-strumenti',
@@ -9,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class StrumentiComponent implements OnInit {
   strumenti;
-  constructor(private service:StrumentoService,private router:Router) { }
+  searchText :string="";
+
+  constructor(private filter:FilterPipe,private service:StrumentoService,private router:Router) { }
 
   ngOnInit() {
     this.service.getStrumenti().subscribe(
@@ -25,6 +28,9 @@ export class StrumentiComponent implements OnInit {
     this.router.navigateByUrl("/dettaglioPrenotazioneForm");
     localStorage.setItem("idStr",e);
 
+  }
+  clearFilter(){
+    this.searchText="";
   }
 
 }

@@ -24,6 +24,8 @@ import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { DatePipe } from "@angular/common";
 import { CookieService } from "ngx-cookie-service";
 import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
+import { FilterPipe } from "./filter-pipe";
+import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,10 @@ import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.
     PrenotazioniComponent,
     DettaglioPrenotazioneFormComponent,
     CarrelloComponent,
-    PrenotazioneComponent
+    PrenotazioneComponent,
+    FilterPipe,
+    ChangePwdFormComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -57,8 +62,10 @@ import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.
     provide: HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
     multi:true
-  },DatePipe,CookieService],
+  },DatePipe,CookieService,FilterPipe],
   bootstrap: [AppComponent],
  
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

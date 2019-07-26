@@ -102,6 +102,24 @@ namespace LabWebApi.Controllers
       public  IEnumerable<Utente> GetUtenti(){
           return  _userManager.Users.ToList();
       } 
+       [HttpPut]
+       [Authorize]
+       public async Task<IActionResult> ChangePassword([FromBody]JObject data){
+            string UserID = User.Claims.First(c =>c.Type=="UserID" ).Value;
+            var user=  await _userManager.FindByIdAsync(UserID);
+            var oldPwd=data["oldPassword"].ToObject<string>();
+            var newPwd=data["newPassword"].ToObject<string>();
+             if(user!=null && await _userManager.CheckPasswordAsync(user,oldPwd)){
+               var result= await _userManager.ChangePasswordAsync(user,oldPwd,newPwd);
+               return Ok(result);
+             }
+             else
+             return BadRequest("Password is incorrect");
+
+
+
+
+       }
     }
     
 }

@@ -68,5 +68,8 @@ export class UserService {
   getUtenti(){
     return this.http.get(this.BaseURI+'/utente/tutti');
   }
+  changePassword(formData){
+    return this.http.put(this.BaseURI+"/utente",formData);
+  }
 
 }

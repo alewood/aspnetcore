@@ -13,6 +13,7 @@ import { UtentiComponent } from './home/utenti/utenti.component';
 import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-prenotazione-form/dettaglio-prenotazione-form.component';
 import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
+import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
 
 
 const routes: Routes = [
@@ -25,10 +26,11 @@ children:[
 {path:'home',component :HomeComponent,canActivate:[AuthGuard]},
 {path:'strumentoForm',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'forbidden',component :ForbiddenComponent},
-{path:'strumenti',component :StrumentiComponent},
-{path:'prenotazione',component :PrenotazioneComponent},
-{path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent},
-{path:'carrello',component :CarrelloComponent},
+{path:'strumenti',component :StrumentiComponent,canActivate:[AuthGuard]},
+{path:'prenotazione',component :PrenotazioneComponent,canActivate:[AuthGuard]},
+{path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent,canActivate:[AuthGuard]},
+{path:'carrello',component :CarrelloComponent,canActivate:[AuthGuard]},
+{path:'changePwd',component :ChangePwdFormComponent,canActivate:[AuthGuard]},
 {path:'utenti',component :UtentiComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
 {path:'adminpanel',component :AdminPanelComponent,canActivate:[AuthGuard], data :{permittedRoles:['Admin']}}
 ];

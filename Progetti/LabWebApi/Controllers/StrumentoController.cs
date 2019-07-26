@@ -26,12 +26,6 @@ public async Task<ActionResult<IEnumerable<Strumento>>> GetStrumenti()
 {
     return await _context.Strumento.ToListAsync();
 }
-[HttpGet]
-[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-[Route("/filter")]
-public async Task<ActionResult<IEnumerable<Strumento>>> FilterStrumento(string searchString){
-    return await _context.Strumento.Where(s => s.Nome.Contains(searchString)).ToListAsync();
-}
 [HttpGet("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<ActionResult<Strumento>> GetStrumento(int id)
