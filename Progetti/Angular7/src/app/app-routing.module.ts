@@ -12,6 +12,7 @@ import { StrumentiComponent } from './strumento/strumenti/strumenti.component';
 import { UtentiComponent } from './home/utenti/utenti.component';
 import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-prenotazione-form/dettaglio-prenotazione-form.component';
 import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
+import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ children:[
 {path:'strumentoForm',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'forbidden',component :ForbiddenComponent},
 {path:'strumenti',component :StrumentiComponent},
+{path:'prenotazione',component :PrenotazioneComponent},
 {path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent},
 {path:'carrello',component :CarrelloComponent},
 {path:'utenti',component :UtentiComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},

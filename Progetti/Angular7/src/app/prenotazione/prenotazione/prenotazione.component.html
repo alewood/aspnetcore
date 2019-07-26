@@ -1,5 +1,3 @@
-
-
 <table class="table" >
     <tr>
         <th>#</th>
@@ -7,16 +5,12 @@
         <th>DataInizio</th> 
         <th>DataFine</th>
     </tr>
-    <tr *ngFor="let dettaglio of carrello; let i = index">
+    <tr *ngFor="let dettaglio of dettagliPrenotazione; let i = index">
         <td>{{i + 1}}</td>
         <td>{{dettaglio.idStrumento}}</td>
         <td>{{dettaglio.dataInizio}}</td>
         <td>{{dettaglio.dataFine}}</td>
-       <td> <button class="btn" (click)="rimuoviStrumento(dettaglio.idStrumento)">Rimuovi</button></td>
     </tr>
 
 
 </table>
-<form (submit)="onSubmit()">
-<button type="submit" class="btn">Conferma Prenotazione</button>
-</form>

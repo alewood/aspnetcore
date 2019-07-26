@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
+import { CookieService } from 'ngx-cookie-service';
+import { PrenotazioneService } from '../shared/prenotazione.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,8 @@ import { UserService } from '../shared/user.service';
 })
 export class HomeComponent implements OnInit {
  userDetails;
-  constructor(private router:Router,private service:UserService) { }
+ prenotazioni;
+  constructor(private cookieService:CookieService,private router:Router,private service:UserService,private preService:PrenotazioneService) { }
 
   ngOnInit() {
     this.service.getUserProfile().subscribe(
@@ -20,10 +23,24 @@ export class HomeComponent implements OnInit {
         console.log(err);
       }
     );
+    this.preService.getPrenotazioniPerUtente().subscribe(
+      res=> {
+        this.prenotazioni=res;
+
+      },
+      err=>{
+        console.log(err);
+      }
+    )
   }
   onLogout(){
     localStorage.removeItem('token');
+    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
     this.router.navigate(['/user/login'])
+  }
+  visualizza(id){
+    localStorage.setItem("idPre",id);
+    this.router.navigateByUrl("/prenotazione");
   }
 
 }

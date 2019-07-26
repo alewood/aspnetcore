@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Web;
 namespace LabWebApi.Controllers
 {
@@ -28,10 +30,27 @@ namespace LabWebApi.Controllers
                dettaglio.IdStrumento=data["IdStrumento"].ToObject<int>();
                dettaglio.dataInizio=data["DataInizio"].ToObject<DateTime>();
                dettaglio.dataFine=data["DataFine"].ToObject<DateTime>();
-
+               if(cart.All(d=>!(d.IdStrumento==dettaglio.IdStrumento)))
                cart.Add(dettaglio);
                SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);
           return Ok(cart);
+        }
+        [HttpDelete("{id}")]
+        [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
+        public IActionResult rimuoviPrenotazioneStrumento(int id){
+           
+            var cart=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
+          var cart2=new List<DettaglioPrenotazione>();
+          foreach (var item in cart)
+          {
+              if(item.IdStrumento!=id)
+              cart2.Add(item);
+              
+          }
+        
+            SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart2);
+            return Ok(cart);
+            
         }
 
         

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe} from '@angular/common';
+import { retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,15 @@ export class PrenotazioneService {
 
   getCarrello(){
     return this.http.get(this.BaseURI +'/cart');
+  }
+
+  getPrenotazioniPerUtente(){
+    return this.http.get(this.BaseURI +'/prenotazione/perUtente');
+  }
+  getPrenotazione(id){
+    return this.http.get(this.BaseURI +'/prenotazione/'+id);
+  }
+  rimuoviPrenotazioneStrumento(id){
+    return this.http.delete(this.BaseURI+'/cart/'+id);
   }
 }

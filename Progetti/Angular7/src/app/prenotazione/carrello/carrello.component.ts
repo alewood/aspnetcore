@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Component({
   selector: 'app-carrello',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CarrelloComponent implements OnInit {
   carrello;
-  constructor(private service:PrenotazioneService,private router:Router) { }
+  constructor(private cookieService: CookieService,private service:PrenotazioneService,private router:Router) { }
  
  
 
@@ -24,12 +26,12 @@ export class CarrelloComponent implements OnInit {
       }
     );
     this.router.navigateByUrl('/carrello');
-
   
     
 
   }
   onSubmit(){
+    if (this.carrello!=null){
    this.service.confermaPrenotazione().subscribe(
     res=>{
       console.log(res);
@@ -40,9 +42,20 @@ export class CarrelloComponent implements OnInit {
 
     }
 
-   );
+   );}
    this.router.navigateByUrl('/strumenti');
   
+  }
+  rimuoviStrumento(id){
+    this.service.rimuoviPrenotazioneStrumento(id).subscribe( 
+      res=>{
+        console.log(res);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+    this.router.navigateByUrl('/strumenti');
   }
 
 }

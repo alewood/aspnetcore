@@ -32,16 +32,16 @@ public async Task<ActionResult<IEnumerable<Prenotazione>>> GetPrenotazioni()
 }
 [HttpGet("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<Prenotazione>> GetPrenotazione(int id)
+public async Task<ActionResult<IEnumerable<DettaglioPrenotazione>>> GetPrenotazione(int id)
 {
-    var prenotazione = await _context.Prenotazione.FindAsync(id);
+    var dettagli = await _context.DettaglioPrenotazione.Where(d=> d.IdPrenotazione==id).ToListAsync();
 
-    if (prenotazione == null)
+    if (dettagli == null)
     {
         return NotFound();
     }
 
-    return prenotazione;
+    return dettagli;
 }
 [HttpPost]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]

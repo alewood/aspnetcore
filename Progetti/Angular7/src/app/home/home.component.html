@@ -17,3 +17,15 @@
 
 
 </div>
+<table class="table" >
+  <tr>
+      <th>#</th>
+      <th>ID</th>
+  </tr>
+  <tr *ngFor="let prenotazione of prenotazioni; let i = index">
+      <td >{{i + 1}}</td>
+      <td>{{prenotazione.id}}</td> 
+      <td> <button type="submit" class="btn" (click)="visualizza(prenotazione.id)">Visualizza</button></td>
+      </tr>
+
+</table>

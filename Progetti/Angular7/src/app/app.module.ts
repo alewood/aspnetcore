@@ -23,6 +23,7 @@ import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-pre
 import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { DatePipe } from "@angular/common";
 import { CookieService } from "ngx-cookie-service";
+import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { CookieService } from "ngx-cookie-service";
     UtentiComponent,
     PrenotazioniComponent,
     DettaglioPrenotazioneFormComponent,
-    CarrelloComponent
+    CarrelloComponent,
+    PrenotazioneComponent
   ],
   imports: [
     BrowserModule,
