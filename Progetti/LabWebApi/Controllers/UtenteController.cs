@@ -30,7 +30,7 @@ namespace LabWebApi.Controllers
 
            
         }
-        [HttpPost]
+    [HttpPost]
     [Route("login")]
     public async Task<IActionResult> Login([FromBody]JObject data)
     {

@@ -55,7 +55,7 @@ namespace labwebapi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,UserManager<Utente> userManager,RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,UserManager<Utente> userManager,RoleManager<IdentityRole> roleManager,LabContext context)
         {
             if (env.IsDevelopment())
             {
@@ -71,7 +71,8 @@ namespace labwebapi
             builder.WithOrigins(Configuration["ApplicationSettings:Client_Url"].ToString())
             .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
-            DataSeeder.SeedData(userManager,roleManager);
+            var path= @Configuration["Excel:Strumenti"].ToString();
+            DataSeeder.SeedData(userManager,roleManager,path,context);
              app.UseSession();
             app.UseMvc();
            
