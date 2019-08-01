@@ -23,11 +23,14 @@ export class StrumentoService {
       Marca:this.formModel.value.Marca,
       Modello:this.formModel.value.Modello
     };
-    return this.http.post(this.BaseURI +'/strumento',body);
+    return this.http.post<Response>(this.BaseURI +'/strumento',body,{observe:'response'});
   }
 
   getStrumenti(){
     return this.http.get(this.BaseURI+'/strumento');
+  }
+  rimuoviStrumento(id){
+    return this.http.delete<Response>(this.BaseURI+'/strumento/'+id,{observe:'response'});
   }
 
 

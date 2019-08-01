@@ -17,11 +17,26 @@ export class DettaglioPrenotazioneFormComponent implements OnInit {
     this.service.formModel.reset();
   }
   onSubmit(){
-    this.service.prenota().subscribe(result =>
-      {console.log(result)}
+    this.service.prenota().subscribe(
+      res=>{
+        console.log(res);
+        if(res.ok){
+          this.toastr.success("La Prenotazione dello strumento è stata aggiunta al carrello","Success!");
+          this.router.navigateByUrl('/carrello');
+
+        }
+
+      },
+      err=>{
+        if(err.status==400){
+          this.service.formModel.reset();
+          this.toastr.error("Lo Strumento selezionato è già prenotato nel periodo inserito.","Fail!");
+        }
+
+      }
     );
       
-    this.router.navigateByUrl('/carrello');
+   
    
 
         

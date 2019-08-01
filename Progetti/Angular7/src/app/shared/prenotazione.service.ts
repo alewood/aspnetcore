@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe} from '@angular/common';
-import { retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class PrenotazioneService {
 
 
   confermaPrenotazione(){
-    return this.http.post(this.BaseURI +'/prenotazione',null);
+    return this.http.post<Response>(this.BaseURI +'/prenotazione',null,{observe:'response'});
   }
   prenota(){
     var dataInizio=this.datepipe.transform(this.formModel.value.DataInizio,this.format); 
@@ -35,7 +34,7 @@ export class PrenotazioneService {
       DataFine: dataFine
 
     };
-    return this.http.post(this.BaseURI +'/cart',body);
+    return this.http.post<Response>(this.BaseURI +'/cart',body,{observe:'response'});
     
 
   }
@@ -51,6 +50,6 @@ export class PrenotazioneService {
     return this.http.get(this.BaseURI +'/prenotazione/'+id);
   }
   rimuoviPrenotazioneStrumento(id){
-    return this.http.delete(this.BaseURI+'/cart/'+id);
+    return this.http.delete<Response>(this.BaseURI+'/cart/'+id,{observe:'response'});
   }
 }

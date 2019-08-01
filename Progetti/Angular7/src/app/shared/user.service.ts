@@ -65,11 +65,14 @@ export class UserService {
 
     return isMatch;
   }
+  rimuoviUtente(userName){
+    return this.http.delete<Response>(this.BaseURI+'/utente/'+userName,{observe:'response'});
+  }
   getUtenti(){
     return this.http.get(this.BaseURI+'/utente/tutti');
   }
   changePassword(formData){
-    return this.http.put(this.BaseURI+"/utente",formData);
+    return this.http.put<Response>(this.BaseURI+"/utente",formData,{observe:'response'});
   }
 
 }

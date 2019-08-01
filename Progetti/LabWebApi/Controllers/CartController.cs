@@ -15,6 +15,40 @@ namespace LabWebApi.Controllers
     [ApiController]
     public class CartController :ControllerBase
     {
+         private readonly LabContext _context;
+         public CartController(LabContext context)
+        {
+            _context = context;
+
+        
+        }
+        public  async Task<bool> checkPrenotazioniStrumento(int idStrumento,DateTime inizio,DateTime fine){
+            var result=true;
+            ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento).ToListAsync();
+            if(fine.CompareTo(inizio)<0)
+            return false;
+            foreach (var d in prenotazioni)
+            {
+              if(inizio.CompareTo(d.dataInizio)<0){
+              if(fine.CompareTo(d.dataInizio)>0){
+                 result=false;
+                 break;}}
+                 else if(inizio.CompareTo(d.dataFine)<0){
+                      if(fine.CompareTo(d.dataFine)>0){
+                      result=false;
+                      break;}
+
+                 }
+                 else if(inizio.CompareTo(d.dataInizio)==0||fine.CompareTo(d.dataFine)==0||inizio.CompareTo(d.dataFine)==0||fine.CompareTo(d.dataInizio)==0){
+                     result=false;
+                     break;
+
+                 }
+                  
+            }
+            return result;
+        }
+
         [HttpGet]
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
         public IEnumerable<DettaglioPrenotazione> getCart(){
@@ -22,18 +56,27 @@ namespace LabWebApi.Controllers
         }
         [HttpPost]
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-        public IActionResult postCart([FromBody]JObject data) {
+        public async Task<IActionResult> postCart([FromBody]JObject data) {
+            var idStrumento=data["IdStrumento"].ToObject<int>();
+            var inizio=data["DataInizio"].ToObject<DateTime>();
+            var fine=data["DataFine"].ToObject<DateTime>();
+            if(await checkPrenotazioniStrumento(idStrumento,inizio,fine)){
             var cart=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
+               
                if(cart==null)
                cart=new List<DettaglioPrenotazione>();
                var dettaglio= new DettaglioPrenotazione();
-               dettaglio.IdStrumento=data["IdStrumento"].ToObject<int>();
-               dettaglio.dataInizio=data["DataInizio"].ToObject<DateTime>();
-               dettaglio.dataFine=data["DataFine"].ToObject<DateTime>();
+               dettaglio.IdStrumento=idStrumento;
+               dettaglio.dataInizio=inizio;
+               dettaglio.dataFine=fine;
                if(cart.All(d=>!(d.IdStrumento==dettaglio.IdStrumento)))
                cart.Add(dettaglio);
                SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);
-          return Ok(cart);
+          return Ok();
+            }
+            else{
+                return BadRequest();
+            }
         }
         [HttpDelete("{id}")]
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]

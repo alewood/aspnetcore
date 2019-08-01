@@ -45,7 +45,7 @@ public async Task<ActionResult<IEnumerable<DettaglioPrenotazione>>> GetPrenotazi
 }
 [HttpPost]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<Prenotazione>> PostPrenotazione()
+public async Task<ActionResult> PostPrenotazione()
 {
     Prenotazione prenotazione=new Prenotazione();
     _context.Prenotazione.Add(prenotazione);
@@ -67,22 +67,9 @@ public async Task<ActionResult<Prenotazione>> PostPrenotazione()
    await _context.SaveChangesAsync();
    SessionHelper.Reset(HttpContext.Session,"cart");
 
-    return CreatedAtAction(nameof(GetPrenotazione), new { id = prenotazione.ID }, prenotazione);
+    return Ok();
 }
-[HttpPut("{id}")]
-[Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<IActionResult> PutPrenotazione(int id,Prenotazione prenotazione)
-{
-    if (id != prenotazione.ID)
-    {
-        return BadRequest();
-    }
 
-    _context.Entry(prenotazione).State = EntityState.Modified;
-    await _context.SaveChangesAsync();
-
-    return NoContent();
-}
 [HttpDelete("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<IActionResult> DeletePrenotazione(int id)

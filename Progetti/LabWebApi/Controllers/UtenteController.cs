@@ -110,16 +110,30 @@ namespace LabWebApi.Controllers
             var oldPwd=data["oldPassword"].ToObject<string>();
             var newPwd=data["newPassword"].ToObject<string>();
              if(user!=null && await _userManager.CheckPasswordAsync(user,oldPwd)){
-               var result= await _userManager.ChangePasswordAsync(user,oldPwd,newPwd);
-               return Ok(result);
+              await _userManager.ChangePasswordAsync(user,oldPwd,newPwd);
+               return Ok();
              }
              else
-             return BadRequest("Password is incorrect");
+             return BadRequest();
 
 
 
 
        }
+[HttpDelete("{id}")]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
+public async Task<IActionResult> DeleteUtente(string id)
+{
+    var utente=await _userManager.FindByIdAsync(id);
+
+    if (utente == null)
+    {
+        return NotFound();
+    }
+
+   var result= await _userManager.DeleteAsync(utente);
+    return Ok();
+}
     }
     
 }

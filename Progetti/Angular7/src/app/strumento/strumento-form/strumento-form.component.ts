@@ -16,21 +16,14 @@ export class StrumentoFormComponent implements OnInit {
   }
   onSubmit(){
     this.service.inserisci().subscribe(
-      (res:any) =>{
-        if(res.succeeded){
+      res =>{
+          if(res.ok){
+            console.log(res.status);
           this.service.formModel.reset();
-          this.toastr.success('Creato nuovo Strumento!','L\'inserimento ha avuto successo!');
-        }else{
-          res.errors.array.forEach(element => {
-            switch(element.code) {
-              
-              default:
-                this.toastr.error(element.description,'L\'inserimento non ha avuto successo.');
-                break;
-            }
-          });
-        }
+          this.toastr.success('Creato nuovo Strumento!','L\'inserimento ha avuto successo!');}
+          
       },
+         
       err=>{
         console.log(err);
 

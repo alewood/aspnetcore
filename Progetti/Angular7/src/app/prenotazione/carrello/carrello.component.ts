@@ -3,6 +3,7 @@ import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-carrello',
@@ -11,7 +12,7 @@ import { typeWithParameters } from '@angular/compiler/src/render3/util';
 })
 export class CarrelloComponent implements OnInit {
   carrello;
-  constructor(private cookieService: CookieService,private service:PrenotazioneService,private router:Router) { }
+  constructor(private toastr:ToastrService, private cookieService: CookieService,private service:PrenotazioneService,private router:Router) { }
  
  
 
@@ -34,8 +35,10 @@ export class CarrelloComponent implements OnInit {
     if (this.carrello!=null){
    this.service.confermaPrenotazione().subscribe(
     res=>{
+      if(res.ok){
       console.log(res);
-      
+      this.toastr.success("Gli strumenti sono stati prenotati!","La Prenotazione ha avuto seccesso.");
+      }     
     },
     err=>{
       console.log(err);
@@ -49,7 +52,9 @@ export class CarrelloComponent implements OnInit {
   rimuoviStrumento(id){
     this.service.rimuoviPrenotazioneStrumento(id).subscribe( 
       res=>{
+        if(res.ok){
         console.log(res);
+       this.toastr.success("La Prenotazione selezionata è stata rimossa.","La Rimozione ha avuto successo.")}
       },
       err=>{
         console.log(err);

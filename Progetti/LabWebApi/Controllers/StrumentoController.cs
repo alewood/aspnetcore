@@ -45,8 +45,7 @@ public async Task<ActionResult<Strumento>> PostStrumento(Strumento strumento)
 {
    var result= _context.Strumento.Add(strumento);
     await _context.SaveChangesAsync();
-
-    return Ok(result);
+    return Ok();
 }
 [HttpPut("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
@@ -60,7 +59,7 @@ public async Task<IActionResult> PutStrumento(int id,Strumento strumento)
     _context.Entry(strumento).State = EntityState.Modified;
     await _context.SaveChangesAsync();
 
-    return NoContent();
+    return Ok();
 }
 [HttpDelete("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
@@ -76,7 +75,7 @@ public async Task<IActionResult> DeleteStrumento(int id)
     _context.Strumento.Remove(strumento);
     await _context.SaveChangesAsync();
 
-    return NoContent();
+    return Ok();
 }
     }
         

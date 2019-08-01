@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-pwd-form',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ChangePwdFormComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private service:UserService,private router:Router) { }
+  constructor(private toastr:ToastrService, private fb:FormBuilder,private service:UserService,private router:Router) { }
   formModel=this.fb.group({
 
     OldPassword :['',[Validators.required,Validators.minLength(4)]],
@@ -42,9 +43,15 @@ onSubmit(){
   this.service.changePassword(body).subscribe(
     res=>{
       console.log(res);
+      if(res.ok){
       this.router.navigateByUrl('/home');
+       this.toastr.success("Password modificata!","La Modifica ha avuto successo.");}
+     
     },
     err=>{
+      if (err.status==400){
+        this.toastr.error("La Password inserita non è corretta","La Modifica non ha avuto successo.")
+      }
       console.log(err);
     }
   );
