@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-utenti',
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UtentiComponent implements OnInit {
 utenti;
-  constructor(private toastr:ToastrService, private service:UserService,private router:Router) { }
+  constructor(private cookieService:CookieService, private toastr:ToastrService, private service:UserService,private router:Router) { }
 
   ngOnInit() {
     this.service.getUtenti().subscribe(
@@ -37,6 +38,11 @@ utenti;
         console.log(err);
       }
     );
+  }
+  onLogout(){
+    localStorage.removeItem('token');
+    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+    this.router.navigate(['login'])
   }
 
 }

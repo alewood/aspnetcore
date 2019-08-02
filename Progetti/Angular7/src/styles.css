@@ -1,13 +1,13 @@
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 
 body{
-    background-color: #04c582;;
+    background-color: #c6cdda;;
 }
 
 input.form-control,input.form-control:focus{
-    background-color: #636b7b;
-    color: #fff;
-    border: 1px solid #636b7b;
+    background-color: #617edd;
+    color: #c6cdda;
+    border: 1px solid #010611;
 
 }
 
@@ -17,12 +17,12 @@ input.form-control:focus{
 
 button[type=submit].btn{
     border-radius: 20px;
-    background-color: #04c582;
-    color: #fff;
+    background-color: #617edd;
+    color: rgb(12, 1, 1);
 }
 
 div.form-group label:not(.text-danger){
-    color: #545d6a;
+    color: #01050a;
     font-weight: 700;
 }
 

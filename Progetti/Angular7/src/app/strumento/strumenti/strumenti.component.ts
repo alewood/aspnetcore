@@ -3,6 +3,8 @@ import { StrumentoService } from 'src/app/shared/strumento.service';
 import { Router } from '@angular/router';
 import { FilterPipe } from "src/app/filter-pipe";
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/shared/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-strumenti',
@@ -13,7 +15,7 @@ export class StrumentiComponent implements OnInit {
   strumenti;
   searchText :string="";
 
-  constructor(private toastr:ToastrService, private filter:FilterPipe,private service:StrumentoService,private router:Router) { }
+  constructor(private cookieService:CookieService, private userService:UserService, private toastr:ToastrService, private filter:FilterPipe,private service:StrumentoService,private router:Router) { }
 
   ngOnInit() {
     this.service.getStrumenti().subscribe(
@@ -34,18 +36,29 @@ export class StrumentiComponent implements OnInit {
     this.searchText="";
   }
   rimuovi(id){
+    if(this.userService.roleMatch(['Admin'])){
     this.service.rimuoviStrumento(id).subscribe(
            res=>{
              if(res.ok){
                this.toastr.success("Strumento Rimosso","La Rimozione ha avuto successso.");
              }
-             this.router.navigateByUrl('/strumenti');
              console.log(res);
+             this.router.navigateByUrl('/strumenti');
            },
            err=>{
              console.log(err);
            }
-    );
+    );}
+    else{
+      this.toastr.error("Non sei autorizzato a rimuovere Strumenti!","Unauthorized.");
+      this.router.navigateByUrl('/home');
+
+    }
+  }
+  onLogout(){
+    localStorage.removeItem('token');
+    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+    this.router.navigate(['login'])
   }
 
 }

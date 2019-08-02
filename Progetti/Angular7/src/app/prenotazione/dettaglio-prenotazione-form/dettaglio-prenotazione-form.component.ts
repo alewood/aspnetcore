@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dettaglio-prenotazione-form',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class DettaglioPrenotazioneFormComponent implements OnInit {
 
-  constructor(public service:PrenotazioneService,private toastr:ToastrService,private router:Router) { }
+  constructor (private cookieService:CookieService, public service:PrenotazioneService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.service.formModel.reset();
@@ -41,5 +42,10 @@ export class DettaglioPrenotazioneFormComponent implements OnInit {
 
         
 
+}
+onLogout(){
+  localStorage.removeItem('token');
+  this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+  this.router.navigate(['login'])
 }
 }

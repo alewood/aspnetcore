@@ -49,7 +49,7 @@ namespace LabWebApi.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpGet] 
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
         public IEnumerable<DettaglioPrenotazione> getCart(){
             return SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
@@ -58,8 +58,8 @@ namespace LabWebApi.Controllers
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
         public async Task<IActionResult> postCart([FromBody]JObject data) {
             var idStrumento=data["IdStrumento"].ToObject<int>();
-            var inizio=data["DataInizio"].ToObject<DateTime>();
-            var fine=data["DataFine"].ToObject<DateTime>();
+            var inizio=data["DataInizio"].ToObject<DateTime>().Date;
+            var fine=data["DataFine"].ToObject<DateTime>().Date;
             if(await checkPrenotazioniStrumento(idStrumento,inizio,fine)){
             var cart=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
                

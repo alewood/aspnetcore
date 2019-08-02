@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -27,7 +26,7 @@ export class CarrelloComponent implements OnInit {
       }
     );
     this.router.navigateByUrl('/carrello');
-  
+
     
 
   }
@@ -61,6 +60,11 @@ export class CarrelloComponent implements OnInit {
       }
     );
     this.router.navigateByUrl('/strumenti');
+  }
+  onLogout(){
+    localStorage.removeItem('token');
+    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+    this.router.navigate(['login'])
   }
 
 }

@@ -53,9 +53,10 @@ public static class DataSeeder{
         
     }
     public static void SeedStrumenti(/*"@" in front of string before passing it as argument */string excelPath,LabContext context){
+    if(context.Strumento.Count()==0){
     var filePath = @"C:\Users\Alexa\Desktop\StrumentiProva.xlsx";
             FileInfo file = new FileInfo(filePath);
- 
+  
             using (ExcelPackage package = new ExcelPackage(file))
             {
                
@@ -82,6 +83,7 @@ public static class DataSeeder{
                 context.SaveChanges();
            
         }
+    }
    
     }
 }

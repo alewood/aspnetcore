@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-change-pwd-form',
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChangePwdFormComponent implements OnInit {
 
-  constructor(private toastr:ToastrService, private fb:FormBuilder,private service:UserService,private router:Router) { }
+  constructor(private cookieService:CookieService, private toastr:ToastrService, private fb:FormBuilder,private service:UserService,private router:Router) { }
   formModel=this.fb.group({
 
     OldPassword :['',[Validators.required,Validators.minLength(4)]],
@@ -57,5 +58,10 @@ onSubmit(){
   );
   
   
+}
+onLogout(){
+  localStorage.removeItem('token');
+  this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+  this.router.navigate(['login'])
 }
 }

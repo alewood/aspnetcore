@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegistrationComponent implements OnInit {
   roles=['UtenteBase','UtenteAutorizzato'];
 
-  constructor(public service:UserService, private toastr: ToastrService) { }
+  constructor(private router:Router,private cookieService:CookieService, public service:UserService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.service.formModel.reset();
@@ -44,6 +46,11 @@ export class RegistrationComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  onLogout(){
+    localStorage.removeItem('token');
+    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+    this.router.navigate(['login'])
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { StrumentoService } from 'src/app/shared/strumento.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-strumento-form',
@@ -9,7 +11,7 @@ import { StrumentoService } from 'src/app/shared/strumento.service';
 })
 export class StrumentoFormComponent implements OnInit {
 
-  constructor(public service:StrumentoService,private toastr:ToastrService) { }
+  constructor(private router:Router,private cookieService:CookieService, public service:StrumentoService,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.service.formModel.reset();
@@ -30,6 +32,11 @@ export class StrumentoFormComponent implements OnInit {
       }
     );
 
+  }
+  onLogout(){
+    localStorage.removeItem('token');
+    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
+    this.router.navigate(['login'])
   }
 
 

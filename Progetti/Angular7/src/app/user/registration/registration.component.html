@@ -1,4 +1,27 @@
-
+<nav class="navbar navbar-dark bg-dark">
+        <a  class="navbar-brand text-white">LabAPI</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          <a class="nav-link" routerLink="/registration">Aggiungi Utente</a>
+        </li></ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          <a class="nav-link" routerLink="/changePwd">Change Password</a>
+        </li></ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          <a class="nav-link" routerLink="/strumenti">Strumenti</a>
+        </li></ul>
+        <ul class="navbar-nav mr-auto" >
+          <li class="nav-item">
+          <a class="nav-link" routerLink="/strumentoForm">Aggiungi Strumento</a>
+        </li></ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          <a class="nav-link" routerLink="/utenti">Utenti</a>
+        </li></ul>
+        <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+      </nav>
         <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
             <div class="form-group required" >
                 <label >Username</label>
