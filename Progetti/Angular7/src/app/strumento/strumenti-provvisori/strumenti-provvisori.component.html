@@ -1,0 +1,24 @@
+
+<table class="table" >
+    <tr>
+        <th>#</th>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrizione</th> 
+        <th>Marca</th>
+        <th>Modello</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index">
+        <td >{{i + 1}}</td>
+        <td>{{strumento.id}}</td>
+        <td>{{strumento.nome}}</td>
+        <td>{{strumento.descrizione}}</td>
+        <td>{{strumento.marca}}</td>
+        <td>{{strumento.modello}}</td>
+        <td> <button class="btn" (click)="confermaStrumento(strumento)">Conferma</button></td>
+        <td> <button class="btn" (click)="rimuoviProv(strumento.id)">Rimuovi</button></td>
+    </tr>
+
+</table>

@@ -30,6 +30,15 @@ namespace LabWebApi.Models
    
 
     }
+       public class StrumentoProvvisorio{
+        [Key]
+       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int ID { get; set; }
+    public string Nome { get; set; }
+    public string Descrizione { get; set; }
+    public string Marca { get; set; }   
+    public string Modello{ get; set; }
+       }
     
     public class Prenotazione{
         [Key]

@@ -66,6 +66,22 @@ namespace labwebapi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StrumentoProvvisorio",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: true),
+                    Descrizione = table.Column<string>(nullable: true),
+                    Marca = table.Column<string>(nullable: true),
+                    Modello = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StrumentoProvvisorio", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -290,6 +306,9 @@ namespace labwebapi.Migrations
 
             migrationBuilder.DropTable(
                 name: "DettaglioPrenotazione");
+
+            migrationBuilder.DropTable(
+                name: "StrumentoProvvisorio");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

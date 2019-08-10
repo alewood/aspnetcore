@@ -7,7 +7,8 @@ namespace LabWebApi.Models
     {
        
         public DbSet<Utente> Utente{ get; set; }
-
+        
+        public DbSet<StrumentoProvvisorio> StrumentoProvvisorio{get;set;}
         public DbSet<Strumento> Strumento { get; set; }
         public DbSet<Prenotazione> Prenotazione { get; set; }
         public DbSet<DettaglioPrenotazione> DettaglioPrenotazione { get; set; }
@@ -33,6 +34,10 @@ namespace LabWebApi.Models
         entity.HasKey(e=> new{e.IdStrumento,e.IdPrenotazione});
         entity.HasOne(e =>e.Strumento).WithMany(s=> s.Prenotazioni);
         entity.HasOne(e=> e.Prenotazione).WithMany(p => p.Strumenti);
+      });
+       modelBuilder.Entity<StrumentoProvvisorio>(entity =>
+      {
+        entity.HasKey(s => s.ID);
       });
       
 

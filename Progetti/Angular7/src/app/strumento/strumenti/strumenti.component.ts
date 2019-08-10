@@ -13,6 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class StrumentiComponent implements OnInit {
   strumenti;
+  isAdmin=this.userService.roleMatch(['Admin']);
   searchText :string="";
 
   constructor(private cookieService:CookieService, private userService:UserService, private toastr:ToastrService, private filter:FilterPipe,private service:StrumentoService,private router:Router) { }
@@ -36,7 +37,7 @@ export class StrumentiComponent implements OnInit {
     this.searchText="";
   }
   rimuovi(id){
-    if(this.userService.roleMatch(['Admin'])){
+    if(this.isAdmin){
     this.service.rimuoviStrumento(id).subscribe(
            res=>{
              if(res.ok){

@@ -12,6 +12,7 @@ using System;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 namespace LabWebApi.Controllers
 {
      [Route("api/utente")]
@@ -83,24 +84,36 @@ namespace LabWebApi.Controllers
         }
 
     }
+    public async Task<Object> GetUserDetails(Utente user){
+       
+          var role= await _userManager.GetRolesAsync(user);
+          return new 
+          {
+              id=user.Id,
+              fullName=user.FullName,
+              email=user.Email,
+              userName=user.UserName,
+              role=role
+          };
+    }
      [HttpGet]
     [Authorize]
       public async Task<Object> GetUserProfile() 
       {
           string UserID = User.Claims.First(c =>c.Type=="UserID" ).Value;
-          var user=  await _userManager.FindByIdAsync(UserID);
-          return new 
-          {
-              user.FullName,
-              user.Email,
-              user.UserName
-          };
+         return  await GetUserDetails(await _userManager.FindByIdAsync(UserID));
       }
-       [HttpGet]
-    [Authorize(Roles="Admin")]
+    [HttpGet]
+    [Authorize(Roles="Admin,UtenteAutorizzato")]
     [Route("tutti")]
-      public  IEnumerable<Utente> GetUtenti(){
-          return  _userManager.Users.ToList();
+      public async Task<ICollection<Object>> GetUtenti(){
+            var userList=_userManager.Users.ToList();
+            ICollection<Object> utenti= new List<Object>();
+            foreach (var utente in userList){
+             utenti.Add(await this.GetUserDetails(utente));}
+             return utenti;
+                
+            
       } 
        [HttpPut]
        [Authorize]

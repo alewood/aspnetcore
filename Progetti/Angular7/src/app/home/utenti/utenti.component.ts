@@ -11,12 +11,23 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class UtentiComponent implements OnInit {
 utenti;
-  constructor(private cookieService:CookieService, private toastr:ToastrService, private service:UserService,private router:Router) { }
+self;
+isOK;
+  constructor(private userService:UserService, private cookieService:CookieService, private toastr:ToastrService, private service:UserService,private router:Router) { }
 
   ngOnInit() {
     this.service.getUtenti().subscribe(
       res=>{
         this.utenti=res;
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+    this.userService.getUserProfile().subscribe(
+      res=>{
+        console.log(res);
+           this.self=res;
       },
       err=>{
         console.log(err);
@@ -44,5 +55,19 @@ utenti;
     this.cookieService.delete(".AspNetCore.Session","/user","localhost");
     this.router.navigate(['login'])
   }
+roleCheck(utente){
+  if(this.self.id==utente.id)
+  return false;
+  else{
+  if(this.userService.roleMatch(['Admin']))
+      return true;
+     else{
+       if(utente.role=='UtenteBase')
+       return true;
+       else 
+       return false;
+     }}
 
+     
+}
 }

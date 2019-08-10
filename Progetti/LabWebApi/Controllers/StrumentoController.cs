@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json.Linq;
 namespace LabWebApi.Controllers
 
 {
@@ -26,6 +27,7 @@ public async Task<ActionResult<IEnumerable<Strumento>>> GetStrumenti()
 {
     return await _context.Strumento.ToListAsync();
 }
+
 [HttpGet("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<ActionResult<Strumento>> GetStrumento(int id)
@@ -39,14 +41,17 @@ public async Task<ActionResult<Strumento>> GetStrumento(int id)
 
     return strumento;
 }
+
 [HttpPost]
-[Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<ActionResult<Strumento>> PostStrumento(Strumento strumento)
+[Authorize(Roles="Admin")]
+public async Task<ActionResult> PostStrumento(Strumento strumento)
 {
    var result= _context.Strumento.Add(strumento);
     await _context.SaveChangesAsync();
     return Ok();
 }
+
+
 [HttpPut("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
 public async Task<IActionResult> PutStrumento(int id,Strumento strumento)
@@ -77,6 +82,7 @@ public async Task<IActionResult> DeleteStrumento(int id)
 
     return Ok();
 }
+
     }
         
     

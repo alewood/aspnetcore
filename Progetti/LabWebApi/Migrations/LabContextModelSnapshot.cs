@@ -72,6 +72,24 @@ namespace labwebapi.Migrations
                     b.ToTable("Strumento");
                 });
 
+            modelBuilder.Entity("LabWebApi.Models.StrumentoProvvisorio", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descrizione");
+
+                    b.Property<string>("Marca");
+
+                    b.Property<string>("Modello");
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("StrumentoProvvisorio");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

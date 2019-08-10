@@ -12,21 +12,23 @@ import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-pre
 import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
 import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
+import { StrumentiProvvisoriComponent } from './strumento/strumenti-provvisori/strumenti-provvisori.component';
 
 
 const routes: Routes = [
 {path:'',redirectTo:'/login',pathMatch:'full'},
-{path:'registration',component:RegistrationComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin']}},
+{path:'registration',component:RegistrationComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'login',component:LoginComponent},
 {path:'home',component :HomeComponent,canActivate:[AuthGuard]},
 {path:'strumentoForm',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'forbidden',component :ForbiddenComponent},
 {path:'strumenti',component :StrumentiComponent,canActivate:[AuthGuard]},
+{path:'strumenti/prov',component :StrumentiProvvisoriComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'prenotazione',component :PrenotazioneComponent,canActivate:[AuthGuard]},
 {path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent,canActivate:[AuthGuard]},
 {path:'carrello',component :CarrelloComponent,canActivate:[AuthGuard]},
 {path:'changePwd',component :ChangePwdFormComponent,canActivate:[AuthGuard]},
-{path:'utenti',component :UtentiComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
+{path:'utenti',component :UtentiComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin','UtenteAutorizzato']}},
 ];
 
 @NgModule({

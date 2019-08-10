@@ -2,11 +2,6 @@
     <a  class="navbar-brand text-white">LabAPI</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/adminpanel">Admin Panel</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
       <a class="nav-link" routerLink="/registration">Aggiungi Utente</a>
     </li></ul>
     <ul class="navbar-nav mr-auto">
@@ -25,6 +20,10 @@
       <li class="nav-item">
       <a class="nav-link" routerLink="/utenti">Utenti</a>
     </li></ul>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <a class="nav-link" routerLink="/carrello">Carrello</a>
+      </li></ul>
     <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
   </nav>
   <div class="card m-5" style="width:18rem" *ngIf="userDetails">
@@ -32,6 +31,8 @@
     <li class="list-group-item"><strong>Username :</strong>{{userDetails.userName}}</li>
     <li class="list-group-item"><strong>FullName :</strong>{{userDetails.fullName}}</li>
     <li class="list-group-item"><strong>Email :</strong>{{userDetails.email}}</li>
+    <li class="list-group-item"><strong>Role :</strong>{{userDetails.role}}</li>
+
 
   </ul>
 
@@ -41,6 +42,7 @@
   <tr>
       <th>#</th>
       <th>ID</th>
+      <th></th>
   </tr>
   <tr *ngFor="let prenotazione of prenotazioni; let i = index">
       <td >{{i + 1}}</td>

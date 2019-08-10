@@ -23,6 +23,7 @@ import { CookieService } from "ngx-cookie-service";
 import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
 import { FilterPipe } from "./filter-pipe";
 import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
+import { StrumentiProvvisoriComponent } from './strumento/strumenti-provvisori/strumenti-provvisori.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.c
     CarrelloComponent,
     PrenotazioneComponent,
     FilterPipe,
-    ChangePwdFormComponent
+    ChangePwdFormComponent,
+    StrumentiProvvisoriComponent
     
   ],
   imports: [

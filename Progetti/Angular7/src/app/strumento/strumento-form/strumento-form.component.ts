@@ -7,7 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-strumento-form',
   templateUrl: './strumento-form.component.html',
-  styleUrls: ['./strumento-form.component.css']
+  styles: []
 })
 export class StrumentoFormComponent implements OnInit {
 

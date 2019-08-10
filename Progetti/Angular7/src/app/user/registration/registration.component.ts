@@ -10,12 +10,17 @@ import { CookieService } from 'ngx-cookie-service';
   styles: []
 })
 export class RegistrationComponent implements OnInit {
-  roles=['UtenteBase','UtenteAutorizzato'];
+  roles;
 
   constructor(private router:Router,private cookieService:CookieService, public service:UserService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.service.formModel.reset();
+    if(this.service.roleMatch(['Admin']))
+      this.roles=['UtenteBase','UtenteAutorizzato'];
+      else
+      this.roles=['UtenteBase'];
+    
   }
   onSubmit(){
     this.service.register().subscribe(
