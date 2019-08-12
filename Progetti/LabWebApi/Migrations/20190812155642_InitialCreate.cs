@@ -58,7 +58,8 @@ namespace labwebapi.Migrations
                     Nome = table.Column<string>(nullable: true),
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
-                    Modello = table.Column<string>(nullable: true)
+                    Modello = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,7 +75,8 @@ namespace labwebapi.Migrations
                     Nome = table.Column<string>(nullable: true),
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
-                    Modello = table.Column<string>(nullable: true)
+                    Modello = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

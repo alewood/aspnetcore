@@ -67,6 +67,8 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Nome");
 
+                    b.Property<string>("Path");
+
                     b.HasKey("ID");
 
                     b.ToTable("Strumento");
@@ -84,6 +86,8 @@ namespace labwebapi.Migrations
                     b.Property<string>("Modello");
 
                     b.Property<string>("Nome");
+
+                    b.Property<string>("Path");
 
                     b.HasKey("ID");
 

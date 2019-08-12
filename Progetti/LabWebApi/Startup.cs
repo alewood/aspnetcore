@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
 namespace labwebapi
 {
     public class Startup
@@ -67,6 +70,11 @@ namespace labwebapi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+             app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+        RequestPath = new PathString("/Resources")
+    });
             app.UseCors(builder =>
             builder.WithOrigins(Configuration["ApplicationSettings:Client_Url"].ToString())
             .AllowAnyHeader().AllowAnyMethod().AllowCredentials());

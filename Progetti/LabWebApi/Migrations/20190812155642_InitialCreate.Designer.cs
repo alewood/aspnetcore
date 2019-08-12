@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace labwebapi.Migrations
 {
     [DbContext(typeof(LabContext))]
-    [Migration("20190802123208_InitialCreate")]
+    [Migration("20190812155642_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,8 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Nome");
 
+                    b.Property<string>("Path");
+
                     b.HasKey("ID");
 
                     b.ToTable("Strumento");
@@ -86,6 +88,8 @@ namespace labwebapi.Migrations
                     b.Property<string>("Modello");
 
                     b.Property<string>("Nome");
+
+                    b.Property<string>("Path");
 
                     b.HasKey("ID");
 

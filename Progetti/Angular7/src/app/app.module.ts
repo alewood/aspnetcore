@@ -24,6 +24,7 @@ import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.
 import { FilterPipe } from "./filter-pipe";
 import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
 import { StrumentiProvvisoriComponent } from './strumento/strumenti-provvisori/strumenti-provvisori.component';
+import { UploadComponent } from './strumento/upload/upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { StrumentiProvvisoriComponent } from './strumento/strumenti-provvisori/s
     PrenotazioneComponent,
     FilterPipe,
     ChangePwdFormComponent,
-    StrumentiProvvisoriComponent
+    StrumentiProvvisoriComponent,
+    UploadComponent
     
   ],
   imports: [

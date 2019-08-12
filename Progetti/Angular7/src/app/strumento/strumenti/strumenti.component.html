@@ -41,6 +41,7 @@
         <th>Marca</th>
         <th>Modello</th>
         <th></th>
+        <th></th>
         <th *ngIf="this.isAdmin"></th>
     </tr>
     <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index">
@@ -49,6 +50,7 @@
         <td>{{strumento.descrizione}}</td>
         <td>{{strumento.marca}}</td>
         <td>{{strumento.modello}}</td>
+        <td *ngIf="strumento.path!=null"><button class="btn" (click)="pdfOpen(strumento.path)">Descrizione</button></td>
         <td> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
     </tr>

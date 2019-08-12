@@ -24,6 +24,7 @@ namespace LabWebApi.Models
     public string Descrizione { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
+    public string Path { get; set; }  
     
   
     public virtual ICollection<DettaglioPrenotazione> Prenotazioni { get; set; }
@@ -38,6 +39,7 @@ namespace LabWebApi.Models
     public string Descrizione { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
+     public string Path { get; set; }  
        }
     
     public class Prenotazione{

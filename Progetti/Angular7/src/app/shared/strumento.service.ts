@@ -17,12 +17,13 @@ export class StrumentoService {
     Modello:['',Validators.required]
   });
 
-  inserisci() {
+  inserisci(path) {
     var body={
       Nome: this.formModel.value.Nome,
       Descrizione:this.formModel.value.Descrizione,
       Marca:this.formModel.value.Marca,
-      Modello:this.formModel.value.Modello
+      Modello:this.formModel.value.Modello,
+      Path:path
     };
     if(this.userService.roleMatch(['Admin','UtenteAutorizzato']))
     return this.http.post<Response>(this.BaseURI +'/strumento',body,{observe:'response'});

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { StrumentoService } from 'src/app/shared/strumento.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpEventType, HttpClient, HttpParameterCodec } from '@angular/common/http';
+ 
 
 @Component({
   selector: 'app-strumento-form',
@@ -10,14 +12,14 @@ import { CookieService } from 'ngx-cookie-service';
   styles: []
 })
 export class StrumentoFormComponent implements OnInit {
-
-  constructor(private router:Router,private cookieService:CookieService, public service:StrumentoService,private toastr:ToastrService) { }
-
+  public response: {dbPath: ''};
+  constructor(private http:HttpClient, private router:Router,private cookieService:CookieService, public service:StrumentoService,private toastr:ToastrService) { }
+  
   ngOnInit() {
     this.service.formModel.reset();
   }
   onSubmit(){
-    this.service.inserisci().subscribe(
+    this.service.inserisci(this.response.dbPath).subscribe(
       res =>{
           if(res.ok){
             console.log(res.status);
@@ -38,6 +40,12 @@ export class StrumentoFormComponent implements OnInit {
     this.cookieService.delete(".AspNetCore.Session","/user","localhost");
     this.router.navigate(['login'])
   }
+  
+
+public uploadFinished = (event) => {
+    this.response = event;
+  }
+ 
 
 
 }

@@ -61,5 +61,10 @@ export class StrumentiComponent implements OnInit {
     this.cookieService.delete(".AspNetCore.Session","/user","localhost");
     this.router.navigate(['login'])
   }
+  pdfOpen(path){
+    this.router.navigateByUrl('/strumenti');
+    window.open('https://localhost:5001/'+path,'_blank');
+    
+  }
 
 }

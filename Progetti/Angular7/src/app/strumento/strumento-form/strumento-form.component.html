@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-dark bg-dark">
     <a  class="navbar-brand text-white">LabAPI</a>
     <ul class="navbar-nav mr-auto">
@@ -53,6 +54,7 @@
         <label class="text-danger" *ngIf="service.formModel.get('Modello').touched && service.formModel.get('Modello').errors?.required">This field is mandatory.</label>
       
       </div>
+      <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
 
       <button type="submit" class="btn btn-success" [disabled]="!service.formModel.valid">Submit</button>
 
