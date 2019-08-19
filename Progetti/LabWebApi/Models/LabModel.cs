@@ -25,6 +25,9 @@ namespace LabWebApi.Models
     public string Marca { get; set; }   
     public string Modello{ get; set; }
     public string Path { get; set; }  
+    public bool Prenotabile{get;set;}
+
+     public DateTime TTL{get;set;}
     
   
     public virtual ICollection<DettaglioPrenotazione> Prenotazioni { get; set; }
@@ -36,10 +39,11 @@ namespace LabWebApi.Models
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
     public string Nome { get; set; }
-    public string Descrizione { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
-     public string Path { get; set; }  
+    public string Path { get; set; }  
+    
+     
        }
     
     public class Prenotazione{

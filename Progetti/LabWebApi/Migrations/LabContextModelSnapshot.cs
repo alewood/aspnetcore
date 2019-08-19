@@ -69,6 +69,10 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Path");
 
+                    b.Property<bool>("Prenotabile");
+
+                    b.Property<DateTime>("TTL");
+
                     b.HasKey("ID");
 
                     b.ToTable("Strumento");
@@ -78,8 +82,6 @@ namespace labwebapi.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Descrizione");
 
                     b.Property<string>("Marca");
 

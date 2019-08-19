@@ -52,7 +52,7 @@ export class StrumentiComponent implements OnInit {
     );}
     else{
       this.toastr.error("Non sei autorizzato a rimuovere Strumenti!","Unauthorized.");
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/strumenti');
 
     }
   }

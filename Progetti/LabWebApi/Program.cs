@@ -3,14 +3,19 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using LabWebApi.Models;
 using Microsoft.Extensions.DependencyInjection;
-namespace labwebapi
+namespace LabWebApi
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-           CreateWebHostBuilder(args).Build()
-           .Run();
+           var host=CreateWebHostBuilder(args).Build();
+           using (var scope= host.Services.CreateScope()){
+               using(var context= scope.ServiceProvider.GetRequiredService<LabContext>()){
+                  
+               }
+           }
+           host.Run();
            
         }
         

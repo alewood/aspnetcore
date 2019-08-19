@@ -13,7 +13,9 @@ using System;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
-namespace labwebapi
+using LabWebApi.Email;
+using LabWebApi.Helpers;
+namespace LabWebApi
 {
     public class Startup
     {
@@ -55,10 +57,12 @@ namespace labwebapi
                 };
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+             services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,UserManager<Utente> userManager,RoleManager<IdentityRole> roleManager,LabContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,UserManager<Utente> userManager,RoleManager<IdentityRole> roleManager,LabContext context,IEmailService emailService)
         {
             if (env.IsDevelopment())
             {
@@ -80,7 +84,8 @@ namespace labwebapi
             .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
             var path= @Configuration["Excel:Strumenti"].ToString();
-            DataSeeder.SeedData(userManager,roleManager,path,context);
+            var email=Configuration["AdminEmail"].ToString();
+            DataSeeder.SeedData(userManager,roleManager,path,context,emailService,email);
              app.UseSession();
             app.UseMvc();
            

@@ -43,7 +43,7 @@ public async Task<ActionResult<Strumento>> GetStrumento(int id)
 }
 
 [HttpPost]
-[Authorize(Roles="Admin")]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
 public async Task<ActionResult> PostStrumento(Strumento strumento)
 {
    var result= _context.Strumento.Add(strumento);

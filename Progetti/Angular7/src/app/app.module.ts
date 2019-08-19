@@ -25,6 +25,9 @@ import { FilterPipe } from "./filter-pipe";
 import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
 import { StrumentiProvvisoriComponent } from './strumento/strumenti-provvisori/strumenti-provvisori.component';
 import { UploadComponent } from './strumento/upload/upload.component';
+import { NavbarComponent } from './bi/navbar/navbar.component';
+import { SidebarComponent } from './bi/sidebar/sidebar.component';
+import { DashboardComponent } from './bi/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,10 @@ import { UploadComponent } from './strumento/upload/upload.component';
     FilterPipe,
     ChangePwdFormComponent,
     StrumentiProvvisoriComponent,
-    UploadComponent
+    UploadComponent,
+    NavbarComponent,
+    SidebarComponent,
+    DashboardComponent
     
   ],
   imports: [

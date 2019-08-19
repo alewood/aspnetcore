@@ -41,7 +41,7 @@ public async Task<ActionResult<StrumentoProvvisorio>> GetStrumentoProvvisorio(in
     return strumento;
 }
 [HttpPost]
-[Authorize(Roles="UtenteAutorizzato")]
+[Authorize(Roles="UtenteBase ")]
 public async Task<ActionResult> PostStrumentoProvvisorio(StrumentoProvvisorio strumento)
 {
    var result= _context.StrumentoProvvisorio.Add(strumento);

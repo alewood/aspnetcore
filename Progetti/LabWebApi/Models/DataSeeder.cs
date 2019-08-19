@@ -4,15 +4,18 @@ using System.Linq;
 using System;
 using System.IO;
 using System.Text;
+using LabWebApi.Helpers;
+using LabWebApi.Email;
 namespace LabWebApi.Models{
 public static class DataSeeder{
 
-    public static void SeedData(UserManager<Utente> userManager,RoleManager<IdentityRole> roleManager,string excelPath,LabContext context)
+    public static void SeedData(UserManager<Utente> userManager,RoleManager<IdentityRole> roleManager,string excelPath,LabContext context,IEmailService emailService,string email)
     {
          
           SeedRoles(roleManager);
           SeedUsers(userManager);
           SeedStrumenti(excelPath,context);
+          TTLHelper.CheckTTL(context,email,emailService);
 
     }
     public static void SeedUsers(UserManager<Utente> userManager)
@@ -21,7 +24,9 @@ public static class DataSeeder{
         {
             Utente admin= new Utente();
             admin.UserName="admin";
+            admin.Email="ale.wood@stud.uniroma3.it";
             IdentityResult result= userManager.CreateAsync(admin,"Password1!").Result;
+            
             if(result.Succeeded)
             {
                 userManager.AddToRoleAsync(admin,"Admin").Wait();
@@ -69,7 +74,8 @@ public static class DataSeeder{
                         s.Descrizione=worksheet.Cells[row, 2].Value.ToString();
                         s.Marca=worksheet.Cells[row, 3].Value.ToString();
                         s.Modello=worksheet.Cells[row, 4].Value.ToString();
-                    
+                        var days=(double)worksheet.Cells[row,5].Value;
+                        s.TTL=DateTime.Today.AddDays(days);
                     context.Strumento.Add(s);
                     Console.WriteLine(s.Nome);
 

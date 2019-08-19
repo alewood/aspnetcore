@@ -13,14 +13,16 @@ import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { PrenotazioneComponent } from './prenotazione/prenotazione/prenotazione.component';
 import { ChangePwdFormComponent } from './user/change-pwd-form/change-pwd-form.component';
 import { StrumentiProvvisoriComponent } from './strumento/strumenti-provvisori/strumenti-provvisori.component';
+import { DashboardComponent } from './bi/dashboard/dashboard.component';
 
 
 const routes: Routes = [
 {path:'',redirectTo:'/login',pathMatch:'full'},
+{path:'bi',component :DashboardComponent,canActivate:[AuthGuard]},
 {path:'registration',component:RegistrationComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
 {path:'login',component:LoginComponent},
 {path:'home',component :HomeComponent,canActivate:[AuthGuard]},
-{path:'strumentoForm',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+{path:'strumentoForm',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato','UtenteBase']}},
 {path:'forbidden',component :ForbiddenComponent},
 {path:'strumenti',component :StrumentiComponent,canActivate:[AuthGuard]},
 {path:'strumenti/prov',component :StrumentiProvvisoriComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},

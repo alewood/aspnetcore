@@ -60,7 +60,7 @@ namespace LabWebApi.Controllers
         
     }
     [HttpPost]
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles="Admin,UtenteAutorizzato")]
     [Route("register")]
     public async Task<Object> PostUtente([FromBody]JObject data)
     {

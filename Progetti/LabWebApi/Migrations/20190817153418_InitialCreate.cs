@@ -59,7 +59,9 @@ namespace labwebapi.Migrations
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
-                    Path = table.Column<string>(nullable: true)
+                    Path = table.Column<string>(nullable: true),
+                    Prenotabile = table.Column<bool>(nullable: false),
+                    TTL = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +75,6 @@ namespace labwebapi.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(nullable: true),
-                    Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
                     Path = table.Column<string>(nullable: true)
