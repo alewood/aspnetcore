@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { DatePipe} from '@angular/common';
+import { Prenotazione } from '../models/prenotazione';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,8 @@ export class PrenotazioneService {
   }
   rimuoviPrenotazioneStrumento(id){
     return this.http.delete<Response>(this.BaseURI+'/cart/'+id,{observe:'response'});
+  }
+  getPrenotazioni(){
+    return this.http.get<{page:{data:Prenotazione[],total:number},totalPages:number}>(this.BaseURI+'/prenotazione/1/10',{observe:'response'});
   }
 }

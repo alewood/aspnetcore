@@ -33,14 +33,9 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  onLogout(){
-    localStorage.removeItem('token');
-    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
-    this.router.navigate(['login'])
-  }
   visualizza(id){
     localStorage.setItem("idPre",id);
-    this.router.navigateByUrl("/prenotazione");
+    this.router.navigateByUrl("app/prenotazione");
   }
 
 }

@@ -1,31 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
-    <a  class="navbar-brand text-white">LabAPI</a>
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" routerLink="/home">Home</a>
-      </li></ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/registration">Aggiungi Utente</a>
-    </li></ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/changePwd">Change Password</a>
-    </li></ul>
-    <ul class="navbar-nav mr-auto" >
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/strumentoForm">Aggiungi Strumento</a>
-    </li></ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/utenti">Utenti</a>
-    </li></ul>
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" routerLink="/carrello">Carrello</a>
-      </li></ul>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
-  </nav>
+
 <div>
     <div class="filter-wrap">
       <input [(ngModel)]="searchText" placeholder="Filter Strumenti" class="filter-input">
@@ -33,7 +6,8 @@
     </div>
   </div>
 <form (submit)="onSubmit(e)">
-<table class="table" >
+<table class="table table-inverse table-hover">
+  <thead class="thead-dark">
     <tr>
         <th>#</th>
         <th>Nome</th>
@@ -44,8 +18,10 @@
         <th></th>
         <th *ngIf="this.isAdmin"></th>
     </tr>
+  </thead>
+  <tbody>
     <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index">
-        <td >{{i + 1}}</td>
+        <td>{{i + 1}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>
         <td>{{strumento.marca}}</td>
@@ -54,6 +30,6 @@
         <td> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
     </tr>
-
+</tbody>
 </table>
 </form>

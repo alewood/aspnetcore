@@ -22,6 +22,7 @@
     "bootstrap": "^4.0.0-beta",
     "chart.js": "^2.8.0",
     "jquery": "^3.4.1",
+    "ng2-charts": "^2.3.0",
     "ngx": "^2.4.0",
     "ngx-cookie-service": "^2.2.0",
     "ngx-toastr": "^10.0.4",

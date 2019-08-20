@@ -1,0 +1,25 @@
+<div class="section-container">
+    <h2>
+        Latest Orders
+    </h2>
+    <table class="table table-inverse table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Utente</th>
+                <th>Data Inizio</th>
+                <th>Data Fine</th>
+                <th>Strumento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prenotazione of prenotazioni">
+                <td>{{prenotazione.idPrenotazione}}</td>
+                <td>{{prenotazione.prenotazione.utente.userName}}</td>
+                <td>{{prenotazione.dataInizio| date:'short'}}</td>
+                <td>{{prenotazione.dataFine | date: 'short'}}</td>
+                <td>{{prenotazione.strumento.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

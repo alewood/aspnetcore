@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using LabWebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace LabWebApi.Controllers
 {
@@ -24,11 +25,22 @@ namespace LabWebApi.Controllers
             _userManager=userManager;
 
         }
-[HttpGet]
+[HttpGet("{pageIndex:int}/{pageSize:int}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<IEnumerable<Prenotazione>>> GetPrenotazioni()
+public Object GetPrenotazioni(int pageIndex,int pageSize)
 {
-    return await _context.Prenotazione.ToListAsync();
+   var data= _context.DettaglioPrenotazione.Include(dp=> dp.Strumento).Include(dp=>dp.Prenotazione).ThenInclude(p=>p.Utente).OrderBy(dp=>dp.IdPrenotazione);   
+ var page= new PaginatedResponse<DettaglioPrenotazione>(data,pageIndex,pageSize);
+ var totalCount=page.Total;
+ var totalPages=Math.Ceiling((double)totalCount/pageSize);
+      return (new{
+          Page=page,
+          TotalPages=totalPages
+
+      });
+;
+
+   
 }
 [HttpGet("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]

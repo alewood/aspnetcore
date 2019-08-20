@@ -15,7 +15,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { StrumentoFormComponent } from './strumento/strumento-form/strumento-form.component';
 import { StrumentiComponent } from './strumento/strumenti/strumenti.component';
-import { UtentiComponent } from './home/utenti/utenti.component';
+import { UtentiComponent } from './user/utenti/utenti.component';
 import { DettaglioPrenotazioneFormComponent } from './prenotazione/dettaglio-prenotazione-form/dettaglio-prenotazione-form.component';
 import { CarrelloComponent } from './prenotazione/carrello/carrello.component';
 import { DatePipe } from "@angular/common";
@@ -28,6 +28,19 @@ import { UploadComponent } from './strumento/upload/upload.component';
 import { NavbarComponent } from './bi/navbar/navbar.component';
 import { SidebarComponent } from './bi/sidebar/sidebar.component';
 import { DashboardComponent } from './bi/dashboard/dashboard.component';
+import { SectionPrenotazioniComponent } from './bi/section-prenotazioni/section-prenotazioni.component';
+import { SectionStatusComponent } from './bi/section-status/section-status.component';
+import { SectionVolumeComponent } from './bi/section-volume/section-volume.component';
+import { BarChartComponent } from './bi/charts/bar-chart/bar-chart.component';
+import { LineChartComponent } from './bi/charts/line-chart/line-chart.component';
+import {ChartsModule  } from "ng2-charts";
+import { PieChartComponent } from './bi/charts/pie-chart/pie-chart.component';
+import { Utente } from "../app/models/utente";
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { StrumentoComponent } from './strumento/strumento.component';
+import { UserComponent } from './user/user.component';
+import { UserSidebarComponent } from './user/user-sidebar/user-sidebar.component';
+import { StrumentoSidebarComponent } from './strumento/strumento-sidebar/strumento-sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +60,18 @@ import { DashboardComponent } from './bi/dashboard/dashboard.component';
     UploadComponent,
     NavbarComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    SectionPrenotazioniComponent,
+    SectionStatusComponent,
+    SectionVolumeComponent,
+    BarChartComponent,
+    LineChartComponent,
+    PieChartComponent,
+    MainDashboardComponent,
+    StrumentoComponent,
+    UserComponent,
+    UserSidebarComponent,
+    StrumentoSidebarComponent
     
   ],
   imports: [
@@ -57,6 +81,7 @@ import { DashboardComponent } from './bi/dashboard/dashboard.component';
     HttpClientModule,
     BrowserAnimationsModule,
     CommonModule,
+    ChartsModule,
     ToastrModule.forRoot({
       progressBar: true
     }),
@@ -67,7 +92,7 @@ import { DashboardComponent } from './bi/dashboard/dashboard.component';
     useClass:AuthInterceptor,
     multi:true
   },DatePipe,CookieService,FilterPipe],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
  
 })
 export class AppModule {

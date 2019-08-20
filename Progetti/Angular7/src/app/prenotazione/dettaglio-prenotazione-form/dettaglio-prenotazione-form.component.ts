@@ -43,9 +43,5 @@ export class DettaglioPrenotazioneFormComponent implements OnInit {
         
 
 }
-onLogout(){
-  localStorage.removeItem('token');
-  this.cookieService.delete(".AspNetCore.Session","/user","localhost");
-  this.router.navigate(['login'])
-}
+
 }

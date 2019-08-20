@@ -15,7 +15,7 @@ public static class DataSeeder{
           SeedRoles(roleManager);
           SeedUsers(userManager);
           SeedStrumenti(excelPath,context);
-          TTLHelper.CheckTTL(context,email,emailService);
+         // TTLHelper.CheckTTL(context,email,emailService);
 
     }
     public static void SeedUsers(UserManager<Utente> userManager)

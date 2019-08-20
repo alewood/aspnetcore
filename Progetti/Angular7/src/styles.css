@@ -24,10 +24,13 @@ body{
 }
 
 input.form-control,input.form-control:focus,select.form-control{
-    background-color: #617edd;
-    color: #ffffff;
-    border: 1px solid #010611;
+    background-color: #f7fff7;
+    color: #1c2228;
+    border: 1px solid #303238;
 
+}
+select.form-control > option:checked{
+    background: #000 !important;
 }
 
 input.form-control:focus{
@@ -36,12 +39,12 @@ input.form-control:focus{
 
 button.btn{
     border-radius: 20px;
-    background-color: #617edd;
+    background-color: #e8e9ec;
     color: rgb(12, 1, 1);
 }
 
 div.form-group label:not(.text-danger){
-    color: #01050a;
+    color: #e3e6eb;
     font-weight: 700;
 }
 
@@ -86,6 +89,16 @@ div.form-group.required>label:first-child:after{
       margin: 0px 16px;
   }
 
+  ul.list-group{
+      background-color: #252b31;
+      color: #fff;
+  }
+
+  li.list-group-item{
+    background-color: #252b31;
+    color: #fff;
+  }
+
  div.form-group input.invalid{
     border: 1px solid #dc3545; 
  }
@@ -93,3 +106,53 @@ div.form-group.required>label:first-child:after{
     text-transform: uppercase;
     font-size: 0.9rem;
  }
+ td{
+     color: #fff;
+ }
+ th{
+    color: #fff;
+}
+
+.card-theme{
+    background-color: #191f26;
+    border:none;
+    border-radius:2px;
+}
+.card-header-theme{
+    color: #eee;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 12px;
+
+}
+.card-body-theme{
+    background-color:  #494f56;
+}
+.cards{
+    display: flex;
+    flex-direction: column;
+
+}
+.section-container {
+    padding: 30px;
+}
+#canvas-holder{
+    position: absolute;
+    top:8px;
+    left:8px;
+    right:8px;
+    bottom:8px;
+}
+#chart{
+ width: 100%;
+ height: 100%;
+}
+.table-hover tbody tr:hover td {
+    background: rgb(121, 124, 124);
+}
+.filter-input{
+    background-color: #1c2228;
+    border-color: rgb(121, 124, 124);
+}
+
+

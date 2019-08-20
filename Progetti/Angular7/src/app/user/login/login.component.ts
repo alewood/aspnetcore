@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     if(localStorage.getItem('token')!=null)
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/app/home');
   }
   onSubmit(form: NgForm){
     this.service.login(form.value).subscribe(
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         let session= res.body.sessionId.toString();
         localStorage.setItem('token',token);
         this.cookieService.set(".AspNetCore.Session",session);
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/app/home');
       },
       err => {
         if(err.status== 400)

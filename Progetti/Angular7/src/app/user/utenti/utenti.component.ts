@@ -50,11 +50,6 @@ isOK;
       }
     );
   }
-  onLogout(){
-    localStorage.removeItem('token');
-    this.cookieService.delete(".AspNetCore.Session","/user","localhost");
-    this.router.navigate(['login'])
-  }
 roleCheck(utente){
   if(this.self.id==utente.id)
   return false;
