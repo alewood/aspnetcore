@@ -8,7 +8,8 @@ namespace LabWebApi.Models
 {
     public class Utente :IdentityUser
     {
-        public string FullName{get;set;}
+        public string Group{get;set;}
+
    
     
 
@@ -24,9 +25,10 @@ namespace LabWebApi.Models
     public string Descrizione { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
-    public string Path { get; set; }  
+    public string PDFPath { get; set; }  
     public bool Prenotabile{get;set;}
 
+    public string ImgPath{get;set;}
      public DateTime TTL{get;set;}
     
   
@@ -41,7 +43,10 @@ namespace LabWebApi.Models
     public string Nome { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
-    public string Path { get; set; }  
+    public string PDFPath { get; set; }  
+     public string ImgPath{get;set;}
+     public DateTime TTL{get;set;}
+
     
      
        }

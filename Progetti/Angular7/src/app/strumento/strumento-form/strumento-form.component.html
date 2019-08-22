@@ -26,9 +26,26 @@
         <label class="text-danger" *ngIf="service.formModel.get('Modello').touched && service.formModel.get('Modello').errors?.required">This field is mandatory.</label>
       
       </div>
-      <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+      <div class="form-group required">
+          <label>TTL</label>
+          <input type="date" class="form-control" formControlName="TTL">
+          <label class="text-danger" *ngIf="service.formModel.get('TTL').touched && service.formModel.get('TTL').errors?.required">This field is mandatory.</label>
+        
+        </div>
+      <div>
+          <label>Immagine</label>
+          <app-upload (onUploadFinished)="uploadImage($event)"></app-upload>
+      </div>
+      <div>
+          <label>PDF</label>
+         <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+      </div>
+      <div>
+        <label>Descrizione(Parse)</label>
+       <app-text-parse (onParseFinished)="parseDescrizione($event)"></app-text-parse>
+    </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="!service.formModel.valid">Submit</button>
+      <button style="align-content: center" type="submit" class="btn btn-success" [disabled]="!service.formModel.valid">Submit</button>
 
     </form>
 </div>

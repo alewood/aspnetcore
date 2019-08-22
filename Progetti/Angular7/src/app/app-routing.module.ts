@@ -20,6 +20,10 @@ import { SectionVolumeComponent } from './bi/section-volume/section-volume.compo
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { StrumentoComponent } from './strumento/strumento.component';
 import { UserComponent } from './user/user.component';
+import { StrumentoViewComponent } from './strumento/strumento-view/strumento-view.component';
+import { NotificationsComponent } from './home/notifications/notifications.component';
+import { UpdateFormComponent } from './strumento/update-form/update-form.component';
+import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-strumenti.component';
 
 
 const routes: Routes = [
@@ -34,11 +38,19 @@ canActivate:[AuthGuard]},
 { path:'app',component:MainDashboardComponent, 
 children:[
  
-  {path:'home',component :HomeComponent,canActivate:[AuthGuard]},
+  {path:'home',component :HomeComponent,
+  children:[
+    {path:'notifiche',component :NotificationsComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+    {path:'gestioneStrumenti',component :GestioneStrumentiComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}}
+  ],
+  canActivate:[AuthGuard]},
  
   {path:'strumento',component:StrumentoComponent,
   children:[
     {path:'strumenti',component :StrumentiComponent,canActivate:[AuthGuard]},
+    {path:'strumentoView',component :StrumentoViewComponent,canActivate:[AuthGuard]},
+    {path:'updateForm',component :UpdateFormComponent,canActivate:[AuthGuard],data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+    {path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent,canActivate:[AuthGuard]},
     {path:'form',component :StrumentoFormComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato','UtenteBase']}},
     {path:'prov',component :StrumentiProvvisoriComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}}
   ],canActivate:[AuthGuard]},
@@ -52,7 +64,7 @@ children:[
   {path:'changePwd',component :ChangePwdFormComponent,canActivate:[AuthGuard]},
   
   {path:'carrello',component :CarrelloComponent,canActivate:[AuthGuard]},
-  {path:'dettaglioPrenotazioneForm',component :DettaglioPrenotazioneFormComponent,canActivate:[AuthGuard]}
+  
 ],canActivate:[AuthGuard]},
 
 {path:'login',component:LoginComponent},

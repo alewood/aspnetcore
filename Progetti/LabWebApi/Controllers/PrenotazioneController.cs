@@ -36,7 +36,6 @@ public Object GetPrenotazioni(int pageIndex,int pageSize)
       return (new{
           Page=page,
           TotalPages=totalPages
-
       });
 ;
 

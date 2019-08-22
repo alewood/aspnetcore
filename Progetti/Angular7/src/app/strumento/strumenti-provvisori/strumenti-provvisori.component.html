@@ -5,7 +5,8 @@
       <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
     </div>
   </div>
-<table class="table" >
+<table class="table table-inverse table-hover">
+  <thead class="thead-dark">
     <tr>
         <th>#</th>
         <th>ID</th>
@@ -17,8 +18,10 @@
         <th></th>
         <th></th>
     </tr>
+  </thead>
+  <tbody>
     <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index">
-        <td >{{i + 1}}</td>
+        <td>{{i + 1}}</td>
         <td>{{strumento.id}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>
@@ -28,5 +31,5 @@
         <td> <button class="btn" (click)="confermaStrumento(strumento)">Conferma</button></td>
         <td> <button class="btn" (click)="rimuoviProv(strumento.id)">Rimuovi</button></td>
     </tr>
-
+  </tbody>
 </table>

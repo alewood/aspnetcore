@@ -16,17 +16,19 @@
         <th>Modello</th>
         <th></th>
         <th></th>
+        <th></th>
         <th *ngIf="this.isAdmin"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index">
+    <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index"  (click)="onClickStrumento(strumento.id)">
         <td>{{i + 1}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>
         <td>{{strumento.marca}}</td>
         <td>{{strumento.modello}}</td>
-        <td *ngIf="strumento.path!=null"><button class="btn" (click)="pdfOpen(strumento.path)">Descrizione</button></td>
+        <td ><button class="btn" *ngIf="strumento.pdfPath!=null" (click)="pdfOpen(strumento.pdfPath)">PDF</button></td>
+        <td ><button class="btn" *ngIf="strumento.imgPath!=null" (click)="pdfOpen(strumento.imgPath)">Immagine</button></td>
         <td> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
     </tr>

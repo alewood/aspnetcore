@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace labwebapi.Migrations
 {
     [DbContext(typeof(LabContext))]
-    [Migration("20190817153418_InitialCreate")]
+    [Migration("20190822151510_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,13 +63,15 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Descrizione");
 
+                    b.Property<string>("ImgPath");
+
                     b.Property<string>("Marca");
 
                     b.Property<string>("Modello");
 
                     b.Property<string>("Nome");
 
-                    b.Property<string>("Path");
+                    b.Property<string>("PDFPath");
 
                     b.Property<bool>("Prenotabile");
 
@@ -85,13 +87,17 @@ namespace labwebapi.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ImgPath");
+
                     b.Property<string>("Marca");
 
                     b.Property<string>("Modello");
 
                     b.Property<string>("Nome");
 
-                    b.Property<string>("Path");
+                    b.Property<string>("PDFPath");
+
+                    b.Property<DateTime>("TTL");
 
                     b.HasKey("ID");
 
@@ -268,7 +274,7 @@ namespace labwebapi.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("Group");
 
                     b.HasDiscriminator().HasValue("Utente");
                 });

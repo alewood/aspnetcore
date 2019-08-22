@@ -23,7 +23,7 @@ export class DettaglioPrenotazioneFormComponent implements OnInit {
         console.log(res);
         if(res.ok){
           this.toastr.success("La Prenotazione dello strumento è stata aggiunta al carrello","Success!");
-          this.router.navigateByUrl('/carrello');
+          this.router.navigateByUrl('app/strumento/strumenti');
 
         }
 

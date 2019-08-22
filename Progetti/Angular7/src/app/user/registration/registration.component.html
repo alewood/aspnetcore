@@ -11,8 +11,10 @@
                 <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid Email Address.</label>
             </div>
             <div class="form-group">
-                <label > FullName</label>
-                <input class="form-control" formControlName="FullName"> 
+                <label >Gruppo</label>
+                <input class="form-control" formControlName="Gruppo"> 
+                <label class="text-danger" *ngIf="service.formModel.get('Gruppo').touched && service.formModel.get('Gruppo').errors?.email">This field is mandatory.</label>
+           
             </div>
             <div formGroupName="Passwords">
             <div class="form-group required" >

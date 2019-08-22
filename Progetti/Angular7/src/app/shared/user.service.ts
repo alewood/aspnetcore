@@ -12,12 +12,13 @@ export class UserService {
   formModel=this.fb.group({
     Username :['',Validators.required],
     Email :['',Validators.email],
-   FullName :[''],
+   Gruppo:['',Validators.required],
    Roles:['',Validators.required],
    Passwords: this.fb.group({
     Password :['',[Validators.required,Validators.minLength(4)]],
     ConfirmPassword:['',Validators.required]
    },{validator:this.comparePasswords})
+
  
    
   });
@@ -37,8 +38,8 @@ export class UserService {
     var body={
       Username: this.formModel.value.Username,
       Email: this.formModel.value.Email,
-      FullName: this.formModel.value.FullName,
       Password:this.formModel.value.Passwords.Password,
+      Group:this.formModel.value.Gruppo,
       Role:this.formModel.value.Roles
     };
    return this.http.post(this.BaseURI +'/utente/register',body);

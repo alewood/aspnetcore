@@ -5,22 +5,25 @@ using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Threading.Tasks;
 namespace LabWebApi.Helpers
 {
     public static class TTLHelper{
       
-      public async static void CheckTTL(LabContext context,string  email,IEmailService emailService)
+      public static ICollection<Strumento> CheckTTL(LabContext context)
       {
-          IEnumerable<Strumento> strumenti= await context.Strumento.ToListAsync();
+          IEnumerable<Strumento> strumenti=  context.Strumento.ToList();
+          ICollection<Strumento> strumentiLowTTL= new List<Strumento>();
           foreach (var s in strumenti)
           {
               if(s.TTL!=new DateTime()){
               if(DateTime.Today>= s.TTL.AddDays(-5)){
-                  string message="Lo Strumento avente ID:"+s.ID+",\n dovrà andare in manuntenzione in 5 giorni o meno";
-                   EmailTest.Send("admin",email,"TTL Strumento",message,emailService);
-
+                  var TTL= DateTime.Today- s.TTL;
+                  strumentiLowTTL.Add(s);
               }}
+              
           }
+          return strumentiLowTTL;
       }
 
     }

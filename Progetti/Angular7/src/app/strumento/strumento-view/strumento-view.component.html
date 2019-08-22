@@ -1,0 +1,27 @@
+
+<table class="table table-inverse table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Descrizione</th> 
+          <th>Marca</th>
+          <th>Modello</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><img [src]="createImgPath(this.strumento.imgPath)"style="width:60px; height:60px;"></td>
+          <td>{{this.strumento.id}}</td>
+          <td>{{this.strumento.nome}}</td>
+          <td>{{this.strumento.descrizione}}</td>
+          <td>{{this.strumento.marca}}</td>
+          <td>{{this.strumento.modello}}</td>
+          <td><button class="btn" (click)="modificaStrumento()">Modifica</button> </td>
+           </tr>
+  </tbody>
+  
+      
+  </table>

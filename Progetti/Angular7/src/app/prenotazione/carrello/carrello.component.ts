@@ -25,7 +25,7 @@ export class CarrelloComponent implements OnInit {
         console.log(err);
       }
     );
-    this.router.navigateByUrl('/carrello');
+    this.router.navigateByUrl('app/carrello');
 
     
 
@@ -45,7 +45,7 @@ export class CarrelloComponent implements OnInit {
     }
 
    );}
-   this.router.navigateByUrl('/strumenti');
+   this.router.navigateByUrl('app/home');
   
   }
   rimuoviStrumento(id){
@@ -59,7 +59,7 @@ export class CarrelloComponent implements OnInit {
         console.log(err);
       }
     );
-    this.router.navigateByUrl('/strumenti');
+    this.router.navigateByUrl('app/strumento/strumenti');
   }
   onLogout(){
     localStorage.removeItem('token');

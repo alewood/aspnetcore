@@ -35,12 +35,17 @@ import { BarChartComponent } from './bi/charts/bar-chart/bar-chart.component';
 import { LineChartComponent } from './bi/charts/line-chart/line-chart.component';
 import {ChartsModule  } from "ng2-charts";
 import { PieChartComponent } from './bi/charts/pie-chart/pie-chart.component';
-import { Utente } from "../app/models/utente";
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { StrumentoComponent } from './strumento/strumento.component';
 import { UserComponent } from './user/user.component';
 import { UserSidebarComponent } from './user/user-sidebar/user-sidebar.component';
 import { StrumentoSidebarComponent } from './strumento/strumento-sidebar/strumento-sidebar.component';
+import { StrumentoViewComponent } from './strumento/strumento-view/strumento-view.component';
+import { HomeSidebarComponent } from './home/home-sidebar/home-sidebar.component';
+import { TextParseComponent } from './strumento/upload/text-parse/text-parse.component';
+import { NotificationsComponent } from './home/notifications/notifications.component';
+import { UpdateFormComponent } from './strumento/update-form/update-form.component';
+import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-strumenti.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +76,13 @@ import { StrumentoSidebarComponent } from './strumento/strumento-sidebar/strumen
     StrumentoComponent,
     UserComponent,
     UserSidebarComponent,
-    StrumentoSidebarComponent
+    StrumentoSidebarComponent,
+    StrumentoViewComponent,
+    HomeSidebarComponent,
+    TextParseComponent,
+    NotificationsComponent,
+    UpdateFormComponent,
+    GestioneStrumentiComponent,
     
   ],
   imports: [

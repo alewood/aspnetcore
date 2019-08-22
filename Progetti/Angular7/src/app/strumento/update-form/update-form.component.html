@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Strumento <Form></Form></h1>
+    <form [formGroup]="service.formModelUpdate" autocomplete="off" (submit)="onSubmit()">
+      <div class="form-group">
+        <label>Nome</label>
+            <input type="text" class="form-control" formControlName="Nome" required>
+        
+      </div>
+
+      <div class="form-group">
+        <label>Descrizione</label>
+        <input type="text" class="form-control" formControlName="Descrizione">
+      
+      </div>
+      <div class="form-group">
+        <label>Marca</label>
+        <input type="text" class="form-control" formControlName="Marca">
+          
+      </div>
+      <div class="form-group">
+        <label>Modello</label>
+        <input type="text" class="form-control" formControlName="Modello">
+        
+      </div>
+      <div class="form-group ">
+          <label>TTL</label>
+          <input type="date" class="form-control" formControlName="TTL">
+          
+        </div>
+      <div>
+          <label>Immagine</label>
+          <app-upload (onUploadFinished)="uploadImage($event)"></app-upload>
+      </div>
+      <div>
+          <label>PDF</label>
+         <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+      </div>
+      <div>
+        <label>Descrizione(Parse)</label>
+       <app-text-parse (onParseFinished)="parseDescrizione($event)"></app-text-parse>
+    </div>
+
+      <button style="align-content: center" type="submit" class="btn btn-success" [disabled]="!this.service.formModelUpdate.valid">Submit</button>
+
+    </form>
+</div>

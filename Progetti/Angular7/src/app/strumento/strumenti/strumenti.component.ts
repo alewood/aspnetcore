@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { StrumentoService } from 'src/app/shared/strumento.service';
 import { Router } from '@angular/router';
 import { FilterPipe } from "src/app/filter-pipe";
@@ -15,6 +15,7 @@ export class StrumentiComponent implements OnInit {
   strumenti;
   isAdmin=this.userService.roleMatch(['Admin']);
   searchText :string="";
+  @Output() public strumentoEmitter= new EventEmitter();
 
   constructor(private cookieService:CookieService, private userService:UserService, private toastr:ToastrService, private filter:FilterPipe,private service:StrumentoService,private router:Router) { }
 
@@ -29,7 +30,7 @@ export class StrumentiComponent implements OnInit {
     );
   }
   onSubmit(e){
-    this.router.navigateByUrl("/dettaglioPrenotazioneForm");
+    this.router.navigateByUrl("app/strumento/dettaglioPrenotazioneForm");
     localStorage.setItem("idStr",e);
 
   }
@@ -44,7 +45,7 @@ export class StrumentiComponent implements OnInit {
                this.toastr.success("Strumento Rimosso","La Rimozione ha avuto successso.");
              }
              console.log(res);
-             this.router.navigateByUrl('/strumenti');
+             this.router.navigateByUrl('app/strumento/strumenti');
            },
            err=>{
              console.log(err);
@@ -52,7 +53,7 @@ export class StrumentiComponent implements OnInit {
     );}
     else{
       this.toastr.error("Non sei autorizzato a rimuovere Strumenti!","Unauthorized.");
-      this.router.navigateByUrl('/strumenti');
+      this.router.navigateByUrl('app/strumento/strumenti');
 
     }
   }
@@ -62,9 +63,16 @@ export class StrumentiComponent implements OnInit {
     this.router.navigate(['login'])
   }
   pdfOpen(path){
-    this.router.navigateByUrl('/strumenti');
+    
     window.open('https://localhost:5001/'+path,'_blank');
+    this.router.navigateByUrl('app/strumento/strumenti');
     
   }
+  onClickStrumento(str){
+    localStorage.setItem("idStr",str);
+    this.router.navigateByUrl('app/strumento/strumentoView');
+    
+  }
+  
 
 }

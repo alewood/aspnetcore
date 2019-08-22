@@ -22,7 +22,7 @@ namespace LabWebApi.Controllers
         }
  
  [HttpGet]
-[Authorize(Roles="Admin")]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
 public async Task<ActionResult<IEnumerable<StrumentoProvvisorio>>> GetStrumentiProvvisori()
 {
     return await _context.StrumentoProvvisorio.ToListAsync();

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-strumento',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class StrumentoComponent implements OnInit {
 
   constructor() { }
-
+  
   ngOnInit() {
   }
 

@@ -12,14 +12,17 @@ import { HttpEventType, HttpClient, HttpParameterCodec } from '@angular/common/h
   styles: []
 })
 export class StrumentoFormComponent implements OnInit {
-  public response: {dbPath: ''};
+  public responsePdf: {dbPath: ''};
+  public responseImg: {dbPath: ''};
+  public descrizione: {dbPath: ''};
+
   constructor(private http:HttpClient, private router:Router,private cookieService:CookieService, public service:StrumentoService,private toastr:ToastrService) { }
   
   ngOnInit() {
     this.service.formModel.reset();
   }
   onSubmit(){
-    this.service.inserisci(this.response.dbPath).subscribe(
+    this.service.inserisci(this.responsePdf.dbPath,this.responseImg.dbPath,this.descrizione).subscribe(
       res =>{
           if(res.ok){
             console.log(res.status);
@@ -43,9 +46,14 @@ export class StrumentoFormComponent implements OnInit {
   
 
 public uploadFinished = (event) => {
-    this.response = event;
+    this.responsePdf = event;
   }
- 
+ public uploadImage = (event) =>{
+   this.responseImg=event;
+ }
+ public parseDescrizione = (event) =>{
+  this.descrizione=event;
+}
 
 
 }

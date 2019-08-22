@@ -23,5 +23,5 @@
 
 </table>
 <form (submit)="onSubmit()">
-<button type="submit" class="btn">Conferma Prenotazione</button>
+<button type="submit" class="btn" [disabled]="carrello==null">Conferma Prenotazione</button>
 </form>

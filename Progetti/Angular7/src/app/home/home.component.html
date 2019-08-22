@@ -1,24 +1,11 @@
-
-  <div class="card m-5" style="width:18rem" *ngIf="userDetails">
-  <ul class="list-group">
-    <li class="list-group-item"><strong>Username :</strong>{{userDetails.userName}}</li>
-    <li class="list-group-item"><strong>FullName :</strong>{{userDetails.fullName}}</li>
-    <li class="list-group-item"><strong>Email :</strong>{{userDetails.email}}</li>
-    <li class="list-group-item"><strong>Role :</strong>{{userDetails.role}}</li>
-  </ul>
-
-
+<div class="container-fluid">
+  <div class="row" id="mainContent">
+    <app-home-sidebar 
+    id="sidebar" 
+    class="col-sm-3 col-md-2 d-none d-sm-block  sidebar">
+</app-home-sidebar>
+      <div class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main" id="dashboard">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
 </div>
-<table class="table" >
-  <tr>
-      <th>#</th>
-      <th>ID</th>
-      <th></th>
-  </tr>
-  <tr *ngFor="let prenotazione of prenotazioni; let i = index">
-      <td >{{i + 1}}</td>
-      <td>{{prenotazione.id}}</td> 
-      <td> <button type="submit" class="btn" (click)="visualizza(prenotazione.id)">Visualizza</button></td>
-      </tr>
-
-</table>

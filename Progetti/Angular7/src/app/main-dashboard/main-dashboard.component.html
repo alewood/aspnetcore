@@ -1,25 +1,28 @@
 <nav class="navbar navbar-dark bg-dark">
-        <a  class="navbar-brand text-white">LabAPI</a>
+  <a href="/bi/volume" class="navbar-brand">
+    <span class="logo logo-left">LabWeb</span>
+    <span class="logo logo-right"> API</span>
+</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-            <a class="nav-link" routerLink="home">Home</a>
+            <a class="nav-link" routerLink="home/notifiche"><strong>Home</strong></a>
           </li></ul>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-          <a class="nav-link" routerLink="utente/utenti">Utenti</a>
+          <a class="nav-link" routerLink="utente/utenti"><strong>Utenti</strong></a>
         </li></ul>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-          <a class="nav-link" routerLink="changePwd">Change Password</a>
+          <a class="nav-link" routerLink="changePwd"><strong>Change Password</strong></a>
         </li></ul>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-          <a class="nav-link" routerLink="strumento/strumenti">Strumenti</a>
+          <a class="nav-link" routerLink="strumento/strumenti"><strong>Strumenti</strong></a>
         </li></ul>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-            <a class="nav-link" routerLink="carrello">Carrello</a>
+            <a class="nav-link" routerLink="carrello"><strong>Carrello</strong></a>
           </li></ul>
-        <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+        <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()"><strong>Logout</strong></button>
       </nav>
       <router-outlet></router-outlet>

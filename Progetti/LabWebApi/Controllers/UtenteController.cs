@@ -67,7 +67,7 @@ namespace LabWebApi.Controllers
         var user= new Utente(){
             UserName= data["Username"].ToObject<string>(),
             Email=data["Email"].ToObject<string>(),
-            FullName=data["FullName"].ToObject<string>()
+            Group=data["Group"].ToObject<string>()
         };
 
         try
@@ -90,7 +90,7 @@ namespace LabWebApi.Controllers
           return new 
           {
               id=user.Id,
-              fullName=user.FullName,
+              group=user.Group,
               email=user.Email,
               userName=user.UserName,
               role=role

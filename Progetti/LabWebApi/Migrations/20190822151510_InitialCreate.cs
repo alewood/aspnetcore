@@ -42,7 +42,7 @@ namespace labwebapi.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    FullName = table.Column<string>(nullable: true)
+                    Group = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,8 +59,9 @@ namespace labwebapi.Migrations
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
-                    Path = table.Column<string>(nullable: true),
+                    PDFPath = table.Column<string>(nullable: true),
                     Prenotabile = table.Column<bool>(nullable: false),
+                    ImgPath = table.Column<string>(nullable: true),
                     TTL = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -77,7 +78,9 @@ namespace labwebapi.Migrations
                     Nome = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
-                    Path = table.Column<string>(nullable: true)
+                    PDFPath = table.Column<string>(nullable: true),
+                    ImgPath = table.Column<string>(nullable: true),
+                    TTL = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
