@@ -75,5 +75,8 @@ export class UserService {
   changePassword(formData){
     return this.http.put<Response>(this.BaseURI+"/utente",formData,{observe:'response'});
   }
-
+  abilitaNotifiche(id)
+{
+  return this.http.put<Response>(this.BaseURI+"/notifiche/"+id,{observe:'response'});
+}
 }

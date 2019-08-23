@@ -29,7 +29,8 @@
         <td>{{strumento.modello}}</td>
         <td ><button class="btn" *ngIf="strumento.pdfPath!=null" (click)="pdfOpen(strumento.pdfPath)">PDF</button></td>
         <td ><button class="btn" *ngIf="strumento.imgPath!=null" (click)="pdfOpen(strumento.imgPath)">Immagine</button></td>
-        <td> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
+        <td *ngIf="strumento.prenotabile"> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
+        <td *ngIf="!strumento.prenotabile">In Manutenzione</td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
     </tr>
 </tbody>

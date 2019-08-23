@@ -3,6 +3,7 @@ import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-utenti',
@@ -13,6 +14,7 @@ export class UtentiComponent implements OnInit {
 utenti;
 self;
 isOK;
+isAdmin;
   constructor(private userService:UserService, private cookieService:CookieService, private toastr:ToastrService, private service:UserService,private router:Router) { }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ isOK;
         console.log(err);
       }
     );
+    this.isAdmin=this.userService.roleMatch(['Admin']);
   }
   rimuoviUtente(userName){
     this.service.rimuoviUtente(userName).subscribe(
@@ -54,7 +57,7 @@ roleCheck(utente){
   if(this.self.id==utente.id)
   return false;
   else{
-  if(this.userService.roleMatch(['Admin']))
+  if(this.isAdmin)
       return true;
      else{
        if(utente.role=='UtenteBase')
@@ -65,4 +68,16 @@ roleCheck(utente){
 
      
 }
+userIsAutorizzato(utente){
+  return utente.role=="UtenteAutorizzato";
+}
+abilitaNotifiche(id){
+  this.service.abilitaNotifiche(id).subscribe(
+    res=>{
+      this.toastr.success("L'Utente è stato abilitato a ricevere le notifiche.","Modifica Avvenuta!");
+    }
+  );
+
+}
+
 }

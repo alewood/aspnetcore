@@ -23,11 +23,11 @@ onSubmit(){
   if(this.responseImg!=null)
       img=this.responseImg.dbPath;
       if(this.responsePdf!=null)
-      img=this.responsePdf.dbPath;
+      pdf=this.responsePdf.dbPath;
       if(this.descrizione!=null)
-      img=this.descrizione;
+      desc=this.descrizione;
       
-    this.service.update(this.idStrumento ,this.responsePdf.dbPath,img,this.descrizione).subscribe(
+    this.service.update(this.idStrumento ,pdf,img,desc).subscribe(
       res =>{
           if(res.ok){
             console.log(res.status);

@@ -64,6 +64,10 @@ public async Task<ActionResult> PostPrenotazione()
     var user= await _userManager.FindByIdAsync(User.Claims.First(c => c.Type=="UserID").Value);
     prenotazione.Utente=user;
    ICollection<DettaglioPrenotazione> strumenti=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
+   if(strumenti.Count==0){
+       return BadRequest();
+
+   }
    foreach(var d in strumenti){
        var s=_context.Strumento.Find(d.IdStrumento);
        d.IdPrenotazione=prenotazione.ID;

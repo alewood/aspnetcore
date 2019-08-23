@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styles: []
 })
 export class CarrelloComponent implements OnInit {
-  carrello;
+  carrello=null;
   constructor(private toastr:ToastrService, private cookieService: CookieService,private service:PrenotazioneService,private router:Router) { }
  
  
@@ -40,6 +40,7 @@ export class CarrelloComponent implements OnInit {
       }     
     },
     err=>{
+      this.toastr.error("Non hai prenotato alcuno Strumento.","La Prenotazione non ha avuto successo.");
       console.log(err);
 
     }

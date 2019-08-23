@@ -272,6 +272,8 @@ namespace labwebapi.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<bool>("AbilitatoAlleNotifiche");
+
                     b.Property<string>("Group");
 
                     b.HasDiscriminator().HasValue("Utente");

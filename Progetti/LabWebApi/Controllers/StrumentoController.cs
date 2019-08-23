@@ -26,7 +26,7 @@ namespace LabWebApi.Controllers
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public async Task<ActionResult<IEnumerable<Strumento>>> GetStrumenti()
 {
-    return await _context.Strumento.Where(s=>s.Prenotabile).ToListAsync();
+    return await _context.Strumento.ToListAsync();
 }
 
 [HttpGet("{id}")]

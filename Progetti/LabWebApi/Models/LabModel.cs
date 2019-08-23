@@ -9,6 +9,8 @@ namespace LabWebApi.Models
     public class Utente :IdentityUser
     {
         public string Group{get;set;}
+        public bool AbilitatoAlleNotifiche{get;set;
+        }
 
    
     

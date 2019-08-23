@@ -32,8 +32,8 @@ export class StrumentoService {
   inserisci(pathPdf,pathImg,desc) {
     var ttl=this.datepipe.transform(this.formModel.value.TTL, this.format);
     var descrizione=this.formModelUpdate.value.Descrizione;
-    if(desc!=null)
-       descrizione=desc;
+    //if(desc!=null)
+       //descrizione=desc;
     var body={
       Nome: this.formModel.value.Nome,
       Descrizione:descrizione,

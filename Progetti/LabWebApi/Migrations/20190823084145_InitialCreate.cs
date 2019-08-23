@@ -42,7 +42,8 @@ namespace labwebapi.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    Group = table.Column<string>(nullable: true)
+                    Group = table.Column<string>(nullable: true),
+                    AbilitatoAlleNotifiche = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
