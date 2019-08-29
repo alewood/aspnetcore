@@ -3,4 +3,7 @@ export interface Strumento{
     nome:string;
     marca:string;
     modello:string;
+    imgPath:string;
+    pdfPath:string;
+    descrizione:string;
 }

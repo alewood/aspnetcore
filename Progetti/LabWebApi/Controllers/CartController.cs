@@ -32,18 +32,29 @@ namespace LabWebApi.Controllers
               if(inizio.CompareTo(d.dataInizio)<0){
               if(fine.CompareTo(d.dataInizio)>0){
                  result=false;
-                 break;}}
+                 break;}
+                   if(fine.Equals(d.dataFine)||fine.Equals(d.dataInizio)){
+                      result=false;
+                     break;}}
                  else if(inizio.CompareTo(d.dataFine)<0){
                       if(fine.CompareTo(d.dataFine)>0){
                       result=false;
                       break;}
+                      if(fine.Equals(d.dataFine)||fine.Equals(d.dataInizio)){
+                      result=false;
+                     break;}
 
                  }
-                 else if(inizio.CompareTo(d.dataInizio)==0||fine.CompareTo(d.dataFine)==0||inizio.CompareTo(d.dataFine)==0||fine.CompareTo(d.dataInizio)==0){
+                 else if(inizio.Equals(d.dataInizio)||inizio.Equals(d.dataFine)){
                      result=false;
                      break;
 
                  }
+                 else if(fine.Equals(d.dataFine)||fine.Equals(d.dataInizio)){
+                      result=false;
+                     break;
+                 }
+
                   
             }
             return result;

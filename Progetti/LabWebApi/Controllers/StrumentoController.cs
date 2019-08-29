@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json.Linq;
 using System;
+using LabWebApi.Helpers;
 namespace LabWebApi.Controllers
 
 {
@@ -22,11 +23,18 @@ namespace LabWebApi.Controllers
 
         
         }
-[HttpGet]
+[HttpGet("{pageIndex:int}/{pageSize:int}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<IEnumerable<Strumento>>> GetStrumenti()
+public async Task< Object> GetStrumenti(int i,int pageSize)
 {
-    return await _context.Strumento.ToListAsync();
+   var data=await _context.Strumento.ToListAsync();
+   var page=new PaginatedResponse<Strumento>(data,i,pageSize);
+   var totalCount=page.Total;
+   var totalPages=Math.Ceiling((double)totalCount/pageSize);
+   return (new{
+          Page=page,
+          TotalPages=totalPages
+      });
 }
 
 [HttpGet("{id}")]
@@ -45,8 +53,11 @@ public async Task<ActionResult<Strumento>> GetStrumento(int id)
 
 [HttpPost]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<ActionResult> PostStrumento(Strumento strumento)
+public async Task<ActionResult> PostStrumento([FromBody]JObject data)
 {
+    var desc=data["Descrizione"].ToObject<string>();
+    var strumento=data["Strumento"].ToObject<Strumento>();
+    strumento.Descrizione=desc;
     strumento.Prenotabile=true;
    var result= _context.Strumento.Add(strumento);
     await _context.SaveChangesAsync();
@@ -63,15 +74,15 @@ public async Task<IActionResult> PutStrumento(int id,Strumento strumento)
         return BadRequest();
     }
     var s= _context.Strumento.Find(id);
-    if(strumento.Nome!=null)
+    if(strumento.Nome!=""&&strumento.Nome!=null)
        s.Nome=strumento.Nome;
-    if(strumento.Marca!=null)
+    if(strumento.Marca!=""&&strumento.Marca!=null)
      s.Marca=strumento.Marca;
-    if(strumento.Modello!=null)
+    if(strumento.Modello!=""&&strumento.Modello!=null)
      s.Modello=strumento.Modello;
     if(strumento.PDFPath!=null)
      s.PDFPath=strumento.PDFPath;
-    if(strumento.TTL!=null)
+    if(strumento.TTL!=new DateTime(2001,1,1)|| strumento.TTL!=null)
      s.TTL=strumento.TTL;
     if(strumento.ImgPath!=null)
      s.ImgPath=strumento.ImgPath;

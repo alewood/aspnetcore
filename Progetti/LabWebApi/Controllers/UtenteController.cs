@@ -13,6 +13,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using LabWebApi.Helpers;
 namespace LabWebApi.Controllers
 {
      [Route("api/utente")]
@@ -103,15 +104,23 @@ namespace LabWebApi.Controllers
           string UserID = User.Claims.First(c =>c.Type=="UserID" ).Value;
          return  await GetUserDetails(await _userManager.FindByIdAsync(UserID));
       }
-    [HttpGet]
+    [HttpGet("{pageIndex:int}/{pageSize:int}")]
     [Authorize(Roles="Admin,UtenteAutorizzato")]
-    [Route("tutti")]
-      public async Task<ICollection<Object>> GetUtenti(){
+      public async Task<Object> GetUtenti(int i,int pageSize){
             var userList=_userManager.Users.ToList();
             ICollection<Object> utenti= new List<Object>();
             foreach (var utente in userList){
              utenti.Add(await this.GetUserDetails(utente));}
-             return utenti;
+            var data= utenti.AsEnumerable();    
+             
+             var page= new PaginatedResponse<Object>(data,i,pageSize);
+             var totalCount=page.Total;
+   var totalPages=Math.Ceiling((double)totalCount/pageSize);
+   return (new{
+          Page=page,
+          TotalPages=totalPages
+      });
+
                 
             
       } 

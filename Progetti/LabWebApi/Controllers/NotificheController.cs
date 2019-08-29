@@ -56,5 +56,44 @@ namespace LabWebApi.Controllers{
         return Ok();
 
      }
+[HttpDelete("{id}")]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
+public async Task<IActionResult> AbilitaStrumento(int id)
+{
+    var strumento = await _context.Strumento.FindAsync(id);
+
+    if (strumento == null)
+    {
+        return NotFound();
+    }
+  var newTtl= strumento.TTL.AddYears(1);
+   var prenotabile= strumento.Prenotabile;
+   strumento.Prenotabile=!prenotabile;
+   strumento.TTL=newTtl;
+    _context.Strumento.Update(strumento);
+     await _context.SaveChangesAsync();
+   
+
+    return Ok();
+}
+
+[HttpGet]
+[Authorize]
+[Route("prenotazioni")]
+public async Task<ICollection<DettaglioPrenotazione>> GetPrenotazioniAttiveVicine(){
+    var prenotazioni=  await _context.DettaglioPrenotazione
+    .Include(dp=>dp.Prenotazione.Utente)
+    .Include(dp=>dp.Strumento)
+    .Where(dp=> dp.dataFine>DateTime.Now.AddDays(-3))
+    .OrderByDescending(dp=>dp.dataFine)
+    .ToListAsync();
+    return prenotazioni;
+
+}
+//[HttpGet]
+//[Authorize(Roles="Admin,UtenteAutorizzato")]
+//public async Task<ICollection<Strumento>> GetStrumentos(){
+  //    return ;
+    //}
     }
 }

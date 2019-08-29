@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Utente } from '../models/utente';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,8 +70,8 @@ export class UserService {
   rimuoviUtente(userName){
     return this.http.delete<Response>(this.BaseURI+'/utente/'+userName,{observe:'response'});
   }
-  getUtenti(){
-    return this.http.get(this.BaseURI+'/utente/tutti');
+  getUtenti(index,pageSize){
+    return this.http.get<{page:{data:Utente[],total:number},totalPages:number}>(this.BaseURI+'/utente/'+index+'/'+pageSize,{observe:'body'});
   }
   changePassword(formData){
     return this.http.put<Response>(this.BaseURI+"/utente",formData,{observe:'response'});

@@ -1,9 +1,9 @@
 <div class="container">
-    <h1>Strumento <Form></Form></h1>
+    <h1>Strumento<Form></Form></h1>
     <form [formGroup]="service.formModelUpdate" autocomplete="off" (submit)="onSubmit()">
       <div class="form-group">
         <label>Nome</label>
-            <input type="text" class="form-control" formControlName="Nome" required>
+            <input type="text" class="form-control" formControlName="Nome">
         
       </div>
 
@@ -40,7 +40,7 @@
        <app-text-parse (onParseFinished)="parseDescrizione($event)"></app-text-parse>
     </div>
 
-      <button style="align-content: center" type="submit" class="btn btn-success" [disabled]="!this.service.formModelUpdate.valid">Submit</button>
+      <button style="align-content: center" type="submit" class="btn btn-middle btn-success" [disabled]="!this.service.formModelUpdate.valid">Submit</button>
 
     </form>
 </div>

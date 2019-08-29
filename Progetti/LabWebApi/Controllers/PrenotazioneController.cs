@@ -33,6 +33,7 @@ public Object GetPrenotazioni(int pageIndex,int pageSize)
  var page= new PaginatedResponse<DettaglioPrenotazione>(data,pageIndex,pageSize);
  var totalCount=page.Total;
  var totalPages=Math.Ceiling((double)totalCount/pageSize);
+ 
       return (new{
           Page=page,
           TotalPages=totalPages

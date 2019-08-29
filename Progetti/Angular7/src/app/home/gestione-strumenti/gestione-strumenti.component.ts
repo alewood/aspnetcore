@@ -19,7 +19,7 @@ export class GestioneStrumentiComponent implements OnInit {
     );
   }
   rendiPrenotabile(id){
-    this.service.rimuoviStrumento(id).subscribe(
+    this.service.gestisciStrumentoNonPrenotabile(id).subscribe(
       res=>{
         this.toastr.success("Lo Strumento è ora prenotabile","Success!")
 

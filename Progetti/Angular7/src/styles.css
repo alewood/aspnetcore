@@ -15,8 +15,8 @@ a:hover{
 }
 body{
     font-family: 'Source Sans Pro',sans-serif;
-    background-color: #1c2228;
-    color: #f7fff7;
+    background-color: #f7fff7;
+    color: #1c2228 ;
     height: 100%;
 }
 .section-container{
@@ -27,8 +27,21 @@ input.form-control,input.form-control:focus,select.form-control{
     background-color: #f7fff7;
     color: #1c2228;
     border: 1px solid #303238;
+    width: 37vh;
+    
 
 }
+input.form-control.login{
+    background-color: #f7fff7;
+    color: #1c2228;
+    border: 1px solid #303238;
+    width: 37vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 select.form-control > option:checked{
     background: #000 !important;
 }
@@ -36,22 +49,34 @@ select.form-control > option:checked{
 input.form-control:focus{
     box-shadow: none;
 }
-
+button.btn-middle{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 button.btn{
     border-radius: 20px;
     background-color: #e8e9ec;
     color: rgb(12, 1, 1);
+    
 }
 
 div.form-group label:not(.text-danger){
-    color: #e3e6eb;
+    color:  rgb(12, 1, 1);
     font-weight: 700;
+    font-size: 1.5rem!important;
+
 }
+div.form-group.login{
+    text-align: center;
+}
+
 
 div.form-group.required>label:first-child:after{
     content:'*';
-    color: #fff;
+    color:  rgb(12, 1, 1);
     padding-left: 5px;
+
 }
 
 #toast-container > div {
@@ -89,28 +114,19 @@ div.form-group.required>label:first-child:after{
       margin: 0px 16px;
   }
 
-  ul.list-group{
-      background-color: #252b31;
-      color: #fff;
-  }
-
-  li.list-group-item{
-    background-color: #252b31;
-    color: #fff;
-  }
-
  div.form-group input.invalid{
     border: 1px solid #dc3545; 
  }
  div.form-group label:first-child{
-    text-transform: uppercase;
     font-size: 0.9rem;
  }
  td{
-     color: #fff;
+     color:#1c2228;
+     font-weight: 700;
  }
  th{
-    color: #fff;
+    color: #1c2228;
+    font-weight: 700;
 }
 
 .card-theme{
@@ -147,12 +163,32 @@ div.form-group.required>label:first-child:after{
  width: 100%;
  height: 100%;
 }
+.table.table-inverse.table-hover{
+    color: #1c2228!important;
+
+}
 .table-hover tbody tr:hover td {
-    background: rgb(121, 124, 124);
+    background: rgb(206, 212, 212);
+}
+.filter-input::placeholder{
+   color: #1c2228;
+   font-weight: 700;
 }
 .filter-input{
+    background-color: rgb(192, 199, 199);
+    border-color: #1c2228;
+}
+#sidebar{
     background-color: #1c2228;
-    border-color: rgb(121, 124, 124);
+    height: 100vh;
+}
+label{
+    font-size: 1.5rem;
+}
+p{
+    color:  rgb(12, 1, 1);
+    font-weight: 700;
+    font-size: 1.5rem!important
 }
 
 

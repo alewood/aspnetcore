@@ -12,20 +12,19 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class UtentiComponent implements OnInit {
 utenti;
+nome="Utenti";
 self;
 isOK;
 isAdmin;
+page=1;
+total=0;
+limit=10;
+totalPages;
+loading =false;
   constructor(private userService:UserService, private cookieService:CookieService, private toastr:ToastrService, private service:UserService,private router:Router) { }
 
   ngOnInit() {
-    this.service.getUtenti().subscribe(
-      res=>{
-        this.utenti=res;
-      },
-      err=>{
-        console.log(err);
-      }
-    );
+    this.getUtenti();
     this.userService.getUserProfile().subscribe(
       res=>{
         console.log(res);
@@ -53,6 +52,20 @@ isAdmin;
       }
     );
   }
+  getUtenti(){
+    this.service.getUtenti(this.page,this.limit).subscribe(
+      res=>{
+        this.utenti=res.page.data;
+        this.total=res.page.total;
+        this.loading =false;
+        console.log(res);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
 roleCheck(utente){
   if(this.self.id==utente.id)
   return false;
@@ -79,5 +92,19 @@ abilitaNotifiche(id){
   );
 
 }
+goToPrevious() :void{
+  this.page--;
+  this.getUtenti();
+}
+goToNext() :void{
+  this.page++;
+  this.getUtenti();
+}
+
+goToPage(n:number):void{
+  this.page=n;
+  this.getUtenti();
+}
+
 
 }

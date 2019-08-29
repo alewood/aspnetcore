@@ -32,6 +32,7 @@ namespace LabWebApi.Models
 
     public string ImgPath{get;set;}
      public DateTime TTL{get;set;}
+     public string Posizione{get;set;}
     
   
     public virtual ICollection<DettaglioPrenotazione> Prenotazioni { get; set; }

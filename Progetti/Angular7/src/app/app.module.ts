@@ -46,6 +46,8 @@ import { TextParseComponent } from './strumento/upload/text-parse/text-parse.com
 import { NotificationsComponent } from './home/notifications/notifications.component';
 import { UpdateFormComponent } from './strumento/update-form/update-form.component';
 import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-strumenti.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotazioni-vicine.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +85,8 @@ import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-s
     NotificationsComponent,
     UpdateFormComponent,
     GestioneStrumentiComponent,
+    PaginationComponent,
+    PrenotazioniVicineComponent,
     
   ],
   imports: [

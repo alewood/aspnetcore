@@ -5,7 +5,6 @@
       <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
     </div>
   </div>
-<form (submit)="onSubmit(e)">
 <table class="table table-inverse table-hover">
   <thead class="thead-dark">
     <tr>
@@ -14,7 +13,6 @@
         <th>Descrizione</th> 
         <th>Marca</th>
         <th>Modello</th>
-        <th></th>
         <th></th>
         <th></th>
         <th *ngIf="this.isAdmin"></th>
@@ -28,11 +26,21 @@
         <td>{{strumento.marca}}</td>
         <td>{{strumento.modello}}</td>
         <td ><button class="btn" *ngIf="strumento.pdfPath!=null" (click)="pdfOpen(strumento.pdfPath)">PDF</button></td>
-        <td ><button class="btn" *ngIf="strumento.imgPath!=null" (click)="pdfOpen(strumento.imgPath)">Immagine</button></td>
         <td *ngIf="strumento.prenotabile"> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
         <td *ngIf="!strumento.prenotabile">In Manutenzione</td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
     </tr>
 </tbody>
 </table>
-</form>
+<app-pagination 
+(goPage)="goToPage($event)"
+(goPrev)="goToPrevious()" 
+(goNext)="goToNext()" 
+[page]="page"
+[perPage]="limit"
+[count]="total"
+[nome]="nome"    
+
+>
+
+</app-pagination>

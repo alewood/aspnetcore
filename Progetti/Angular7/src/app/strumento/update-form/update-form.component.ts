@@ -26,7 +26,6 @@ onSubmit(){
       pdf=this.responsePdf.dbPath;
       if(this.descrizione!=null)
       desc=this.descrizione;
-      
     this.service.update(this.idStrumento ,pdf,img,desc).subscribe(
       res =>{
           if(res.ok){

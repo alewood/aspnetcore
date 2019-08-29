@@ -15,19 +15,18 @@ export class StrumentiComponent implements OnInit {
   strumenti;
   isAdmin=this.userService.roleMatch(['Admin']);
   searchText :string="";
+  nome="Strumenti";
+  page=1;
+total=0;
+limit=10;
+totalPages;
+loading =false;
   @Output() public strumentoEmitter= new EventEmitter();
 
   constructor(private cookieService:CookieService, private userService:UserService, private toastr:ToastrService, private filter:FilterPipe,private service:StrumentoService,private router:Router) { }
 
   ngOnInit() {
-    this.service.getStrumenti().subscribe(
-      res=>{
-        this.strumenti=res;
-      },
-      err=>{
-        console.log(err);
-      }
-    );
+    this.getStrumenti();
   }
   onSubmit(e){
     this.router.navigateByUrl("app/strumento/dettaglioPrenotazioneForm");
@@ -57,6 +56,19 @@ export class StrumentiComponent implements OnInit {
 
     }
   }
+
+  getStrumenti():void{
+    this.service.getStrumenti(this.page,this.limit).subscribe(
+      res=>{
+        this.strumenti=res.page.data;
+        this.total=res.page.total;
+        this.loading=false;
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
   onLogout(){
     localStorage.removeItem('token');
     this.cookieService.delete(".AspNetCore.Session","/user","localhost");
@@ -72,6 +84,19 @@ export class StrumentiComponent implements OnInit {
     localStorage.setItem("idStr",str);
     this.router.navigateByUrl('app/strumento/strumentoView');
     
+  }
+  goToPrevious() :void{
+    this.page--;
+    this.getStrumenti();
+  }
+  goToNext() :void{
+    this.page++;
+    this.getStrumenti();
+  }
+
+  goToPage(n:number):void{
+    this.page=n;
+    this.getStrumenti();
   }
   
 

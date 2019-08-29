@@ -5,10 +5,14 @@
    background-color: #191f26;
 }
 #dashboard{
-  margin-top: 60px;
+    margin-top: 60px;
+  
 
 }
 #navbar{
    background-color:#161a1e!important;
    box-shadow:  0 3px 6px rgba(0,0,0,0.2),0 3px 6px rgba(0, 0, 0, o.25);
+}
+body{
+   background-color: #1c2228!important;  
 }

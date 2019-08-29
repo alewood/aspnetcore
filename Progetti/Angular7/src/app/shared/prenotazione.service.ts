@@ -53,7 +53,10 @@ export class PrenotazioneService {
   rimuoviPrenotazioneStrumento(id){
     return this.http.delete<Response>(this.BaseURI+'/cart/'+id,{observe:'response'});
   }
-  getPrenotazioni(){
-    return this.http.get<{page:{data:Prenotazione[],total:number},totalPages:number}>(this.BaseURI+'/prenotazione/1/10',{observe:'response'});
+  getPrenotazioni(page,itemsPerPage){
+    return this.http.get<{page:{data:Prenotazione[],total:number},totalPages:number}>(this.BaseURI+'/prenotazione/'+page+'/'+itemsPerPage,{observe:'response'});
+  }
+  getPrenotazioniVicine(){
+    return this.http.get(this.BaseURI+'/notifiche/prenotazioni',{observe:'body'});
   }
 }

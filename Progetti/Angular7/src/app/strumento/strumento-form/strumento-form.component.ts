@@ -14,7 +14,7 @@ import { HttpEventType, HttpClient, HttpParameterCodec } from '@angular/common/h
 export class StrumentoFormComponent implements OnInit {
   public responsePdf: {dbPath: ''};
   public responseImg: {dbPath: ''};
-  public descrizione: {dbPath: ''};
+  public descrizione: string;
 
   constructor(private http:HttpClient, private router:Router,private cookieService:CookieService, public service:StrumentoService,private toastr:ToastrService) { }
   
@@ -53,6 +53,7 @@ public uploadFinished = (event) => {
  }
  public parseDescrizione = (event) =>{
   this.descrizione=event;
+  console.log(event);
 }
 
 
