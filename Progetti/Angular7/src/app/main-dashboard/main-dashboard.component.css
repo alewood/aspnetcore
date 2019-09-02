@@ -14,8 +14,16 @@
     border-radius: 4px;
 }
 a.nav-link{
-    color: #494f56;
+    color: #fff;    
 }
+nav.navbar-dark.bg-dark{
+    background-color: #1c2228!important;
+    color:#fff!important;
+}
+.navbar-nav.mr-auto{color:#fff!important;}
+.nav-item{color:#fff!important;}
+
+
 .navbar-nav.mr-auto>.active>a,.navbar-nav.mr-auto>.active>a:hover,.navbar-nav.mr-auto>.active>a:focus{
-    color: #fff;
+    color: #fff!important;
 }

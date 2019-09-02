@@ -29,7 +29,7 @@ namespace LabWebApi.Controllers
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
 public Object GetPrenotazioni(int pageIndex,int pageSize)
 {
-   var data= _context.DettaglioPrenotazione.Include(dp=> dp.Strumento).Include(dp=>dp.Prenotazione).ThenInclude(p=>p.Utente).OrderBy(dp=>dp.IdPrenotazione);   
+   var data= _context.DettaglioPrenotazione.Where(dp=>dp.dataFine>=DateTime.Now).Include(dp=> dp.Strumento).Include(dp=>dp.Prenotazione).ThenInclude(p=>p.Utente).OrderByDescending(dp=>dp.dataFine);   
  var page= new PaginatedResponse<DettaglioPrenotazione>(data,pageIndex,pageSize);
  var totalCount=page.Total;
  var totalPages=Math.Ceiling((double)totalCount/pageSize);
@@ -117,6 +117,20 @@ public async Task<IActionResult> DeletePrenotazione(int id)
     var user= await _userManager.FindByIdAsync(userId);
 
     return await _context.Prenotazione.Where(p => p.Utente.Id==(user.Id)).ToListAsync();
+}
+
+[HttpPut("{id}")]
+[Authorize(Roles="Admin,Autorizzato")]
+public async Task<IActionResult> PutPrenotazione(int id,DettaglioPrenotazione prenotazione){
+    string UserID = User.Claims.First(c =>c.Type=="UserID" ).Value;
+          Utente user= await _userManager.FindByIdAsync(UserID);
+           var roles= await _userManager.GetRolesAsync(user);
+           if(roles.FirstOrDefault()=="UtenteAutorizzato"){
+               if(!user.AbilitatoAlleNotifiche)
+                 return BadRequest();
+           }
+           return Ok();
+
 }
     }
 }

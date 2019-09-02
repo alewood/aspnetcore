@@ -49,33 +49,14 @@ namespace LabWebApi.Controllers{
 
      [HttpPut("{id}")]
      [Authorize(Roles="Admin")]
-     public async Task<IActionResult> abilitaNotifiche(string id){
+     public async Task<IActionResult> AbilitaNotifiche(string id){
          Utente user= await _userManager.FindByIdAsync(id);
          user.AbilitatoAlleNotifiche=true;
           await _userManager.UpdateAsync(user);
         return Ok();
 
      }
-[HttpDelete("{id}")]
-[Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<IActionResult> AbilitaStrumento(int id)
-{
-    var strumento = await _context.Strumento.FindAsync(id);
 
-    if (strumento == null)
-    {
-        return NotFound();
-    }
-  var newTtl= strumento.TTL.AddYears(1);
-   var prenotabile= strumento.Prenotabile;
-   strumento.Prenotabile=!prenotabile;
-   strumento.TTL=newTtl;
-    _context.Strumento.Update(strumento);
-     await _context.SaveChangesAsync();
-   
-
-    return Ok();
-}
 
 [HttpGet]
 [Authorize]
@@ -90,10 +71,6 @@ public async Task<ICollection<DettaglioPrenotazione>> GetPrenotazioniAttiveVicin
     return prenotazioni;
 
 }
-//[HttpGet]
-//[Authorize(Roles="Admin,UtenteAutorizzato")]
-//public async Task<ICollection<Strumento>> GetStrumentos(){
-  //    return ;
-    //}
+
     }
 }

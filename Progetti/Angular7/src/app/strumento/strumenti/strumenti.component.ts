@@ -13,12 +13,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class StrumentiComponent implements OnInit {
   strumenti;
+  radioOption="nome";
   isAdmin=this.userService.roleMatch(['Admin']);
   searchText :string="";
   nome="Strumenti";
   page=1;
 total=0;
-limit=10;
+limit=1000;
 totalPages;
 loading =false;
   @Output() public strumentoEmitter= new EventEmitter();
@@ -37,6 +38,8 @@ loading =false;
     this.searchText="";
   }
   rimuovi(id){
+    localStorage.setItem("onClick","false");
+
     if(this.isAdmin){
     this.service.rimuoviStrumento(id).subscribe(
            res=>{
@@ -75,15 +78,18 @@ loading =false;
     this.router.navigate(['login'])
   }
   pdfOpen(path){
-    
+    localStorage.setItem("onClick","false");
     window.open('https://localhost:5001/'+path,'_blank');
+
     this.router.navigateByUrl('app/strumento/strumenti');
     
   }
   onClickStrumento(str){
+    if(localStorage.getItem("onClick")=="true"){
     localStorage.setItem("idStr",str);
     this.router.navigateByUrl('app/strumento/strumentoView');
-    
+    }
+    localStorage.setItem("onClick","true");
   }
   goToPrevious() :void{
     this.page--;

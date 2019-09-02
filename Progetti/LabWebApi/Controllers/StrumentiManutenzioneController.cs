@@ -32,5 +32,25 @@ namespace LabWebApi.Controllers{
            }
           return await _context.Strumento.Where(s=>!(s.Prenotabile)) .ToListAsync();
     }
+    [HttpDelete("{id}")]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
+public async Task<IActionResult> AbilitaStrumento(string id)
+{
+    var strumento =  _context.Strumento.Find(id);
+
+    if (strumento == null)
+    {
+        return NotFound();
+    }
+  var newTtl= strumento.TTL.AddYears(1);
+   var prenotabile= strumento.Prenotabile;
+   strumento.Prenotabile=!prenotabile;
+   strumento.TTL=newTtl;
+    _context.Strumento.Update(strumento);
+     await _context.SaveChangesAsync();
+   
+
+    return Ok();
+}
 }
 }

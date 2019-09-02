@@ -14,7 +14,7 @@ import { HttpEventType, HttpClient, HttpParameterCodec } from '@angular/common/h
 export class StrumentoFormComponent implements OnInit {
   public responsePdf: {dbPath: ''};
   public responseImg: {dbPath: ''};
-  public descrizione: string;
+  public descrizione: '';
 
   constructor(private http:HttpClient, private router:Router,private cookieService:CookieService, public service:StrumentoService,private toastr:ToastrService) { }
   
@@ -22,7 +22,16 @@ export class StrumentoFormComponent implements OnInit {
     this.service.formModel.reset();
   }
   onSubmit(){
-    this.service.inserisci(this.responsePdf.dbPath,this.responseImg.dbPath,this.descrizione).subscribe(
+    var pdf=null;
+  var img=null;
+  var desc=null;
+  if(this.responseImg!=null)
+      img=this.responseImg.dbPath;
+      if(this.responsePdf!=null)
+      pdf=this.responsePdf.dbPath;
+      if(this.descrizione!=null)
+      desc=this.descrizione;
+    this.service.inserisci(pdf,img,desc).subscribe(
       res =>{
           if(res.ok){
             console.log(res.status);

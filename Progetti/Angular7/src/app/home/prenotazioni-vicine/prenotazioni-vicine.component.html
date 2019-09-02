@@ -1,1 +1,22 @@
-<p>prenotazioni-vicine works!</p>
+<table class="table table-inverse table-hover">
+    <thead class="thead-dark">
+      <tr>
+          <th>#</th>
+          <th>Utente</th>
+          <th>Data Inizio</th> 
+          <th>Data Fine</th>
+          <th>ID Strumento</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prenotazione of prenotazioni">
+          <td>{{prenotazione.idPrenotazione}}</td>
+          <td>{{prenotazione.prenotazione.utente.userName}}</td>
+          <td>{{prenotazione.dataInizio | date:'shortDate'}}</td>
+          <td>{{prenotazione.dataFine | date:'shortDate'}}</td>
+          <td>{{prenotazione.strumento.id}}</td>
+          <td><button class="btn" (click)="modifica(prenotazione.idPrenotazione,prenotazione.idStrumento)">Gestisci</button></td>
+      </tr>
+  </tbody>
+  </table>

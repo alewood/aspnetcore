@@ -94,6 +94,7 @@ namespace LabWebApi.Controllers
               group=user.Group,
               email=user.Email,
               userName=user.UserName,
+              abilitatoAlleNotifiche=user.AbilitatoAlleNotifiche,
               role=role
           };
     }
@@ -156,6 +157,7 @@ public async Task<IActionResult> DeleteUtente(string id)
    var result= await _userManager.DeleteAsync(utente);
     return Ok();
 }
+
     }
     
 }

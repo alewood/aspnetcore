@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MainDashboardComponent implements OnInit {
 
-  constructor(private cookieService:CookieService, private router:Router) { }
+  constructor(private cookieService:CookieService, private router:Router, private service:UserService) { }
 
   ngOnInit() {
   }

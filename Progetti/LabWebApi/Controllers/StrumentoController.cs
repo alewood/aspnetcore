@@ -39,7 +39,7 @@ public async Task< Object> GetStrumenti(int i,int pageSize)
 
 [HttpGet("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<Strumento>> GetStrumento(int id)
+public async Task<ActionResult<Strumento>> GetStrumento(string id)
 {
     var strumento = await _context.Strumento.FindAsync(id);
 
@@ -57,9 +57,24 @@ public async Task<ActionResult> PostStrumento([FromBody]JObject data)
 {
     var desc=data["Descrizione"].ToObject<string>();
     var strumento=data["Strumento"].ToObject<Strumento>();
-    strumento.Descrizione=desc;
     strumento.Prenotabile=true;
-   var result= _context.Strumento.Add(strumento);
+    strumento.Descrizione=desc;
+    var s= new Strumento();
+        s.Descrizione=strumento.Descrizione;
+        s.Prenotabile=strumento.Prenotabile;
+        s.ID=strumento.ID;
+        s.Nome=strumento.Nome;
+        s.Marca=strumento.Marca;
+        s.Modello=strumento.Modello;
+        s.Posizione=strumento.Posizione;
+        s.TTL=strumento.TTL;
+         if(strumento.PDFPath!=null)
+         s.PDFPath=strumento.PDFPath;
+      if(strumento.ImgPath!=null)
+         s.ImgPath=strumento.ImgPath;
+     
+   
+    _context.Strumento.Add(strumento);
     await _context.SaveChangesAsync();
     return Ok();
 }
@@ -67,7 +82,7 @@ public async Task<ActionResult> PostStrumento([FromBody]JObject data)
 
 [HttpPut("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<IActionResult> PutStrumento(int id,Strumento strumento)
+public async Task<IActionResult> PutStrumento(string id,Strumento strumento)
 {
     if (id != strumento.ID)
     {
@@ -80,6 +95,8 @@ public async Task<IActionResult> PutStrumento(int id,Strumento strumento)
      s.Marca=strumento.Marca;
     if(strumento.Modello!=""&&strumento.Modello!=null)
      s.Modello=strumento.Modello;
+    if(strumento.Posizione!=""&&strumento.Posizione!=null)
+      s.Posizione=strumento.Posizione;
     if(strumento.PDFPath!=null)
      s.PDFPath=strumento.PDFPath;
     if(strumento.TTL!=new DateTime(2001,1,1)|| strumento.TTL!=null)
@@ -94,7 +111,7 @@ public async Task<IActionResult> PutStrumento(int id,Strumento strumento)
 }
 [HttpDelete("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<IActionResult> DeleteStrumento(int id)
+public async Task<IActionResult> DeleteStrumento(string id)
 {
     var strumento = await _context.Strumento.FindAsync(id);
 

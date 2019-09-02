@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class StrumentiProvvisoriComponent implements OnInit {
 strumenti;
+radioOption:string="nome"
 searchText :string="";
   constructor(private router:Router, private toastr:ToastrService, private service:StrumentoService) { }
 

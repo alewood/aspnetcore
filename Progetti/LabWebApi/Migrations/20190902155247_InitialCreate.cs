@@ -54,8 +54,7 @@ namespace labwebapi.Migrations
                 name: "Strumento",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ID = table.Column<string>(nullable: false),
                     Nome = table.Column<string>(nullable: true),
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
@@ -63,7 +62,8 @@ namespace labwebapi.Migrations
                     PDFPath = table.Column<string>(nullable: true),
                     Prenotabile = table.Column<bool>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
-                    TTL = table.Column<DateTime>(nullable: false)
+                    TTL = table.Column<DateTime>(nullable: false),
+                    Posizione = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,8 +74,7 @@ namespace labwebapi.Migrations
                 name: "StrumentoProvvisorio",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ID = table.Column<string>(nullable: false),
                     Nome = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
@@ -217,9 +216,9 @@ namespace labwebapi.Migrations
                 name: "DettaglioPrenotazione",
                 columns: table => new
                 {
-                    IdStrumento = table.Column<int>(nullable: false),
+                    IdStrumento = table.Column<string>(nullable: false),
                     IdPrenotazione = table.Column<int>(nullable: false),
-                    StrumentoID = table.Column<int>(nullable: true),
+                    StrumentoID = table.Column<string>(nullable: true),
                     PrenotazioneID = table.Column<int>(nullable: true),
                     dataInizio = table.Column<DateTime>(nullable: false),
                     dataFine = table.Column<DateTime>(nullable: false)

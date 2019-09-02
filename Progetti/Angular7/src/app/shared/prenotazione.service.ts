@@ -48,7 +48,7 @@ export class PrenotazioneService {
     return this.http.get(this.BaseURI +'/prenotazione/perUtente');
   }
   getPrenotazione(id){
-    return this.http.get(this.BaseURI +'/prenotazione/'+id);
+    return this.http.get(this.BaseURI +'/prenotazione/'+id*1629);
   }
   rimuoviPrenotazioneStrumento(id){
     return this.http.delete<Response>(this.BaseURI+'/cart/'+id,{observe:'response'});

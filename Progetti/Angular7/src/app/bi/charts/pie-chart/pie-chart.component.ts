@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BIService } from 'src/app/shared/bi.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Component({
   selector: 'app-pie-chart',
@@ -6,18 +8,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent implements OnInit {
-
-  constructor() { }
-  pieChartData:number[]=[350,450,120];
+ prenotazioni;
+  constructor(private service:BIService) { }
+  pieChartData:number[];
   colors:any[]=[
     {
       backgroundColor:['#26547c','#ff6b6b','#ffd166'],
       borderColor:'#111'
     }
   ];
-  pieChartLabels:string[]=["Jon","Josh","Jason"];
+  pieChartLabels:string[];
   pieChartType='pie';
   ngOnInit() {
+    this.service.getTop3Strumenti().subscribe(
+      res=>{
+        const localChartData=this.getChartData(res);
+       this.pieChartLabels=localChartData.labels;
+       this.pieChartData=localChartData.data;
+      }
+    )
+  }
+  getChartData(res)
+  {
+    this.prenotazioni=res;
+    const strumenti=[];
+  this.prenotazioni.map(p=>{
+    if(!strumenti.includes(p.strumento.id))
+    strumenti.push(p.strumento.id)});
+  console.log(strumenti);
+  const data=[];
+  strumenti.forEach(str=>{
+   data.push(this.prenotazioni.filter(p=>p.strumento.id==str).length);
+  });
+ const labels=[];
+ strumenti.forEach(str=>{
+   labels.push("ID "+str);
+ });
+
+return {
+  'data':data,
+  'labels':labels
+}
+
+
   }
 
 }

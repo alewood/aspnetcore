@@ -17,10 +17,12 @@ export class StrumentoService {
   format: string = 'yyyy-MM-dd';
    date: Date=new Date('01/01/2001');
   formModel=this.fb.group({
+    ID:['',Validators.required],
     Nome:['',Validators.required],
     Descrizione:[''],
     Marca:['',Validators.required],
     Modello:['',Validators.required],
+    Posizione:['',Validators.required],
     TTL:['Date',Validators.required]
   });
   formModelUpdate=this.fb.group({
@@ -28,7 +30,8 @@ export class StrumentoService {
     Descrizione:[''],
     Marca:[''],
     Modello:[''],
-    TTL:[this.date]
+    Posizione:[''],
+    TTL:['Date',Validators.required]
   });
 
 
@@ -39,10 +42,12 @@ export class StrumentoService {
        descrizione=desc.text;
     var body={
       Strumento:{
+      ID: this.formModel.value.ID,  
       Nome: this.formModel.value.Nome,
       Descrizione:null,
       Marca:this.formModel.value.Marca,
       Modello:this.formModel.value.Modello,
+      Posizione:this.formModel.value.Posizione,
       TTL:ttl,
       PDFPath:pathPdf,
       ImgPath:pathImg},
@@ -60,7 +65,7 @@ export class StrumentoService {
     return this.http.get<{page:{data:Strumento[],total:number},totalPages:number}>(this.BaseURI+'/strumento/'+index+'/'+pageSize,{observe:'body'});
   }
   gestisciStrumentoNonPrenotabile(id){
-    return this.http.delete<Response>(this.BaseURI+'/notifiche/'+id,{observe:'response'});
+    return this.http.delete<Response>(this.BaseURI+'/strumentiManutenzione/'+id,{observe:'response'});
   }
 
   rimuoviStrumento(id){
@@ -78,20 +83,21 @@ export class StrumentoService {
   getLowTtl(){
     return this.http.get(this.BaseURI+'/notifiche');
   }
-  update(id ,pathPdf,pathImg,desc){
-    var ttl=this.datepipe.transform(this.date, this.format);
+  update(id ,pathPdf,pathImg,desc,ttl){
+    var ttlForm=ttl;
     if(this.formModelUpdate.touched){
-      ttl=this.datepipe.transform(this.formModelUpdate.value.TTL, this.format);}
+      ttlForm=this.datepipe.transform(this.formModelUpdate.value.TTL, this.format);}
     var descrizione=this.formModelUpdate.value.Descrizione;
     if(desc!=null)
-       descrizione=desc;
+       descrizione=desc.text;
     var body={
       ID: id,
       Nome: this.formModelUpdate.value.Nome,
       Descrizione:descrizione,
       Marca:this.formModelUpdate.value.Marca,
       Modello:this.formModelUpdate.value.Modello,
-      TTL:ttl,
+      Posizione:this.formModel.value.Posizione,
+      TTL:ttlForm,
       PDFPath:pathPdf,
       ImgPath:pathImg
     };

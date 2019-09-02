@@ -15,4 +15,10 @@
 }
 body{
    background-color: #1c2228!important;  
+   height : 100vh;
+
+   
+}
+div.container-fluid{
+   background-color: #1c2228!important;  
 }

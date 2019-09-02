@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace labwebapi.Migrations
 {
     [DbContext(typeof(LabContext))]
-    [Migration("20190826160032_InitialCreate")]
+    [Migration("20190902155247_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,13 +21,13 @@ namespace labwebapi.Migrations
 
             modelBuilder.Entity("LabWebApi.Models.DettaglioPrenotazione", b =>
                 {
-                    b.Property<int>("IdStrumento");
+                    b.Property<string>("IdStrumento");
 
                     b.Property<int>("IdPrenotazione");
 
                     b.Property<int?>("PrenotazioneID");
 
-                    b.Property<int?>("StrumentoID");
+                    b.Property<string>("StrumentoID");
 
                     b.Property<DateTime>("dataFine");
 
@@ -58,7 +58,7 @@ namespace labwebapi.Migrations
 
             modelBuilder.Entity("LabWebApi.Models.Strumento", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descrizione");
@@ -73,6 +73,8 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("PDFPath");
 
+                    b.Property<string>("Posizione");
+
                     b.Property<bool>("Prenotabile");
 
                     b.Property<DateTime>("TTL");
@@ -84,7 +86,7 @@ namespace labwebapi.Migrations
 
             modelBuilder.Entity("LabWebApi.Models.StrumentoProvvisorio", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ImgPath");

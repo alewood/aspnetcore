@@ -1,1 +1,36 @@
-<p>section-status works!</p>
+<body>
+<div>
+    <div class="filter-wrap">
+      <input [(ngModel)]="searchText" placeholder="Filter Strumenti" class="filter-input">
+      <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
+      <mat-radio-group  [(ngModel)]="radioOption" label="Select an option">
+          <mat-radio-button class="mat" value="id">ID</mat-radio-button>
+          <mat-radio-button class="mat" value="nome">Nome</mat-radio-button>
+          <mat-radio-button class="mat" value="marca">Marca</mat-radio-button>
+          <mat-radio-button  class="mat" value="modello">Modello</mat-radio-button>
+        </mat-radio-group>
+    </div>
+  </div>
+<table class="table table-inverse table-hover">
+  <thead class="thead-dark">
+    <tr class="white">
+        <th>#</th>
+        <th>Nome</th>
+        <th>Descrizione</th> 
+        <th>Marca</th>
+        <th>Modello</th>
+        <th>Posizione</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let strumento of strumenti| filter :searchText:radioOption; let i = index"  (click)="onClickStrumento(strumento.id)">
+        <td>{{strumento.id}}</td>
+        <td>{{strumento.nome}}</td>
+        <td>{{strumento.descrizione}}</td>
+        <td>{{strumento.marca}}</td>
+        <td>{{strumento.modello}}</td>
+        <td>{{strumento.posizione}}</td>
+     </tr>
+</tbody>
+</table>
+</body>

@@ -5,10 +5,10 @@
 </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-            <a class="nav-link" routerLink="home/notifiche"><strong>Home</strong></a>
+            <a class="nav-link" routerLink="home"><strong>Home</strong></a>
           </li></ul>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+        <ul *ngIf="this.service.roleMatch(['Admin','UtenteAutorizzato'])" class="navbar-nav mr-auto">
+          <li  class="nav-item">
           <a class="nav-link" routerLink="utente/utenti"><strong>Utenti</strong></a>
         </li></ul>
         <ul class="navbar-nav mr-auto">

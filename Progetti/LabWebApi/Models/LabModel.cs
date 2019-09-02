@@ -22,7 +22,7 @@ namespace LabWebApi.Models
     public class Strumento{
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { get; set; }
+    public string ID { get; set; }
     public string Nome { get; set; }
     public string Descrizione { get; set; }
     public string Marca { get; set; }   
@@ -42,13 +42,13 @@ namespace LabWebApi.Models
        public class StrumentoProvvisorio{
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { get; set; }
+    public string ID { get; set; }
     public string Nome { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
     public string PDFPath { get; set; }  
      public string ImgPath{get;set;}
-     public DateTime TTL{get;set;}
+     public DateTime? TTL{get;set;}
 
     
      
@@ -63,7 +63,7 @@ namespace LabWebApi.Models
     }
    
     public class DettaglioPrenotazione{
-        public int IdStrumento{get;set;}
+        public string IdStrumento{get;set;}
          public int IdPrenotazione{get;set;}
         public virtual Strumento Strumento{get;set;}
         public virtual Prenotazione Prenotazione{get;set;}

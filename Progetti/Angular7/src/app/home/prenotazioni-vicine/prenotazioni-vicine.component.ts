@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prenotazioni-vicine',
@@ -8,7 +9,7 @@ import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
 })
 export class PrenotazioniVicineComponent implements OnInit {
 
-  constructor(private service:PrenotazioneService) { }
+  constructor(private router:Router, private service:PrenotazioneService) { }
    prenotazioni;
   ngOnInit() {
    this.service.getPrenotazioniVicine().subscribe(
@@ -16,6 +17,13 @@ export class PrenotazioniVicineComponent implements OnInit {
        this.prenotazioni=res;
      }
    );
+  }
+
+  modifica(idPre,idStr){
+    localStorage.setItem("idPre",idPre);
+    localStorage.setItem("idStr",idStr);
+    this.router.navigateByUrl("/app/home/modificaPrenotazione");
+    
   }
 
 }

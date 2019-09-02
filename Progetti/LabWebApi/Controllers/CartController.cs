@@ -22,7 +22,7 @@ namespace LabWebApi.Controllers
 
         
         }
-        public  async Task<bool> checkPrenotazioniStrumento(int idStrumento,DateTime inizio,DateTime fine){
+        public  async Task<bool> checkPrenotazioniStrumento(string idStrumento,DateTime inizio,DateTime fine){
             var result=true;
             ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento).ToListAsync();
             if(fine.CompareTo(inizio)<0)
@@ -68,7 +68,7 @@ namespace LabWebApi.Controllers
         [HttpPost]
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
         public async Task<IActionResult> postCart([FromBody]JObject data) {
-            var idStrumento=data["IdStrumento"].ToObject<int>();
+            var idStrumento=data["IdStrumento"].ToObject<string>();
             var inizio=data["DataInizio"].ToObject<DateTime>().Date;
             var fine=data["DataFine"].ToObject<DateTime>().Date;
             if(await checkPrenotazioniStrumento(idStrumento,inizio,fine)){
@@ -91,7 +91,7 @@ namespace LabWebApi.Controllers
         }
         [HttpDelete("{id}")]
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-        public IActionResult rimuoviPrenotazioneStrumento(int id){
+        public IActionResult rimuoviPrenotazioneStrumento(string id){
            
             var cart=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
           var cart2=new List<DettaglioPrenotazione>();

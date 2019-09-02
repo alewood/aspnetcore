@@ -48,6 +48,9 @@ import { UpdateFormComponent } from './strumento/update-form/update-form.compone
 import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-strumenti.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotazioni-vicine.component';
+import {MatButtonToggleModule,MatSelectModule,MatRadioModule} from '@angular/material';
+import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
+import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +90,8 @@ import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotaz
     GestioneStrumentiComponent,
     PaginationComponent,
     PrenotazioniVicineComponent,
+    PrenotazioniComponent,
+    ChartStrumentoComponent,
     
   ],
   imports: [
@@ -97,6 +102,9 @@ import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotaz
     BrowserAnimationsModule,
     CommonModule,
     ChartsModule,
+    MatSelectModule,
+    MatButtonToggleModule,  
+    MatRadioModule,
     ToastrModule.forRoot({
       progressBar: true
     }),

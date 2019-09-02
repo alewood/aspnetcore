@@ -24,6 +24,9 @@ import { StrumentoViewComponent } from './strumento/strumento-view/strumento-vie
 import { NotificationsComponent } from './home/notifications/notifications.component';
 import { UpdateFormComponent } from './strumento/update-form/update-form.component';
 import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-strumenti.component';
+import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotazioni-vicine.component';
+import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
+import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.component';
 
 
 const routes: Routes = [
@@ -32,6 +35,7 @@ const routes: Routes = [
   path:'bi',component :DashboardComponent,
   children:[
  {path:'status',component :SectionStatusComponent,canActivate:[AuthGuard]},
+ {path:'strumento',component :ChartStrumentoComponent ,canActivate:[AuthGuard]},
 {path:'prenotazioni',component :SectionPrenotazioniComponent,canActivate:[AuthGuard]},
 {path:'volume',component :SectionVolumeComponent,canActivate:[AuthGuard]}],
 canActivate:[AuthGuard]},
@@ -40,8 +44,10 @@ children:[
  
   {path:'home',component :HomeComponent,
   children:[
+    {path:'prenotazioni',component :PrenotazioniComponent,canActivate:[AuthGuard]},
     {path:'notifiche',component :NotificationsComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
-    {path:'gestioneStrumenti',component :GestioneStrumentiComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}}
+    {path:'gestioneStrumenti',component :GestioneStrumentiComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+    {path:'prenotazioniVicine',component :PrenotazioniVicineComponent,canActivate:[AuthGuard],data:{permittedRoles:['Admin','UtenteAutorizzato']}}
   ],
   canActivate:[AuthGuard]},
  

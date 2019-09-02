@@ -2,6 +2,12 @@
 <div class="container">
     <h1>Strumento <Form></Form></h1>
     <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+        <div class="form-group required">
+            <label>ID</label>
+                <input type="text" class="form-control" formControlName="ID" required>
+                <label class="text-danger" *ngIf="service.formModel.get('ID').touched && service.formModel.get('ID').errors?.required">This field is mandatory.</label>
+          
+          </div>
       <div class="form-group required">
         <label>Nome</label>
             <input type="text" class="form-control" formControlName="Nome" required>
@@ -24,6 +30,12 @@
         <label>Modello</label>
         <input type="text" class="form-control" formControlName="Modello">
         <label class="text-danger" *ngIf="service.formModel.get('Modello').touched && service.formModel.get('Modello').errors?.required">This field is mandatory.</label>
+      
+      </div>
+      <div class="form-group required">
+        <label>Posizione</label>
+        <input type="text" class="form-control" formControlName="Posizione">
+        <label class="text-danger" *ngIf="service.formModel.get('Posizione').touched && service.formModel.get('Posizione').errors?.required">This field is mandatory.</label>
       
       </div>
       <div class="form-group required">

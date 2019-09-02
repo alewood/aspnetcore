@@ -164,7 +164,7 @@ div.form-group.required>label:first-child:after{
  height: 100%;
 }
 .table.table-inverse.table-hover{
-    color: #1c2228!important;
+    color: #1c2228;
 
 }
 .table-hover tbody tr:hover td {
@@ -177,10 +177,14 @@ div.form-group.required>label:first-child:after{
 .filter-input{
     background-color: rgb(192, 199, 199);
     border-color: #1c2228;
+    color: #1c2228;
+    font-weight: 700;
 }
 #sidebar{
-    background-color: #1c2228;
     height: 100vh;
+    padding-top:25px;
+    position: fixed;
+    background-color: #191f26;
 }
 label{
     font-size: 1.5rem;
@@ -191,4 +195,19 @@ p{
     font-size: 1.5rem!important
 }
 
+.mat .mat-radio-container{
+    height: 20px; 
+    width: 20px; 
+    margin-left: 16px;
+    margin-right: -12px;
+}
+.mat .mat-radio-outer-circle{
+    display: none;
+}
 
+.mat .mat-radio-button .mat-radio-ripple{
+    height: 20px; 
+    width: 20px; 
+    left: calc(50% - 10px); 
+    top: calc(50% - 10px); 
+}

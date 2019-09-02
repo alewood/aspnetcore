@@ -3,7 +3,14 @@
     <div class="filter-wrap">
       <input [(ngModel)]="searchText" placeholder="Filter Strumenti" class="filter-input">
       <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
+      <mat-radio-group  [(ngModel)]="radioOption" label="Select an option">
+        <mat-radio-button class="mat" value="id">ID</mat-radio-button>
+        <mat-radio-button class="mat" value="nome">Nome</mat-radio-button>
+        <mat-radio-button class="mat" value="marca">Marca</mat-radio-button>
+        <mat-radio-button  class="mat" value="modello">Modello</mat-radio-button>
+      </mat-radio-group>
     </div>
+
   </div>
 <table class="table table-inverse table-hover">
   <thead class="thead-dark">
@@ -13,20 +20,22 @@
         <th>Descrizione</th> 
         <th>Marca</th>
         <th>Modello</th>
+        <th>Posizione</th>
         <th></th>
         <th></th>
         <th *ngIf="this.isAdmin"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let strumento of strumenti| filter :searchText; let i = index"  (click)="onClickStrumento(strumento.id)">
-        <td>{{i + 1}}</td>
+    <tr *ngFor="let strumento of strumenti| filter :searchText:radioOption; let i = index"  (click)="onClickStrumento(strumento.id)">
+        <td>{{strumento.id}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>
         <td>{{strumento.marca}}</td>
         <td>{{strumento.modello}}</td>
+        <td>{{strumento.posizione}}</td>
         <td ><button class="btn" *ngIf="strumento.pdfPath!=null" (click)="pdfOpen(strumento.pdfPath)">PDF</button></td>
-        <td *ngIf="strumento.prenotabile"> <button type="submit" class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
+        <td *ngIf="strumento.prenotabile"> <button class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
         <td *ngIf="!strumento.prenotabile">In Manutenzione</td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
     </tr>

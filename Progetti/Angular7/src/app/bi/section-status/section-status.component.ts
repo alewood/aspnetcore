@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BIService } from 'src/app/shared/bi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-section-status',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-status.component.css']
 })
 export class SectionStatusComponent implements OnInit {
-
-  constructor() { }
-
+  radioOption:string="nome";
+  searchText :string="";
+  constructor(private service:BIService,private router:Router) { }
+  strumenti;
   ngOnInit() {
+    this.service.getStrumenti().subscribe(
+      res=>{
+        this.strumenti=res;
+        console.log(this.strumenti)
+      }
+    );
   }
 
+  onClickStrumento(id)
+  {
+    localStorage.setItem("idStr",id);
+    this.router.navigateByUrl("/bi/strumento");
+
+  }
+  clearFilter(){
+    this.searchText="";
+  }
 }

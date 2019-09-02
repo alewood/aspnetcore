@@ -22,9 +22,16 @@
         <input type="text" class="form-control" formControlName="Modello">
         
       </div>
-      <div class="form-group ">
+      <div class="form-group">
+        <label>Posizione</label>
+        <input type="text" class="form-control" formControlName="Posizione">
+        
+      </div>
+      <div class="form-group required">
           <label>TTL</label>
           <input type="date" class="form-control" formControlName="TTL">
+          <label class="text-danger" *ngIf="service.formModelUpdate.get('TTL').touched && service.formModelUpdate.get('TTL').errors?.required">This field is mandatory.</label>
+ 
           
         </div>
       <div>
@@ -40,7 +47,7 @@
        <app-text-parse (onParseFinished)="parseDescrizione($event)"></app-text-parse>
     </div>
 
-      <button style="align-content: center" type="submit" class="btn btn-middle btn-success" [disabled]="!this.service.formModelUpdate.valid">Submit</button>
+      <button style="align-content: center" type="submit" class="btn btn-middle btn-success" [disabled]="!service.formModelUpdate.valid">Submit</button>
 
     </form>
 </div>

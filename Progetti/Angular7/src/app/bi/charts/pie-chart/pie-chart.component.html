@@ -1,5 +1,6 @@
 <div>
   <canvas baseChart
+  *ngIf="pieChartData && pieChartData.length >0"
     [data]="pieChartData"
     [colors]="colors"
     [labels]="pieChartLabels"

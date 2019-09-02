@@ -15,24 +15,8 @@ export class HomeComponent implements OnInit {
   constructor(private cookieService:CookieService,private router:Router,private service:UserService,private preService:PrenotazioneService) { }
 
   ngOnInit() {
-   /* this.service.getUserProfile().subscribe(
-     res=> {
-        this.userDetails=res;
-      },
-      err=>{
-        console.log(err);
-      }
-    );
-    this.preService.getPrenotazioniPerUtente().subscribe(
-      res=> {
-        this.prenotazioni=res;
 
-      },
-      err=>{
-        console.log(err);
-      }
-    )
-    */}
+  }
   visualizza(id){
     localStorage.setItem("idPre",id);
     this.router.navigateByUrl("app/prenotazione");

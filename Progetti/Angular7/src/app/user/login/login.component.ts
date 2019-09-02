@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
         let session= res.body.sessionId.toString();
         localStorage.setItem('token',token);
         this.cookieService.set(".AspNetCore.Session",session);
+        if(this.service.roleMatch(['UtenteBase']))
+          this.router.navigateByUrl('/app/home/prenotazioni');
+
+        else
             this.router.navigateByUrl('/app/home/notifiche');
       },
       err => {
