@@ -27,13 +27,13 @@ namespace LabWebApi.Controllers
 
         public async Task<Object> GetTop3()
         {
-           var result=  _context.DettaglioPrenotazione
-           .Include(dp=> dp.Strumento)
+           var result=await   _context.DettaglioPrenotazione
            .Include(dp=>dp.Prenotazione)
            .ThenInclude(p=>p.Utente)
-           .OrderByDescending(dp=>dp.dataFine);
+           .OrderByDescending(dp=>dp.dataFine)
+            .ToListAsync();
            var map= new  Dictionary<string,int>();
-           await result.ForEachAsync(dp=>{ 
+            result.ForEach(dp=>{ 
            if(!map.ContainsKey(dp.IdStrumento))
               map[dp.IdStrumento]=0;
               map[dp.IdStrumento]++;
@@ -42,8 +42,19 @@ namespace LabWebApi.Controllers
            var top3ID= new List<string>();
             foreach (var c in top3)
                 top3ID.Add(c.Key);
+                 var mapG =new Dictionary<string,int>();
+            result.ForEach(dp=>{
+                var group=dp.Prenotazione.Utente.Group;
+                 if(!map.ContainsKey(group))
+                   map[group]=0;
+                   map[group]++;    
+            });
+             var top3G= map.OrderByDescending(e=>e.Value).Take(3);
+           var top3Group= new List<string>();
+            foreach (var c in top3G)
+                top3Group.Add(c.Key); 
                
-        return result.Where(dp=> top3ID.Contains(dp.IdStrumento) ).ToList();
+        return result.Where(dp=> top3ID.Contains(dp.IdStrumento)&&top3Group.Contains(dp.Prenotazione.Utente.Group) ).ToList();
         }
         [HttpGet]
         [Authorize]
@@ -58,7 +69,6 @@ namespace LabWebApi.Controllers
           {
               var result=  await _context.DettaglioPrenotazione
               .Where(dp=>dp.IdStrumento==id)
-              .Include(dp=>dp.Strumento)
               .Include(dp=> dp.Prenotazione)
               .ThenInclude(p=>p.Utente)
               .ToListAsync();

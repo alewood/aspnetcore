@@ -11,12 +11,13 @@
     min-width: 54px;
     margin: 2px;
     border-radius: 20px;
-    background-color: #fc0000;
+    background-color: #084892;
     color: #fff;
     
 }
 .btn-small{
     border-radius: 20px;
-    background-color:  #fc0000;
+    background-color: #191f26;
     color: #fff;
+    border: none;
 }

@@ -33,12 +33,12 @@ export class PieChartComponent implements OnInit {
     this.prenotazioni=res;
     const strumenti=[];
   this.prenotazioni.map(p=>{
-    if(!strumenti.includes(p.strumento.id))
-    strumenti.push(p.strumento.id)});
+    if(!strumenti.includes(p.idStrumento))
+    strumenti.push(p.idStrumento)});
   console.log(strumenti);
   const data=[];
   strumenti.forEach(str=>{
-   data.push(this.prenotazioni.filter(p=>p.strumento.id==str).length);
+   data.push(this.prenotazioni.filter(p=>p.idStrumento==str).length);
   });
  const labels=[];
  strumenti.forEach(str=>{

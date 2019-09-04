@@ -17,7 +17,15 @@ const SAMPLE_BARCHART_LABELS: string[] = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W
 export class BarChartComponent implements OnInit {
   colors:any[]=[
     {
-      backgroundColor:['rgba(10,10,245,0.8)','rgba(245,10,10,0.8)','rgba(230, 245, 10, 0.8)'],
+      backgroundColor:['rgba(10,10,245,0.8)','rgba(10,10,245,0.8)','rgba(10,10,245,0.8)'],
+      borderColor:'#111'
+    },
+    {
+      backgroundColor:['rgba(245,10,10,0.8)','rgba(245,10,10,0.8)','rgba(245,10,10,0.8)'],
+      borderColor:'#111'
+    },
+    {
+      backgroundColor:['rgba(230, 245, 10, 0.8)','rgba(230, 245, 10, 0.8)','rgba(230, 245, 10, 0.8)',],
       borderColor:'#111'
     }
   ];
@@ -61,14 +69,14 @@ export class BarChartComponent implements OnInit {
     this.prenotazioni = res;
     const strumenti = [];
     this.prenotazioni.map(p => {
-      if (!strumenti.includes(p.strumento.id))
-        strumenti.push(p.strumento.id)
+      if (!strumenti.includes(p.idStrumento))
+        strumenti.push(p.idStrumento)
     });
     console.log(strumenti);
 
     const labels = [];
     const gruppoStrumento = this.prenotazioni.reduce((r, e) => {
-      r.push([e.prenotazione.utente.group, e.strumento.id]);
+      r.push([e.prenotazione.utente.group, e.idStrumento]);
       if (!labels.includes(e.prenotazione.utente.group))
         labels.push(e.prenotazione.utente.group);
       return r;

@@ -4,6 +4,7 @@
    position: fixed;
    background-color: #191f26;
    font-weight:  700!important;
+   font-size: 15px!important;
 }
 #dashboard{
     margin-top: 60px;

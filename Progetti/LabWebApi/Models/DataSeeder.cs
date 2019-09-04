@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 using OfficeOpenXml;
 using System.Linq;
 using System;
@@ -69,17 +71,26 @@ public static class DataSeeder{
             {
                
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
-                int rowCount = worksheet.Dimension.Rows;
+                int rowCount = 24;
                 for (int row = 2; row <= rowCount; row++)
                 {
+                    var PDFPath="";
+                    var ImgPath="";
                     Strumento s= new Strumento();
+                        //s.ID=worksheet.Cells[row, 1].Value.ToString();
                         s.Nome=worksheet.Cells[row, 1].Value.ToString();
                         s.Descrizione=worksheet.Cells[row, 2].Value.ToString();
                         s.Marca=worksheet.Cells[row, 3].Value.ToString();
                         s.Modello=worksheet.Cells[row, 4].Value.ToString();
                         //s.Posizione=worksheet.Cells[row,6].Value.ToString();
-                       // var PDFPath=@worksheet.Cells[row,7].Value.ToString();
-                        //var ImgPath=@worksheet.Cells[row,8].Value.ToString();
+                        if(worksheet.Cells[row,7].Value!=null){
+                          PDFPath=@worksheet.Cells[row,7].Value.ToString();
+                           s.PDFPath= DataSeeder.Upload(PDFPath);
+                        }
+                         if(worksheet.Cells[row,8].Value!=null){
+                          ImgPath=@worksheet.Cells[row,8].Value.ToString();
+                          s.ImgPath= DataSeeder.Upload(ImgPath);
+                         }
                         var days=(double)worksheet.Cells[row,5].Value;
                         s.TTL=DateTime.Today.AddDays(days);
                         s.Prenotabile=true;
@@ -90,6 +101,31 @@ public static class DataSeeder{
         }
     }
    
+    }
+    public static string Upload(string filePath)
+    {
+        FileInfo file= new FileInfo(filePath);
+        var folderName = Path.Combine("Resources", "Files");
+        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+ 
+        if (file.Length > 0)
+        {
+            var fileName =file.Name;
+            var fullPath = Path.Combine(pathToSave, fileName);
+            var dbPath = Path.Combine(folderName, fileName);
+            var f= new FileInfo(fullPath);
+            if(f!=null)
+            file.CopyTo(fullPath,true);
+            
+ 
+            return  dbPath;
+        }
+        else
+        {
+            return null;
+        }
+
+
     }
 }
 }
