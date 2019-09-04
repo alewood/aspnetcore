@@ -21,6 +21,8 @@ total=0;
 limit=10;
 totalPages;
 loading =false;
+abilita=false;
+rimuovi=false;
   constructor(private userService:UserService, private cookieService:CookieService, private toastr:ToastrService, private service:UserService,private router:Router) { }
 
   ngOnInit() {
@@ -67,22 +69,33 @@ loading =false;
   }
 
 roleCheck(utente){
-  if(this.self.id==utente.id)
+  if(this.self.id==utente.id){
+    this.rimuovi=false;
   return false;
+  
+  }
   else{
-  if(this.isAdmin)
+  if(this.isAdmin){
+    this.rimuovi=true;
       return true;
+  }
+  
      else{
-       if(utente.role=='UtenteBase')
+       if(utente.role=='UtenteBase'){
+        this.rimuovi=true;
        return true;
-       else 
+       }
+       else {
+        this.rimuovi=false;
        return false;
+       }
      }}
 
      
 }
 userIsAutorizzato(utente){
-  return utente.role=="UtenteAutorizzato";
+  this.rimuovi=utente.role=="UtenteAutorizzato"&& !utente.abilitatoAlleNotifiche;
+  return utente.role=="UtenteAutorizzato"&& !utente.abilitatoAlleNotifiche;
 }
 abilitaNotifiche(id){
   this.service.abilitaNotifiche(id).subscribe(

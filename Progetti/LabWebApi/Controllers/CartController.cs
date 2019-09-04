@@ -80,10 +80,17 @@ namespace LabWebApi.Controllers
                dettaglio.IdStrumento=idStrumento;
                dettaglio.dataInizio=inizio;
                dettaglio.dataFine=fine;
-               if(cart.All(d=>!(d.IdStrumento==dettaglio.IdStrumento)))
+               if(cart.All(d=>!(d.IdStrumento==dettaglio.IdStrumento))){
                cart.Add(dettaglio);
-               SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);
-          return Ok();
+                  SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);
+                 return Ok();
+               }
+               else{
+                   SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);
+                   return BadRequest();
+
+               }
+            
             }
             else{
                 return BadRequest();

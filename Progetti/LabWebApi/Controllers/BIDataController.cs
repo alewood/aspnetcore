@@ -75,7 +75,7 @@ namespace LabWebApi.Controllers
             foreach (var c in top3)
                 top3Group.Add(c.Key);    
                    return result.Where(dp=>top3Group.Contains(dp.Prenotazione.Utente.Group))
-                   .Where(dp=>(dp.dataInizio>=DateTime.Now.AddMonths(-12)&& dp.dataInizio<=DateTime.Now))
+                   .Where(dp=>(dp.dataInizio>=DateTime.Now.AddMonths(-12)))
                    .ToList();
                    
 

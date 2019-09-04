@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StrumentoService } from 'src/app/shared/strumento.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-strumento-view',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./strumento-view.component.css']
 })
 export class StrumentoViewComponent implements OnInit {
-  constructor(private router:Router, private service:StrumentoService) { }
+  constructor(private userService:UserService, private router:Router, private service:StrumentoService) { }
   strumento;
   ngOnInit() {
    var id= localStorage.getItem("idStr");

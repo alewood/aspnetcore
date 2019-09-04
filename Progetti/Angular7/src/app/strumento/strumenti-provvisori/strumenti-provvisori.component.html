@@ -14,7 +14,6 @@
 <table class="table table-inverse table-hover">
   <thead class="thead-dark">
     <tr>
-        <th>#</th>
         <th>ID</th>
         <th>Nome</th>
         <th>Descrizione</th> 
@@ -27,7 +26,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let strumento of strumenti| filter :searchText:radioOption; let i = index">
-        <td>{{i + 1}}</td>
         <td>{{strumento.id}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>

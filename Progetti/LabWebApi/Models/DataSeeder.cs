@@ -26,7 +26,7 @@ public static class DataSeeder{
             admin.UserName="admin";
             admin.Email="ale.wood@stud.uniroma3.it";
 
-            admin.Group="gruppo3";
+            admin.Group="TLC";
             IdentityResult result= userManager.CreateAsync(admin,"Password1!").Result;
             
             if(result.Succeeded)
@@ -77,9 +77,9 @@ public static class DataSeeder{
                         s.Descrizione=worksheet.Cells[row, 2].Value.ToString();
                         s.Marca=worksheet.Cells[row, 3].Value.ToString();
                         s.Modello=worksheet.Cells[row, 4].Value.ToString();
-                        s.Posizione=worksheet.Cells[row,6].Value.ToString();
-                        var PDFPath=@worksheet.Cells[row,7].Value.ToString();
-                        var ImgPath=@worksheet.Cells[row,8].Value.ToString();
+                        //s.Posizione=worksheet.Cells[row,6].Value.ToString();
+                       // var PDFPath=@worksheet.Cells[row,7].Value.ToString();
+                        //var ImgPath=@worksheet.Cells[row,8].Value.ToString();
                         var days=(double)worksheet.Cells[row,5].Value;
                         s.TTL=DateTime.Today.AddDays(days);
                         s.Prenotabile=true;

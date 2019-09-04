@@ -13,7 +13,7 @@ export class PieChartComponent implements OnInit {
   pieChartData:number[];
   colors:any[]=[
     {
-      backgroundColor:['#26547c','#ff6b6b','#ffd166'],
+      backgroundColor:['rgba(10,10,245,0.8)','rgba(245,10,10,0.8)','rgba(230, 245, 10, 0.8)'],
       borderColor:'#111'
     }
   ];
@@ -42,7 +42,7 @@ export class PieChartComponent implements OnInit {
   });
  const labels=[];
  strumenti.forEach(str=>{
-   labels.push("ID "+str);
+   labels.push("ID: "+str);
  });
 
 return {

@@ -44,11 +44,14 @@ namespace LabWebApi.Models
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string ID { get; set; }
     public string Nome { get; set; }
+     public string Descrizione { get; set; }
     public string Marca { get; set; }   
     public string Modello{ get; set; }
     public string PDFPath { get; set; }  
+     public bool Prenotabile{get;set;}
      public string ImgPath{get;set;}
      public DateTime? TTL{get;set;}
+       public string Posizione{get;set;}
 
     
      

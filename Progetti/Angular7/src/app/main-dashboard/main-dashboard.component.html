@@ -5,7 +5,7 @@
 </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-            <a class="nav-link" routerLink="home"><strong>Home</strong></a>
+            <a class="nav-link" routerLink="home/prenotazioni"><strong>Home</strong></a>
           </li></ul>
         <ul *ngIf="this.service.roleMatch(['Admin','UtenteAutorizzato'])" class="navbar-nav mr-auto">
           <li  class="nav-item">
@@ -13,7 +13,7 @@
         </li></ul>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-          <a class="nav-link" routerLink="changePwd"><strong>Change Password</strong></a>
+          <a class="nav-link" routerLink="changePwd"><strong>Cambia Password</strong></a>
         </li></ul>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">

@@ -1,0 +1,17 @@
+th{
+    color:#fff;
+}
+td{
+    color:#fff;
+}
+.table-hover tbody tr:hover td {
+    background: rgb(136, 139, 139);
+}
+.mat{
+    color:#fff;
+}
+body{
+    background-color: #1c2228!important;  
+  
+    
+ }

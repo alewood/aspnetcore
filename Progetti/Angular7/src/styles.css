@@ -185,6 +185,7 @@ div.form-group.required>label:first-child:after{
     padding-top:25px;
     position: fixed;
     background-color: #191f26;
+    font-weight: 700;
 }
 label{
     font-size: 1.5rem;

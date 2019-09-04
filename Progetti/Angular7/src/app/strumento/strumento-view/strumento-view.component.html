@@ -8,4 +8,4 @@ margin-right: auto;width:450px; height:400px;">
 <p style="text-align: center">Descrizione: <br>
   {{this.strumento.descrizione}}</p>
 
-  <button class="btn btn-middle btn-success" (click)="modificaStrumento()">Modifica</button>
+  <button class="btn btn-middle btn-success" (click)="modificaStrumento()" [disabled]="userService.roleMatch(['UtenteBase'])">Modifica</button>

@@ -46,7 +46,7 @@ export class CarrelloComponent implements OnInit {
     }
 
    );}
-   this.router.navigateByUrl('app/home');
+   this.router.navigateByUrl('app/home/prenotazioni');
   
   }
   rimuoviStrumento(id){

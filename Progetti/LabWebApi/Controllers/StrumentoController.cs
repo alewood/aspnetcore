@@ -82,12 +82,11 @@ public async Task<ActionResult> PostStrumento([FromBody]JObject data)
 
 [HttpPut("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<IActionResult> PutStrumento(string id,Strumento strumento)
+public async Task<IActionResult> PutStrumento(string id,[FromBody]JObject data)
 {
-    if (id != strumento.ID)
-    {
-        return BadRequest();
-    }
+    
+    var strumento=data["Strumento"].ToObject<Strumento>();
+    var desc=data["Descrizione"].ToObject<string>();
     var s= _context.Strumento.Find(id);
     if(strumento.Nome!=""&&strumento.Nome!=null)
        s.Nome=strumento.Nome;
@@ -95,6 +94,8 @@ public async Task<IActionResult> PutStrumento(string id,Strumento strumento)
      s.Marca=strumento.Marca;
     if(strumento.Modello!=""&&strumento.Modello!=null)
      s.Modello=strumento.Modello;
+     if(desc!=null)
+     s.Descrizione=desc;
     if(strumento.Posizione!=""&&strumento.Posizione!=null)
       s.Posizione=strumento.Posizione;
     if(strumento.PDFPath!=null)

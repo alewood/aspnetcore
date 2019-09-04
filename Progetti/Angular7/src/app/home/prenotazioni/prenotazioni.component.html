@@ -13,8 +13,8 @@
             <tr *ngFor="let prenotazione of prenotazioni">
                 <td>{{prenotazione.idPrenotazione}}</td>
                 <td>{{prenotazione.prenotazione.utente.userName}}</td>
-                <td>{{prenotazione.dataInizio| date:'short'}}</td>
-                <td>{{prenotazione.dataFine | date: 'short'}}</td>
+                <td>{{prenotazione.dataInizio| date:'shortDate'}}</td>
+                <td>{{prenotazione.dataFine | date: 'shortDate'}}</td>
                 <td>{{prenotazione.strumento.id}}</td>
             </tr>
         </tbody>

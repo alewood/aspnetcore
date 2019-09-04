@@ -15,7 +15,12 @@ const SAMPLE_BARCHART_LABELS: string[] = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-
+  colors:any[]=[
+    {
+      backgroundColor:['rgba(10,10,245,0.8)','rgba(245,10,10,0.8)','rgba(230, 245, 10, 0.8)'],
+      borderColor:'#111'
+    }
+  ];
   constructor(private service: BIService) { }
   prenotazioni: any;
   prenotazioniLabels: string[];
@@ -26,7 +31,14 @@ export class BarChartComponent implements OnInit {
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartOptions: any = {
-    scaleShowVerticalLines: false,
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      },
+      scaleShowVerticalLines: false,
     responsive: true
   }
   //ascissa: Gruppo ,ordinata :numero Ordinazioni di uno specifico Strumento 
@@ -91,7 +103,7 @@ export class BarChartComponent implements OnInit {
         groupPre.push(column[l]);
 
       });
-      var data = { 'data': groupPre, 'label': str };
+      var data = { 'data': groupPre, 'label': "ID: "+str };
       values.push(data);
     });
     console.log(values);

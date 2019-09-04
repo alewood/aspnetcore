@@ -30,7 +30,12 @@ searchText :string="";
        Nome:str.nome,
        Marca:str.marca,
        Modello:str.modello,
-       Descrizione:str.descrizione
+       Descrizione:str.descrizione,
+       Posizione:str.posizione,
+       ImgPath:str.ImgPath,
+       PDFPath:str.pdfPath,
+       Prenotabile:str.prenotabile,
+       TTL:str.ttl
 
     };
     this.service.confermaProv(body).subscribe(

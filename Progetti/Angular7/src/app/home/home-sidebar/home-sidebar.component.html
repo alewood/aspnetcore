@@ -1,7 +1,11 @@
 <ul class="nav nav-pills flex-column">
         <li *ngIf="abilitato()" class="nav-item">
-         <a routerLink='notifiche' routerLinkActive='active' class="nav-link">Notifiche</a>
-        </li>
+               
+        <a routerLink='notificheStrumento' routerLinkActive='active' class="nav-link">Notifiche Strumento</a>
+    </li>
+    <li *ngIf="abilitato()" class="nav-item">
+        <a routerLink='prenotazioniVicine' routerLinkActive='active' class="nav-link">Notifiche Prenotazioni</a>
+</li>
         <li *ngIf="abilitato()" class="nav-item">
             <a routerLink='gestioneStrumenti' routerLinkActive='active' class="nav-link">Gestione Strumenti 
 </a>

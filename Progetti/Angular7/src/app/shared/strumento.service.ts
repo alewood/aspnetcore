@@ -84,14 +84,12 @@ export class StrumentoService {
     return this.http.get(this.BaseURI+'/notifiche');
   }
   update(id ,pathPdf,pathImg,desc,ttl){
-    var ttlForm=ttl;
-    if(this.formModelUpdate.touched){
-      ttlForm=this.datepipe.transform(this.formModelUpdate.value.TTL, this.format);}
+    var ttlForm=this.datepipe.transform(this.formModelUpdate.value.TTL, this.format);
     var descrizione=this.formModelUpdate.value.Descrizione;
     if(desc!=null)
        descrizione=desc.text;
     var body={
-      ID: id,
+      Strumento: { ID: id,
       Nome: this.formModelUpdate.value.Nome,
       Descrizione:descrizione,
       Marca:this.formModelUpdate.value.Marca,
@@ -99,7 +97,8 @@ export class StrumentoService {
       Posizione:this.formModel.value.Posizione,
       TTL:ttlForm,
       PDFPath:pathPdf,
-      ImgPath:pathImg
+      ImgPath:pathImg},
+      Descrizione:descrizione
     };
     return this.http.put<Response>(this.BaseURI +'/strumento/'+id,body,{observe:'response'});
   }

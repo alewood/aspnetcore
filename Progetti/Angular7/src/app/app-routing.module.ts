@@ -27,6 +27,7 @@ import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-s
 import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotazioni-vicine.component';
 import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
 import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.component';
+import { ModificaPrenotazioneComponent } from './home/modifica-prenotazione/modifica-prenotazione.component';
 
 
 const routes: Routes = [
@@ -45,7 +46,8 @@ children:[
   {path:'home',component :HomeComponent,
   children:[
     {path:'prenotazioni',component :PrenotazioniComponent,canActivate:[AuthGuard]},
-    {path:'notifiche',component :NotificationsComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+    {path:'modificaPrenotazione',component :ModificaPrenotazioneComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+    {path:'notificheStrumento',component :NotificationsComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
     {path:'gestioneStrumenti',component :GestioneStrumentiComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
     {path:'prenotazioniVicine',component :PrenotazioniVicineComponent,canActivate:[AuthGuard],data:{permittedRoles:['Admin','UtenteAutorizzato']}}
   ],

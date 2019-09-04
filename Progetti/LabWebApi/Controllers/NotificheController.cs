@@ -65,11 +65,20 @@ public async Task<ICollection<DettaglioPrenotazione>> GetPrenotazioniAttiveVicin
     var prenotazioni=  await _context.DettaglioPrenotazione
     .Include(dp=>dp.Prenotazione.Utente)
     .Include(dp=>dp.Strumento)
-    .Where(dp=> dp.dataFine>DateTime.Now.AddDays(-3))
+    .Where(dp=> (dp.dataFine>=DateTime.Now.AddDays(this.GiornoLavorativoPrecedente(dp.dataFine)))&& dp.dataFine<=DateTime.Now.AddDays(5))
     .OrderByDescending(dp=>dp.dataFine)
     .ToListAsync();
     return prenotazioni;
 
+}
+public int GiornoLavorativoPrecedente(DateTime data)
+{
+    if(data.DayOfWeek==DayOfWeek.Friday)
+    return -4;
+    else if(data.DayOfWeek==DayOfWeek.Saturday)
+    return -3;
+    else
+    return -2;
 }
 
     }

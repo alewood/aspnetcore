@@ -51,6 +51,7 @@ import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotaz
 import {MatButtonToggleModule,MatSelectModule,MatRadioModule} from '@angular/material';
 import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
 import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.component';
+import { ModificaPrenotazioneComponent } from './home/modifica-prenotazione/modifica-prenotazione.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.co
     PrenotazioniVicineComponent,
     PrenotazioniComponent,
     ChartStrumentoComponent,
+    ModificaPrenotazioneComponent,
     
   ],
   imports: [

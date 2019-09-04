@@ -76,11 +76,14 @@ namespace labwebapi.Migrations
                 {
                     ID = table.Column<string>(nullable: false),
                     Nome = table.Column<string>(nullable: true),
+                    Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
                     PDFPath = table.Column<string>(nullable: true),
+                    Prenotabile = table.Column<bool>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
-                    TTL = table.Column<DateTime>(nullable: false)
+                    TTL = table.Column<DateTime>(nullable: true),
+                    Posizione = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

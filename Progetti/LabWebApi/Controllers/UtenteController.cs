@@ -68,7 +68,8 @@ namespace LabWebApi.Controllers
         var user= new Utente(){
             UserName= data["Username"].ToObject<string>(),
             Email=data["Email"].ToObject<string>(),
-            Group=data["Group"].ToObject<string>()
+            Group=data["Group"].ToObject<string>(),
+            AbilitatoAlleNotifiche=false,
         };
 
         try

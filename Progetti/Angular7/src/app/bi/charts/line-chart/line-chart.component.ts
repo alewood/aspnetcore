@@ -16,6 +16,7 @@ const LINE_CHART_LABELS:string[]=['Jan','Feb','Mar','Apr','May','Jun'];
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
+ 
  prenotazioni;
   constructor(private service:BIService) { }
   lineChartData;

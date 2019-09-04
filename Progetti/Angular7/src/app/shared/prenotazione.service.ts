@@ -18,6 +18,9 @@ export class PrenotazioneService {
     DataInizio:['Date',Validators.required],
     DataFine:['Date',Validators.required]
   });
+  formModelUpdate=this.fb.group({
+    DataFine:['Date',Validators.required]
+  });
 
 
   confermaPrenotazione(){
@@ -58,5 +61,14 @@ export class PrenotazioneService {
   }
   getPrenotazioniVicine(){
     return this.http.get(this.BaseURI+'/notifiche/prenotazioni',{observe:'body'});
+  }
+  modificaPrenotazione(idStr,idPre){
+    var dataFine=this.datepipe.transform(this.formModelUpdate.value.DataFine,this.format);
+    var body={
+      DataFine:dataFine
+    }
+
+       return this.http.put(this.BaseURI+"/dettaglio/"+idStr+"/"+idPre,body,{observe:'response'});
+
   }
 }

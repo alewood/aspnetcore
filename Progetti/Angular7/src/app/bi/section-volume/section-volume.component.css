@@ -1,3 +1,9 @@
 .card-bottom{
     height: 45vh;
 }
+h5.row-fluid.cards{
+    color:#fff;
+    font-size: 50px!important;
+    font-weight: 700!important;
+    text-align: center;
+}

@@ -52,7 +52,7 @@ export class UserService {
   }
   getUserProfile()
   {
-    return this.http.get(this.BaseURI+ '/utente');
+    return this.http.get(this.BaseURI+ '/utente',{observe:'body'});
   }
   roleMatch(allowedRoles) :boolean{
     var isMatch= false;

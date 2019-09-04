@@ -1,0 +1,14 @@
+<div class="container">
+        <h1>Modifica Prenotazione </h1>
+        <form [formGroup]="service.formModelUpdate" autocomplete="off" (submit)="onSubmit()">
+<div class="form-group required">
+    <label>DataFine</label>
+    <input type="date" class="form-control" formControlName="DataFine" required>
+    <label class="text-danger" *ngIf="service.formModelUpdate.get('DataFine').touched && service.formModelUpdate.get('DataFine').errors?.required">This field is mandatory.</label>
+
+  
+  </div>
+
+  <button type="submit" class="btn btn-success" [disabled]="!service.formModelUpdate.valid">Submit</button>
+  </form>
+</div>
