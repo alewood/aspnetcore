@@ -4,7 +4,18 @@
       <input [(ngModel)]="searchText" placeholder="Filter Strumenti" class="filter-input">
       <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
       <mat-radio-group  [(ngModel)]="radioOption" label="Select an option">
-          <mat-radio-button class="mat" value="id">ID</mat-radio-button>
+        <mat-radio-button class="mat" value="serialId">SerialID</mat-radio-button>
+        <mat-radio-button class="mat" value="partId">PartID</mat-radio-button>
+        <mat-radio-button class="mat" value="nome">Nome</mat-radio-button>
+        <mat-radio-button class="mat" value="marca">Marca</mat-radio-button>
+        <mat-radio-button  class="mat" value="modello">Modello</mat-radio-button>
+      </mat-radio-group>
+        <br>
+        <input [(ngModel)]="searchText2" placeholder="Filter Strumenti" class="filter-input">
+        <span class="filter-clear" *ngIf="searchText2.length>0" (click)="clearFilter()">X</span>
+        <mat-radio-group  [(ngModel)]="secondOption" label="Select an option">
+          <mat-radio-button class="mat" value="serialId">SerialID</mat-radio-button>
+          <mat-radio-button class="mat" value="partId">PartID</mat-radio-button>
           <mat-radio-button class="mat" value="nome">Nome</mat-radio-button>
           <mat-radio-button class="mat" value="marca">Marca</mat-radio-button>
           <mat-radio-button  class="mat" value="modello">Modello</mat-radio-button>
@@ -14,7 +25,8 @@
 <table class="table table-inverse table-hover">
   <thead class="thead-dark">
     <tr>
-        <th>ID</th>
+        <th>PartID</th>
+        <th>SerialID</th>
         <th>Nome</th>
         <th>Descrizione</th> 
         <th>Marca</th>
@@ -25,8 +37,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let strumento of strumenti| filter :searchText:radioOption; let i = index">
-        <td>{{strumento.id}}</td>
+    <tr *ngFor="let strumento of strumenti| filter :searchText:radioOption:searchText2:secondOption; let i = index">
+        <td>{{strumento.partId}}</td>
+        <td>{{strumento.serialId}}</td>
         <td>{{strumento.nome}}</td>
         <td>{{strumento.descrizione}}</td>
         <td>{{strumento.marca}}</td>

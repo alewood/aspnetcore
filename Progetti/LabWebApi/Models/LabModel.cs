@@ -9,8 +9,8 @@ namespace LabWebApi.Models
     public class Utente :IdentityUser
     {
         public string Group{get;set;}
-        public bool AbilitatoAlleNotifiche{get;set;
-        }
+        public bool AbilitatoAlleNotifiche{get;set;}
+        public bool Rimosso{get;set;}
 
    
     
@@ -23,6 +23,8 @@ namespace LabWebApi.Models
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string ID { get; set; }
+    public string PartId{get;set;}
+    public string SerialId{get;set;}
     public string Nome { get; set; }
     public string Descrizione { get; set; }
     public string Marca { get; set; }   
@@ -33,9 +35,10 @@ namespace LabWebApi.Models
     public string ImgPath{get;set;}
      public DateTime TTL{get;set;}
      public string Posizione{get;set;}
-    
-  
-    public virtual ICollection<DettaglioPrenotazione> Prenotazioni { get; set; }
+     public DateTime Nascita{get;set;}
+     public int numManutenzioni{get;set;}
+     public bool Delicato{get;set;}
+     
    
 
     }
@@ -43,6 +46,8 @@ namespace LabWebApi.Models
         [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string ID { get; set; }
+    public string PartId{get;set;}
+    public string SerialId{get;set;}
     public string Nome { get; set; }
      public string Descrizione { get; set; }
     public string Marca { get; set; }   
@@ -52,6 +57,9 @@ namespace LabWebApi.Models
      public string ImgPath{get;set;}
      public DateTime? TTL{get;set;}
        public string Posizione{get;set;}
+         public DateTime Nascita{get;set;}
+           public int numManutenzioni{get;set;}
+     public bool Delicato{get;set;}
 
     
      
@@ -72,6 +80,8 @@ namespace LabWebApi.Models
         public virtual Prenotazione Prenotazione{get;set;}
         public DateTime dataInizio { get; set; }
         public DateTime dataFine { get; set; }   
+        public string PosizioneUtilizzo{get;set;}
+
         
     }
 

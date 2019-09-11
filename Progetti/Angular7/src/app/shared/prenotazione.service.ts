@@ -16,7 +16,8 @@ export class PrenotazioneService {
   readonly BaseURI= 'http://localhost:5000/api' ;
   formModel=this.fb.group({
     DataInizio:['Date',Validators.required],
-    DataFine:['Date',Validators.required]
+    DataFine:['Date',Validators.required],
+    Posizione:['',Validators.required]
   });
   formModelUpdate=this.fb.group({
     DataFine:['Date',Validators.required]
@@ -35,7 +36,8 @@ export class PrenotazioneService {
       IdStrumento :localStorage.getItem("idStr"),
       IdPrenotazione: null,
       DataInizio:dataInizio,
-      DataFine: dataFine
+      DataFine: dataFine,
+      PosizioneUtilizzo: this.formModel.value.Posizione
 
     };
     return this.http.post<Response>(this.BaseURI +'/cart',body,{observe:'response'});

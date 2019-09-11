@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class SectionStatusComponent implements OnInit {
   radioOption:string="nome";
+  secondOption:string="modello";
   searchText :string="";
+  searchText2 :string="";
   constructor(private service:BIService,private router:Router) { }
   strumenti;
   ngOnInit() {

@@ -60,9 +60,10 @@ public async Task<ActionResult> PostStrumento([FromBody]JObject data)
     strumento.Prenotabile=true;
     strumento.Descrizione=desc;
     var s= new Strumento();
+        s.PartId=strumento.PartId;
+        s.SerialId=strumento.SerialId;
         s.Descrizione=strumento.Descrizione;
         s.Prenotabile=strumento.Prenotabile;
-        s.ID=strumento.ID;
         s.Nome=strumento.Nome;
         s.Marca=strumento.Marca;
         s.Modello=strumento.Modello;
@@ -72,6 +73,7 @@ public async Task<ActionResult> PostStrumento([FromBody]JObject data)
          s.PDFPath=strumento.PDFPath;
       if(strumento.ImgPath!=null)
          s.ImgPath=strumento.ImgPath;
+         s.numManutenzioni=0;
      
    
     _context.Strumento.Add(strumento);
@@ -123,9 +125,10 @@ public async Task<IActionResult> DeleteStrumento(string id)
 
    var prenotabile= strumento.Prenotabile;
    strumento.Prenotabile=!prenotabile;
+   if(!strumento.Prenotabile)
+   strumento.numManutenzioni++;
     _context.Strumento.Update(strumento);
      await _context.SaveChangesAsync();
-   
 
     return Ok();
 }

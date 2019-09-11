@@ -6,15 +6,17 @@
         <th>Strumento</th>
         <th>DataInizio</th> 
         <th>DataFine</th>
+        <th>Posizione Utilizzo</th>
         <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let dettaglio of carrello; let i = index">
         <td>{{i + 1}}</td>
-        <td>{{dettaglio.idStrumento}}</td>
+        <td>{{dettaglio.strumento}}</td>
         <td>{{dettaglio.dataInizio| date:'shortDate'}}</td>
         <td>{{dettaglio.dataFine| date:'shortDate'}}</td>
+        <td>{{dettaglio.posizioneUtilizzo}}</td>
        <td> <button class="btn" (click)="rimuoviStrumento(dettaglio.idStrumento)">Rimuovi</button></td>
     </tr>
     </tbody>

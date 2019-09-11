@@ -62,8 +62,26 @@ namespace LabWebApi.Controllers
 
         [HttpGet] 
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-        public IEnumerable<DettaglioPrenotazione> getCart(){
-            return SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
+        public IEnumerable<Object> getCart(){
+            var cart= SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
+            var result= new List<Object>();
+           
+            foreach (var d in cart)
+            {
+                var s=_context.Strumento.Find(d.IdStrumento);
+                var body= new{
+                    dataInizio=d.dataInizio,
+                    dataFine=d.dataFine,
+                    strumento=s.Nome,
+                    posizioneUtilizzo=d.PosizioneUtilizzo
+ 
+                };
+                result.Add(body);
+   
+
+                
+            }
+            return result;
         }
         [HttpPost]
         [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
@@ -71,6 +89,7 @@ namespace LabWebApi.Controllers
             var idStrumento=data["IdStrumento"].ToObject<string>();
             var inizio=data["DataInizio"].ToObject<DateTime>().Date;
             var fine=data["DataFine"].ToObject<DateTime>().Date;
+            var posizioneUtilizzo=data["PosizioneUtilizzo"].ToObject<string>();
             if(await checkPrenotazioniStrumento(idStrumento,inizio,fine)){
             var cart=SessionHelper.GetObjectFromJson<ICollection<DettaglioPrenotazione>>(HttpContext.Session,"cart");
                
@@ -80,6 +99,7 @@ namespace LabWebApi.Controllers
                dettaglio.IdStrumento=idStrumento;
                dettaglio.dataInizio=inizio;
                dettaglio.dataFine=fine;
+               dettaglio.PosizioneUtilizzo=posizioneUtilizzo;
                if(cart.All(d=>!(d.IdStrumento==dettaglio.IdStrumento))){
                cart.Add(dettaglio);
                   SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);
@@ -110,7 +130,7 @@ namespace LabWebApi.Controllers
           }
         
             SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart2);
-            return Ok(cart);
+            return Ok();
             
         }
 

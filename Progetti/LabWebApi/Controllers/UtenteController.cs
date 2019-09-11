@@ -37,7 +37,7 @@ namespace LabWebApi.Controllers
     public async Task<IActionResult> Login([FromBody]JObject data)
     {
         var user= await _userManager.FindByNameAsync(data["Username"].ToObject<string>());
-        if(user!=null && await _userManager.CheckPasswordAsync(user,data["Password"].ToObject<string>()))
+        if(user!=null && await _userManager.CheckPasswordAsync(user,data["Password"].ToObject<string>())&& !user.Rimosso)
         {
             var role= await _userManager.GetRolesAsync(user);
 
@@ -70,6 +70,7 @@ namespace LabWebApi.Controllers
             Email=data["Email"].ToObject<string>(),
             Group=data["Group"].ToObject<string>(),
             AbilitatoAlleNotifiche=false,
+            Rimosso=false
         };
 
         try
@@ -109,7 +110,9 @@ namespace LabWebApi.Controllers
     [HttpGet("{pageIndex:int}/{pageSize:int}")]
     [Authorize(Roles="Admin,UtenteAutorizzato")]
       public async Task<Object> GetUtenti(int i,int pageSize){
-            var userList=_userManager.Users.ToList();
+            var userList=_userManager.Users
+            .Where(u=>!u.Rimosso)
+             .ToList();
             ICollection<Object> utenti= new List<Object>();
             foreach (var utente in userList){
              utenti.Add(await this.GetUserDetails(utente));}
@@ -155,7 +158,8 @@ public async Task<IActionResult> DeleteUtente(string id)
         return NotFound();
     }
 
-   var result= await _userManager.DeleteAsync(utente);
+   utente.Rimosso=true;
+    await _userManager.UpdateAsync(utente);
     return Ok();
 }
 

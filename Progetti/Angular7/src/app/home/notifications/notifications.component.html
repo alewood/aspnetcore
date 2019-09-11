@@ -1,7 +1,8 @@
 <table class="table table-inverse table-hover">
     <thead class="thead-dark">
       <tr>
-          <th>ID</th>
+          <th>PartID</th>
+          <th>SerialID</th>
           <th>Nome</th>
           <th>Descrizione</th> 
           <th>Marca</th>
@@ -12,7 +13,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let strumento of strumentiLowTtl; let i = index">
-          <td>{{strumento.id}}</td>
+          <td>{{strumento.partId}}</td>
+          <td>{{strumento.serialId}}</td>
           <td>{{strumento.nome}}</td>
           <td>{{strumento.descrizione}}</td>
           <td>{{strumento.marca}}</td>

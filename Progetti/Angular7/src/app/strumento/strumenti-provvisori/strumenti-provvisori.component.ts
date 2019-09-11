@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
 })
 export class StrumentiProvvisoriComponent implements OnInit {
 strumenti;
-radioOption:string="nome"
+radioOption:string="nome";
+secondOption:string="modello";
 searchText :string="";
+searchText2:string="";
   constructor(private router:Router, private toastr:ToastrService, private service:StrumentoService) { }
 
   ngOnInit() {
@@ -26,7 +28,9 @@ searchText :string="";
 
   confermaStrumento(str){
     var body={
-       Id:str.id,
+      Id: str.id,
+       PartID:str.partId,
+       SerialID:str.serialId,
        Nome:str.nome,
        Marca:str.marca,
        Modello:str.modello,
@@ -42,7 +46,10 @@ searchText :string="";
       res=>{
       console.log(res);
       this.toastr.success("Lo Strumento è stato inserito fra gli Strumenti no provvisori!","Conferma avvenuta.");
-    });
+    },err=>{
+      this.toastr.error("ID Duplicati","Fail!");
+    }
+    );
 
   }
   clearFilter(){

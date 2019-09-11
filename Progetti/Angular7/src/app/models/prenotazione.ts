@@ -7,4 +7,5 @@ export interface Prenotazione{
     dataInizio: Date;
     dataFine: Date;
     strumento: Strumento;
+    posizioneUtilizzo: string;
 }

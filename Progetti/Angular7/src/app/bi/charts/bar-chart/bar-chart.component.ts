@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrenotazioneService } from 'src/app/shared/prenotazione.service';
 import * as moment from 'moment';
 import { BIService } from 'src/app/shared/bi.service';
+import {Chart} from 'chart.js';
 const SAMPLE_BARCHART_DATA: any[] =
   [
     { data: [65, 59, 80, 81, 56, 54, 30], label: 'Fall Orders ' },
@@ -51,6 +52,7 @@ export class BarChartComponent implements OnInit {
   }
   //ascissa: Gruppo ,ordinata :numero Ordinazioni di uno specifico Strumento 
   ngOnInit() {
+    Chart.defaults.global.defaultFontColor = '#fff';
     this.service.getTop3Strumenti().subscribe(
       res => {
         console.log(res);

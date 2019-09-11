@@ -1,5 +1,5 @@
-<p style="text-align: center">ID:{{this.strumento.id}}</p>
-<img [src]="createImgPath(this.strumento.imgPath)"style="display: block;
+<p style="text-align: center">ID:{{this.strumento.partId}} {{this.strumento.serialId}} </p>
+<img *ngIf="this.strumento.imgPath!=null" [src]="createImgPath(this.strumento.imgPath)"style="display: block;
 margin-left: auto;
 margin-right: auto;width:200px; height:200px;">
 <br>
@@ -7,5 +7,9 @@ margin-right: auto;width:200px; height:200px;">
 <br>
 <p style="text-align: center">Descrizione: <br>
   {{this.strumento.descrizione}}</p>
+<br>
+<br>
+<p style="text-align: center">Nascita: <br>
+  {{this.strumento.nascita | date:'shortDate'}}</p>
 
   <button class="btn btn-middle btn-success" (click)="modificaStrumento()" [disabled]="userService.roleMatch(['UtenteBase'])">Modifica</button>

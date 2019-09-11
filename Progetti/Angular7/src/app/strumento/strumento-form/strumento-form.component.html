@@ -3,9 +3,15 @@
     <h1>Strumento <Form></Form></h1>
     <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
         <div class="form-group required">
-            <label>ID</label>
-                <input type="text" class="form-control" formControlName="ID" required>
-                <label class="text-danger" *ngIf="service.formModel.get('ID').touched && service.formModel.get('ID').errors?.required">This field is mandatory.</label>
+            <label>PartID</label>
+                <input type="text" class="form-control" formControlName="PartID" required>
+                <label class="text-danger" *ngIf="service.formModel.get('PartID').touched && service.formModel.get('PartID').errors?.required">This field is mandatory.</label>
+          
+          </div>
+          <div class="form-group required">
+            <label>SerialID</label>
+                <input type="text" class="form-control" formControlName="SerialID" required>
+                <label class="text-danger" *ngIf="service.formModel.get('SerialID').touched && service.formModel.get('SerialID').errors?.required">This field is mandatory.</label>
           
           </div>
       <div class="form-group required">
@@ -44,6 +50,11 @@
           <label class="text-danger" *ngIf="service.formModel.get('TTL').touched && service.formModel.get('TTL').errors?.required">This field is mandatory.</label>
         
         </div>
+        <div class="form-group required">
+            <label>Nascita</label>
+            <input type="date" class="form-control" formControlName="Nascita">
+            <label class="text-danger" *ngIf="service.formModel.get('Nascita').touched && service.formModel.get('Nascita').errors?.required">This field is mandatory.</label>
+          </div>
       <div>
           <label>Immagine</label>
           <app-upload (onUploadFinished)="uploadImage($event)"></app-upload>
@@ -56,8 +67,7 @@
         <label>Descrizione(Parse)</label>
        <app-text-parse (onParseFinished)="parseDescrizione($event)"></app-text-parse>
     </div>
-
-      <button style="align-content: center" type="submit" class="btn btn-middle btn-success" [disabled]="!service.formModel.valid">Submit</button>
+          <button style="align-content: center; margin-bottom: 20px;" type="submit" class="btn btn-middle btn-success" [disabled]="!service.formModel.valid">Submit</button>
 
     </form>
 </div>

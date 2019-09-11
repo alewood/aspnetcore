@@ -50,9 +50,10 @@ public async Task<ActionResult> PostStrumentoProvvisorio([FromBody]JObject data)
     strumento.Prenotabile=true;
     strumento.Descrizione=desc;
     var s= new StrumentoProvvisorio();
+        s.PartId=strumento.PartId;
+        s.SerialId=strumento.SerialId;
         s.Descrizione=strumento.Descrizione;
         s.Prenotabile=strumento.Prenotabile;
-        s.ID=strumento.ID;
         s.Nome=strumento.Nome;
         s.Marca=strumento.Marca;
         s.Modello=strumento.Modello;
@@ -71,8 +72,12 @@ public async Task<ActionResult> PostStrumentoProvvisorio([FromBody]JObject data)
 [Route("conferma")]
 public async Task<ActionResult> ConfermaProv([FromBody]JObject data)
 {
+    var part=data["PartID"].ToObject<string>();
+        var serial=data["SerialID"].ToObject<string>();
+    if( checkPartSerial(part,serial)){
    Strumento str= new Strumento();
-   str.ID=data["Id"].ToObject<string>();
+    str.PartId=part;
+        str.SerialId=serial;
        str.Nome=data["Nome"].ToObject<string>();
        str.Marca=data["Marca"].ToObject<string>();
        str.Modello=data["Modello"].ToObject<string>();
@@ -85,12 +90,15 @@ public async Task<ActionResult> ConfermaProv([FromBody]JObject data)
     StrumentoProvvisorio strProv=_context.StrumentoProvvisorio.Find(data["Id"].ToObject<string>());
    _context.StrumentoProvvisorio.Remove(strProv);
    await _context.SaveChangesAsync();
-  return Ok();
+  return Ok();}
+  else{
+      return BadRequest();
+  }
 
 }
 [HttpDelete("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
-public async Task<IActionResult> DeleteStrumentoProvvisorio(int id)
+public async Task<IActionResult> DeleteStrumentoProvvisorio(string id)
 {
     var strumento = await _context.StrumentoProvvisorio.FindAsync(id);
 
@@ -103,6 +111,12 @@ public async Task<IActionResult> DeleteStrumentoProvvisorio(int id)
     await _context.SaveChangesAsync();
 
     return Ok();
+}
+public bool checkPartSerial(string part,string serial)
+{
+    var strumenti= _context.Strumento.Where(s=>s.PartId==part && s.SerialId==serial).ToList();
+    return strumenti.Count==0;
+
 }
     }
 }

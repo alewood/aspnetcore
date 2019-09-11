@@ -23,6 +23,8 @@ namespace labwebapi.Migrations
 
                     b.Property<int>("IdPrenotazione");
 
+                    b.Property<string>("PosizioneUtilizzo");
+
                     b.Property<int?>("PrenotazioneID");
 
                     b.Property<string>("StrumentoID");
@@ -59,6 +61,8 @@ namespace labwebapi.Migrations
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Delicato");
+
                     b.Property<string>("Descrizione");
 
                     b.Property<string>("ImgPath");
@@ -67,15 +71,23 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Modello");
 
+                    b.Property<DateTime>("Nascita");
+
                     b.Property<string>("Nome");
 
                     b.Property<string>("PDFPath");
+
+                    b.Property<string>("PartId");
 
                     b.Property<string>("Posizione");
 
                     b.Property<bool>("Prenotabile");
 
+                    b.Property<string>("SerialId");
+
                     b.Property<DateTime>("TTL");
+
+                    b.Property<int>("numManutenzioni");
 
                     b.HasKey("ID");
 
@@ -87,6 +99,8 @@ namespace labwebapi.Migrations
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Delicato");
+
                     b.Property<string>("Descrizione");
 
                     b.Property<string>("ImgPath");
@@ -95,15 +109,23 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Modello");
 
+                    b.Property<DateTime>("Nascita");
+
                     b.Property<string>("Nome");
 
                     b.Property<string>("PDFPath");
+
+                    b.Property<string>("PartId");
 
                     b.Property<string>("Posizione");
 
                     b.Property<bool>("Prenotabile");
 
+                    b.Property<string>("SerialId");
+
                     b.Property<DateTime?>("TTL");
+
+                    b.Property<int>("numManutenzioni");
 
                     b.HasKey("ID");
 
@@ -284,6 +306,8 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Group");
 
+                    b.Property<bool>("Rimosso");
+
                     b.HasDiscriminator().HasValue("Utente");
                 });
 
@@ -294,7 +318,7 @@ namespace labwebapi.Migrations
                         .HasForeignKey("PrenotazioneID");
 
                     b.HasOne("LabWebApi.Models.Strumento", "Strumento")
-                        .WithMany("Prenotazioni")
+                        .WithMany()
                         .HasForeignKey("StrumentoID");
                 });
 

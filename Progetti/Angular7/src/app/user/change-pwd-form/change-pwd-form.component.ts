@@ -45,7 +45,7 @@ onSubmit(){
     res=>{
       console.log(res);
       if(res.ok){
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/app/home/prenotazioni');
        this.toastr.success("Password modificata!","La Modifica ha avuto successo.");}
      
     },

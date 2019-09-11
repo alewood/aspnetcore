@@ -14,8 +14,10 @@ import { CookieService } from 'ngx-cookie-service';
 export class StrumentiComponent implements OnInit {
   strumenti;
   radioOption="nome";
+  secondOption="modello";
   isAdmin=this.userService.roleMatch(['Admin','UtenteAutorizzato']);
   searchText :string="";
+  searchText2:string="";
   nome="Strumenti";
   page=1;
 total=0;

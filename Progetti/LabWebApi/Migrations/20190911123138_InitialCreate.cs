@@ -43,7 +43,8 @@ namespace labwebapi.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Group = table.Column<string>(nullable: true),
-                    AbilitatoAlleNotifiche = table.Column<bool>(nullable: true)
+                    AbilitatoAlleNotifiche = table.Column<bool>(nullable: true),
+                    Rimosso = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,6 +56,8 @@ namespace labwebapi.Migrations
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
+                    PartId = table.Column<string>(nullable: true),
+                    SerialId = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
@@ -63,7 +66,10 @@ namespace labwebapi.Migrations
                     Prenotabile = table.Column<bool>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
                     TTL = table.Column<DateTime>(nullable: false),
-                    Posizione = table.Column<string>(nullable: true)
+                    Posizione = table.Column<string>(nullable: true),
+                    Nascita = table.Column<DateTime>(nullable: false),
+                    numManutenzioni = table.Column<int>(nullable: false),
+                    Delicato = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,6 +81,8 @@ namespace labwebapi.Migrations
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
+                    PartId = table.Column<string>(nullable: true),
+                    SerialId = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Descrizione = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
@@ -83,7 +91,10 @@ namespace labwebapi.Migrations
                     Prenotabile = table.Column<bool>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
                     TTL = table.Column<DateTime>(nullable: true),
-                    Posizione = table.Column<string>(nullable: true)
+                    Posizione = table.Column<string>(nullable: true),
+                    Nascita = table.Column<DateTime>(nullable: false),
+                    numManutenzioni = table.Column<int>(nullable: false),
+                    Delicato = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,7 +235,8 @@ namespace labwebapi.Migrations
                     StrumentoID = table.Column<string>(nullable: true),
                     PrenotazioneID = table.Column<int>(nullable: true),
                     dataInizio = table.Column<DateTime>(nullable: false),
-                    dataFine = table.Column<DateTime>(nullable: false)
+                    dataFine = table.Column<DateTime>(nullable: false),
+                    PosizioneUtilizzo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

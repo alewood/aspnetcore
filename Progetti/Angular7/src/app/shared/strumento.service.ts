@@ -17,13 +17,16 @@ export class StrumentoService {
   format: string = 'yyyy-MM-dd';
    date: Date=new Date('01/01/2001');
   formModel=this.fb.group({
-    ID:['',Validators.required],
+    PartID:['',Validators.required],
+    SerialID:['',Validators.required],
     Nome:['',Validators.required],
     Descrizione:[''],
     Marca:['',Validators.required],
     Modello:['',Validators.required],
     Posizione:['',Validators.required],
-    TTL:['Date',Validators.required]
+    TTL:['Date',Validators.required],
+    Nascita:['Date',Validators.required],
+
   });
   formModelUpdate=this.fb.group({
     Nome:[''],
@@ -31,24 +34,28 @@ export class StrumentoService {
     Marca:[''],
     Modello:[''],
     Posizione:[''],
-    TTL:['Date',Validators.required]
+    TTL:['Date',Validators.required],
+    Nascita:['Date',Validators.required],
   });
 
 
   inserisci(pathPdf,pathImg,desc) {
     var ttl=this.datepipe.transform(this.formModel.value.TTL, this.format);
+    var nascita=this.datepipe.transform(this.formModel.value.Nascita, this.format);
     var descrizione=this.formModel.value.Descrizione;
     if(desc!=null)
        descrizione=desc.text;
     var body={
       Strumento:{
-      ID: this.formModel.value.ID,  
+      PartID: this.formModel.value.PartID,  
+      SerialID: this.formModel.value.SerialID,  
       Nome: this.formModel.value.Nome,
       Descrizione:null,
       Marca:this.formModel.value.Marca,
       Modello:this.formModel.value.Modello,
       Posizione:this.formModel.value.Posizione,
       TTL:ttl,
+      Nascita:nascita,
       PDFPath:pathPdf,
       ImgPath:pathImg},
       Descrizione:descrizione
@@ -59,7 +66,7 @@ export class StrumentoService {
     return this.http.post<Response>(this.BaseURI +'/strumentoProv',body,{observe:'response'});
   }
   getStrumento(id){
-    return this.http.get(this.BaseURI+'/strumento/' +id);
+    return this.http.get<Strumento>(this.BaseURI+'/strumento/' +id,{observe:'body'});
   }
   getStrumenti(index,pageSize){
     return this.http.get<{page:{data:Strumento[],total:number},totalPages:number}>(this.BaseURI+'/strumento/'+index+'/'+pageSize,{observe:'body'});
@@ -85,17 +92,20 @@ export class StrumentoService {
   }
   update(id ,pathPdf,pathImg,desc,ttl){
     var ttlForm=this.datepipe.transform(this.formModelUpdate.value.TTL, this.format);
+    var nascita=this.datepipe.transform(this.formModelUpdate.value.Nascita, this.format);
     var descrizione=this.formModelUpdate.value.Descrizione;
     if(desc!=null)
        descrizione=desc.text;
     var body={
-      Strumento: { ID: id,
+      Strumento: { 
+      ID: id,
       Nome: this.formModelUpdate.value.Nome,
       Descrizione:descrizione,
       Marca:this.formModelUpdate.value.Marca,
       Modello:this.formModelUpdate.value.Modello,
       Posizione:this.formModel.value.Posizione,
       TTL:ttlForm,
+      Nascita:nascita,
       PDFPath:pathPdf,
       ImgPath:pathImg},
       Descrizione:descrizione

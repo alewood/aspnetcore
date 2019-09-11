@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { TouchSequence } from 'selenium-webdriver';
+import { Utente } from 'src/app/models/utente';
 
 @Component({
   selector: 'app-utenti',
@@ -11,9 +12,9 @@ import { TouchSequence } from 'selenium-webdriver';
   styles: []
 })
 export class UtentiComponent implements OnInit {
-utenti;
+utenti:Utente[]= [];
 nome="Utenti";
-self;
+self:Utente= new Utente();
 isOK;
 isAdmin;
 page=1;
@@ -69,6 +70,7 @@ rimuovi=false;
   }
 
 roleCheck(utente){
+
   if(this.self.id==utente.id){
     this.rimuovi=false;
   return false;
@@ -90,6 +92,8 @@ roleCheck(utente){
        return false;
        }
      }}
+    
+   
 
      
 }
