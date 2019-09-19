@@ -23,9 +23,19 @@ namespace labwebapi.Migrations
 
                     b.Property<int>("IdPrenotazione");
 
+                    b.Property<bool>("Checked");
+
+                    b.Property<int>("OreUtilizzo");
+
+                    b.Property<string>("PosizioneRiconsegna");
+
                     b.Property<string>("PosizioneUtilizzo");
 
                     b.Property<int?>("PrenotazioneID");
+
+                    b.Property<string>("Progetto");
+
+                    b.Property<string>("Reparto");
 
                     b.Property<string>("StrumentoID");
 
@@ -81,9 +91,9 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Posizione");
 
-                    b.Property<bool>("Prenotabile");
-
                     b.Property<string>("SerialId");
+
+                    b.Property<int>("Status");
 
                     b.Property<DateTime>("TTL");
 
@@ -119,9 +129,9 @@ namespace labwebapi.Migrations
 
                     b.Property<string>("Posizione");
 
-                    b.Property<bool>("Prenotabile");
-
                     b.Property<string>("SerialId");
+
+                    b.Property<int>("Status");
 
                     b.Property<DateTime?>("TTL");
 

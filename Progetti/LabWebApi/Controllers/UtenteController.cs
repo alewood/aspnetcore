@@ -162,6 +162,18 @@ public async Task<IActionResult> DeleteUtente(string id)
     await _userManager.UpdateAsync(utente);
     return Ok();
 }
+[HttpPut("{id}")]
+[Authorize(Roles="Admin")]
+public async Task<IActionResult> ResetPasswordUtente(string id,[FromBody]JObject data)
+{
+    var newPassword= data["Password"].ToObject<string>();
+      var utente=await _userManager.FindByIdAsync(id);
+      var token= await  _userManager.GeneratePasswordResetTokenAsync(utente);
+     await _userManager.ResetPasswordAsync(utente,token,newPassword);
+     return Ok();
+     
+
+}
 
     }
     

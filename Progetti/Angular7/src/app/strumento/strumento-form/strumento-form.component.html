@@ -56,6 +56,16 @@
             <label class="text-danger" *ngIf="service.formModel.get('Nascita').touched && service.formModel.get('Nascita').errors?.required">This field is mandatory.</label>
           </div>
       <div>
+        <div class="from-group required">
+          <label>Delicato</label>
+          <mat-radio-group  formControlName="Delicato" label="Select an option">
+              <mat-radio-button class="mat" value=true>True</mat-radio-button>
+              <mat-radio-button class="mat" value=false>False</mat-radio-button>
+              </mat-radio-group>
+              <label class="text-danger" *ngIf="service.formModel.get('Delicato').touched && service.formModel.get('Delicato').errors?.required">This field is mandatory.</label>
+      
+
+        </div>
           <label>Immagine</label>
           <app-upload (onUploadFinished)="uploadImage($event)"></app-upload>
       </div>

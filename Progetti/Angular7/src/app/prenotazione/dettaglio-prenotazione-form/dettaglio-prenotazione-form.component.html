@@ -3,24 +3,25 @@
     <h1>Strumento <Form></Form></h1>
     <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
         <div class="form-group required" >
-            <label >Posizione Utilizzo</label>
+            <label>Posizione Utilizzo</label>
             <input class="form-control" formControlName="Posizione"> 
             <label class="text-danger" *ngIf="service.formModel.get('Posizione').touched && service.formModel.get('Posizione').errors?.required">This field is mandatory.</label>
         </div>
-      <div class="form-group required">
-        <label>DataInizio</label>
-            <input type="date" class="form-control" formControlName="DataInizio" required>
-            <label class="text-danger" *ngIf="service.formModel.get('DataInizio').touched && service.formModel.get('DataInizio').errors?.required">This field is mandatory.</label>
-      
-      </div>
-
-      <div class="form-group required">
-        <label>DataFine</label>
-        <input type="date" class="form-control" formControlName="DataFine" required>
-        <label class="text-danger" *ngIf="service.formModel.get('DataFine').touched && service.formModel.get('DataFine').errors?.required">This field is mandatory.</label>
-  
-      
-      </div>
+        <section>
+          <h2>Range selection</h2>
+          <mat-form-field>
+              <input #datePicker matInput
+                     [min]="minDate"
+                     [matDatepickerFilter]="myFilter"
+                     placeholder="Choose a date"
+                     [satDatepicker]="picker2"
+                     formControlName="date">
+              <sat-datepicker   #picker2 [opened]="this.reset(picker2)" [rangeMode]="true"
+              >
+              </sat-datepicker>
+              <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+          </mat-form-field>
+      </section>
 
       <button type="submit" class="btn btn-success" [disabled]="!service.formModel.valid">Submit</button>
 

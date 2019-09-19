@@ -1,0 +1,20 @@
+<table class="table table-inverse table-hover">
+    <thead class="thead-dark">
+      <tr>
+          <th>ID</th>
+          <th>Data Inizio</th> 
+          <th>Data Fine</th>
+          <th>ID Strumento</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prenotazione of prenotazioni">
+          <td>{{prenotazione.idPrenotazione}}</td>
+          <td>{{prenotazione.dataInizio | date:'shortDate'}}</td>
+          <td>{{prenotazione.dataFine | date:'shortDate'}}</td>
+          <td>{{prenotazione.strumento.nome}}</td>
+          <td><button class="btn" (click)="form(prenotazione.idStrumento,prenotazione.idPrenotazione)">Compila Form</button></td>
+      </tr>
+  </tbody>
+  </table>

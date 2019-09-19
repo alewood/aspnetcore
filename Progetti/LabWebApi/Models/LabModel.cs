@@ -30,7 +30,7 @@ namespace LabWebApi.Models
     public string Marca { get; set; }   
     public string Modello{ get; set; }
     public string PDFPath { get; set; }  
-    public bool Prenotabile{get;set;}
+    public int Status{get;set;}
 
     public string ImgPath{get;set;}
      public DateTime TTL{get;set;}
@@ -53,7 +53,7 @@ namespace LabWebApi.Models
     public string Marca { get; set; }   
     public string Modello{ get; set; }
     public string PDFPath { get; set; }  
-     public bool Prenotabile{get;set;}
+     public int  Status{get;set;}
      public string ImgPath{get;set;}
      public DateTime? TTL{get;set;}
        public string Posizione{get;set;}
@@ -66,8 +66,8 @@ namespace LabWebApi.Models
        }
     
     public class Prenotazione{
-        [Key]
-       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
     public virtual Utente Utente {get;set;}
     public virtual ICollection<DettaglioPrenotazione> Strumenti { get; set; }
@@ -81,6 +81,11 @@ namespace LabWebApi.Models
         public DateTime dataInizio { get; set; }
         public DateTime dataFine { get; set; }   
         public string PosizioneUtilizzo{get;set;}
+        public bool Checked{get;set;}
+        public int OreUtilizzo{get;set;}
+        public string Reparto{get;set;}
+        public string Progetto{get;set;}
+        public string PosizioneRiconsegna{get;set;}
 
         
     }

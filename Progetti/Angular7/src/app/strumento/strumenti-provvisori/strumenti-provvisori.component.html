@@ -12,7 +12,7 @@
       </mat-radio-group>
         <br>
         <input [(ngModel)]="searchText2" placeholder="Filter Strumenti" class="filter-input">
-        <span class="filter-clear" *ngIf="searchText2.length>0" (click)="clearFilter()">X</span>
+        <span class="filter-clear" *ngIf="searchText2.length>0" (click)="clearFilter2()">X</span>
         <mat-radio-group  [(ngModel)]="secondOption" label="Select an option">
           <mat-radio-button class="mat" value="serialId">SerialID</mat-radio-button>
           <mat-radio-button class="mat" value="partId">PartID</mat-radio-button>

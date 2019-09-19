@@ -24,7 +24,7 @@ namespace LabWebApi.Controllers
         }
         public  async Task<bool> checkPrenotazioniStrumento(string idStrumento,DateTime inizio,DateTime fine){
             var result=true;
-            ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento).ToListAsync();
+            ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento&& d.Checked).ToListAsync();
             if(fine.CompareTo(inizio)<0)
             return false;
             foreach (var d in prenotazioni)
@@ -95,11 +95,16 @@ namespace LabWebApi.Controllers
                
                if(cart==null)
                cart=new List<DettaglioPrenotazione>();
+               var s=_context.Strumento.Find(idStrumento);
                var dettaglio= new DettaglioPrenotazione();
                dettaglio.IdStrumento=idStrumento;
                dettaglio.dataInizio=inizio;
                dettaglio.dataFine=fine;
                dettaglio.PosizioneUtilizzo=posizioneUtilizzo;
+               if(s.Delicato)
+               dettaglio.Checked=false;
+               else
+               dettaglio.Checked=true;
                if(cart.All(d=>!(d.IdStrumento==dettaglio.IdStrumento))){
                cart.Add(dettaglio);
                   SessionHelper.SetObjectAsJson(HttpContext.Session,"cart",cart);

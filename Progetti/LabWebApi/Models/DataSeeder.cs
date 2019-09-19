@@ -35,8 +35,20 @@ public static class DataSeeder{
             {
                 userManager.AddToRoleAsync(admin,"Admin").Wait();
             }
+        }
+if(userManager.FindByNameAsync("sudo").Result ==null){
+            Utente superUser= new Utente();
+            superUser.UserName="sudo";
+             IdentityResult result2= userManager.CreateAsync(superUser,"Th@l3s4l3n14Sp4c3").Result;
+            
+            if(result2.Succeeded)
+            {
+                userManager.AddToRoleAsync(superUser,"Admin").Wait();
+            }
+
             
         }
+        
         
 
     }
@@ -71,29 +83,38 @@ public static class DataSeeder{
             {
                
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
-                int rowCount = 24;
+                int rowCount = worksheet.Dimension.Rows;
                 for (int row = 2; row <= rowCount; row++)
                 {
+                    
                     var PDFPath="";
                     var ImgPath="";
                     Strumento s= new Strumento();
-                        //s.ID=worksheet.Cells[row, 1].Value.ToString();
-                        s.Nome=worksheet.Cells[row, 1].Value.ToString();
-                        s.Descrizione=worksheet.Cells[row, 2].Value.ToString();
-                        s.Marca=worksheet.Cells[row, 3].Value.ToString();
-                        s.Modello=worksheet.Cells[row, 4].Value.ToString();
-                        //s.Posizione=worksheet.Cells[row,6].Value.ToString();
-                        if(worksheet.Cells[row,7].Value!=null){
-                          PDFPath=@worksheet.Cells[row,7].Value.ToString();
+                        s.PartId=worksheet.Cells[row, 1].Value.ToString();
+                        s.SerialId=worksheet.Cells[row, 2].Value.ToString();
+                        s.Nome=worksheet.Cells[row, 3].Value.ToString();
+                        s.Descrizione=worksheet.Cells[row, 4].Value.ToString();
+                        s.Marca=worksheet.Cells[row, 5].Value.ToString();
+                        s.Modello=worksheet.Cells[row, 6].Value.ToString();
+                        s.Posizione=worksheet.Cells[row,7].Value.ToString();
+                        if(worksheet.Cells[row,8].Value!=null){
+                          PDFPath=@worksheet.Cells[row,8].Value.ToString();
                            s.PDFPath= DataSeeder.Upload(PDFPath);
                         }
-                         if(worksheet.Cells[row,8].Value!=null){
-                          ImgPath=@worksheet.Cells[row,8].Value.ToString();
+                         if(worksheet.Cells[row,9].Value!=null){
+                          ImgPath=@worksheet.Cells[row,9].Value.ToString();
                           s.ImgPath= DataSeeder.Upload(ImgPath);
                          }
-                        var days=(double)worksheet.Cells[row,5].Value;
-                        s.TTL=DateTime.Today.AddDays(days);
-                        s.Prenotabile=true;
+                         var Date = DateTime.FromOADate((double)worksheet.Cells[row,11].Value);
+                         s.Nascita= Date;
+                        var ttl=DateTime.FromOADate((double)worksheet.Cells[row,10].Value);
+                        s.TTL=ttl;
+                      var delicato =worksheet.Cells[row,12].Value.ToString();
+                      if(delicato=="true")
+                        s.Delicato=true;
+                        else
+                        s.Delicato=false;
+                        s.Status=1;
                     context.Strumento.Add(s);
                 }
                 context.SaveChanges();

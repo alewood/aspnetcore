@@ -30,7 +30,7 @@ namespace LabWebApi.Controllers{
                if(!user.AbilitatoAlleNotifiche)
                  return null;
            }
-          return await _context.Strumento.Where(s=>!(s.Prenotabile)) .ToListAsync();
+          return await _context.Strumento.Where(s=>(s.Status==0||s.Status==2)) .ToListAsync();
     }
     [HttpDelete("{id}")]
 [Authorize(Roles="Admin,UtenteAutorizzato")]
@@ -42,10 +42,13 @@ public async Task<IActionResult> AbilitaStrumento(string id)
     {
         return NotFound();
     }
+    if(strumento.Status==0){
   var newTtl= strumento.TTL.AddYears(1);
-   var prenotabile= strumento.Prenotabile;
-   strumento.Prenotabile=!prenotabile;
-   strumento.TTL=newTtl;
+  strumento.TTL=newTtl;
+    }
+
+   strumento.Status=1;
+ 
     _context.Strumento.Update(strumento);
      await _context.SaveChangesAsync();
    

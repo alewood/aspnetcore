@@ -55,6 +55,9 @@ searchText2:string="";
   clearFilter(){
     this.searchText="";
   }
+  clearFilter2(){
+    this.searchText2="";
+  }
   rimuoviProv(id){
    this.service.rimuoviProv(id).subscribe(
      res=>{

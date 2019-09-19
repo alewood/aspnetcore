@@ -23,6 +23,13 @@ export class UserService {
  
    
   });
+  formPassword=this.fb.group({
+    Passwords: this.fb.group({
+      Password :['',[Validators.required,Validators.minLength(4)]],
+      ConfirmPassword:['',Validators.required]
+     },{validator:this.comparePasswords})
+    });
+  
   
   comparePasswords( fb:FormGroup){
       let confirmPwdCtrl =fb.get('ConfirmPassword');
@@ -80,5 +87,14 @@ export class UserService {
 {
   return this.http.put<Response>(this.BaseURI+"/notifiche/"+id,{observe:'response'});
 }
+resetPassword(id)
+{
+  var body={
+    Password:this.formPassword.value. Passwords.Password
+  } 
+  console.log(body);
+  return this.http.put(this.BaseURI+'/utente/'+id,body,{observe:'response'});
+}
+
 
 }

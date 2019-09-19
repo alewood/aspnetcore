@@ -12,7 +12,7 @@ import { Strumento } from '../models/strumento';
 export class StrumentoService {
    
   constructor(private userService:UserService, private fb:FormBuilder,private http:HttpClient, private datepipe:DatePipe) { }
-  readonly BaseURI= 'http://localhost:5000/api' ;
+  readonly BaseURI= 'https://localhost:5001/api' ;
   locale: string = 'en-US';
   format: string = 'yyyy-MM-dd';
    date: Date=new Date('01/01/2001');
@@ -26,6 +26,7 @@ export class StrumentoService {
     Posizione:['',Validators.required],
     TTL:['Date',Validators.required],
     Nascita:['Date',Validators.required],
+    Delicato:[false,Validators.required],
 
   });
   formModelUpdate=this.fb.group({
@@ -56,6 +57,7 @@ export class StrumentoService {
       Posizione:this.formModel.value.Posizione,
       TTL:ttl,
       Nascita:nascita,
+      Delicato:this.formModel.value.Delicato,
       PDFPath:pathPdf,
       ImgPath:pathImg},
       Descrizione:descrizione
@@ -68,7 +70,13 @@ export class StrumentoService {
   getStrumento(id){
     return this.http.get<Strumento>(this.BaseURI+'/strumento/' +id,{observe:'body'});
   }
-  getStrumenti(index,pageSize){
+  getStrumenti(index,pageSize,filter1,search1,filter2,search2){
+    return this.http.get<{page:{data:Strumento[],total:number},totalPages:number}>(this.BaseURI+'/strumento/'+index+'/'+pageSize+'/'+filter1+'/'+search1+'/'+filter2+'/'+search2,{observe:'body'});
+  }
+  getStrumentiSingleFilter(index,pageSize,filter1,search1){
+    return this.http.get<{page:{data:Strumento[],total:number},totalPages:number}>(this.BaseURI+'/strumento/'+index+'/'+pageSize+'/'+filter1+'/'+search1,{observe:'body'});
+  }
+  getStrumentiNoFilter(index,pageSize){
     return this.http.get<{page:{data:Strumento[],total:number},totalPages:number}>(this.BaseURI+'/strumento/'+index+'/'+pageSize,{observe:'body'});
   }
   gestisciStrumentoNonPrenotabile(id){
@@ -76,8 +84,12 @@ export class StrumentoService {
   }
 
   rimuoviStrumento(id){
-    return this.http.delete<Response>(this.BaseURI+'/strumento/'+id,{observe:'response'});
+    return this.http.delete<Response>(this.BaseURI+'/strumento/'+id+'/'+0,{observe:'response'});
   }
+  riservaStrumento(id){
+    return this.http.delete<Response>(this.BaseURI+'/strumento/'+id+'/'+2,{observe:'response'});
+  }
+
   getStrumentiProvvisori(){
     return this.http.get(this.BaseURI+'/strumentoProv');
   }

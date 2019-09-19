@@ -48,10 +48,16 @@ import { UpdateFormComponent } from './strumento/update-form/update-form.compone
 import { GestioneStrumentiComponent } from './home/gestione-strumenti/gestione-strumenti.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotazioni-vicine.component';
-import {MatButtonToggleModule,MatSelectModule,MatRadioModule} from '@angular/material';
+import {MatButtonToggleModule,MatSelectModule,MatRadioModule,MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatButtonModule} from '@angular/material';
 import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
 import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.component';
 import { ModificaPrenotazioneComponent } from './home/modifica-prenotazione/modifica-prenotazione.component';
+import { NotificheDelicateComponent } from './home/notifiche-delicate/notifiche-delicate.component';
+import {SatDatepickerModule,SatNativeDateModule} from 'saturn-datepicker';
+import { PrenotazioniEffettuateComponent } from './home/prenotazioni-effettuate/prenotazioni-effettuate.component';
+import { FormRiconsegnaComponent } from './home/form-riconsegna/form-riconsegna.component';
+import { PasswordFormComponent } from './user/password-form/password-form.component';
+ import { NgxDaterangepickerMd } from "ngx-daterangepicker-material";
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +100,10 @@ import { ModificaPrenotazioneComponent } from './home/modifica-prenotazione/modi
     PrenotazioniComponent,
     ChartStrumentoComponent,
     ModificaPrenotazioneComponent,
+    NotificheDelicateComponent,
+    PrenotazioniEffettuateComponent,
+    FormRiconsegnaComponent,
+    PasswordFormComponent,
     
   ],
   imports: [
@@ -107,6 +117,18 @@ import { ModificaPrenotazioneComponent } from './home/modifica-prenotazione/modi
     MatSelectModule,
     MatButtonToggleModule,  
     MatRadioModule,
+      SatDatepickerModule,
+    SatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule, 
+    MatInputModule,
+     MatNativeDateModule,
+      MatButtonModule,
+      NgxDaterangepickerMd,
+     
+  
+      
+
     ToastrModule.forRoot({
       progressBar: true
     }),

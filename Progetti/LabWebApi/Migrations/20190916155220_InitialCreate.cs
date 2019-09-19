@@ -63,7 +63,7 @@ namespace labwebapi.Migrations
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
                     PDFPath = table.Column<string>(nullable: true),
-                    Prenotabile = table.Column<bool>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
                     TTL = table.Column<DateTime>(nullable: false),
                     Posizione = table.Column<string>(nullable: true),
@@ -88,7 +88,7 @@ namespace labwebapi.Migrations
                     Marca = table.Column<string>(nullable: true),
                     Modello = table.Column<string>(nullable: true),
                     PDFPath = table.Column<string>(nullable: true),
-                    Prenotabile = table.Column<bool>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
                     TTL = table.Column<DateTime>(nullable: true),
                     Posizione = table.Column<string>(nullable: true),
@@ -236,7 +236,12 @@ namespace labwebapi.Migrations
                     PrenotazioneID = table.Column<int>(nullable: true),
                     dataInizio = table.Column<DateTime>(nullable: false),
                     dataFine = table.Column<DateTime>(nullable: false),
-                    PosizioneUtilizzo = table.Column<string>(nullable: true)
+                    PosizioneUtilizzo = table.Column<string>(nullable: true),
+                    Checked = table.Column<bool>(nullable: false),
+                    OreUtilizzo = table.Column<int>(nullable: false),
+                    Reparto = table.Column<string>(nullable: true),
+                    Progetto = table.Column<string>(nullable: true),
+                    PosizioneRiconsegna = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

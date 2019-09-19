@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Form Riconsegna <Form></Form></h1>
+    <form [formGroup]="service.form" autocomplete="off" (submit)="onSubmit()">
+        <div class="form-group required" >
+            <label>Ore Utilizzo</label>
+            <input class="form-control" formControlName="Ore"> 
+            <label class="text-danger" *ngIf="service.form.get('Ore').touched && service.form.get('Ore').errors?.required">This field is mandatory.</label>
+        </div>
+        <div class="form-group required" >
+            <label>Reparto</label>
+            <input class="form-control" formControlName="Reparto"> 
+            <label class="text-danger" *ngIf="service.form.get('Reparto').touched && service.form.get('Reparto').errors?.required">This field is mandatory.</label>
+        </div>
+        <div class="form-group required" >
+            <label>Progetto</label>
+            <input class="form-control" formControlName="Progetto"> 
+            <label class="text-danger" *ngIf="service.form.get('Progetto').touched && service.form.get('Progetto').errors?.required">This field is mandatory.</label>
+        </div>
+        <div class="form-group required" >
+            <label>Posizione Riconsegna</label>
+            <input class="form-control" formControlName="Posizione"> 
+            <label class="text-danger" *ngIf="service.form.get('Posizione').touched && service.form.get('Posizione').errors?.required">This field is mandatory.</label>
+        </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!service.form.valid">Submit</button>
+
+    </form>
+</div>
+

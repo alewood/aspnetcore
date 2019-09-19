@@ -7,20 +7,26 @@
         <mat-radio-button class="mat" value="serialId">SerialID</mat-radio-button>
         <mat-radio-button class="mat" value="partId">PartID</mat-radio-button>
         <mat-radio-button class="mat" value="nome">Nome</mat-radio-button>
+        <mat-radio-button class="mat" value="descrizione">Descrizione</mat-radio-button>
         <mat-radio-button class="mat" value="marca">Marca</mat-radio-button>
         <mat-radio-button  class="mat" value="modello">Modello</mat-radio-button>
       </mat-radio-group>
       <br>
       <input [(ngModel)]="searchText2" placeholder="Filter Strumenti" class="filter-input">
-      <span class="filter-clear" *ngIf="searchText2.length>0" (click)="clearFilter()">X</span>
+      <span class="filter-clear" *ngIf="searchText2.length>0" (click)="clearFilter2()">X</span>
       <mat-radio-group  [(ngModel)]="secondOption" label="Select an option">
         <mat-radio-button class="mat" value="serialId">SerialID</mat-radio-button>
         <mat-radio-button class="mat" value="partId">PartID</mat-radio-button>
         <mat-radio-button class="mat" value="nome">Nome</mat-radio-button>
+        <mat-radio-button class="mat" value="descrizione">Descrizione</mat-radio-button>
         <mat-radio-button class="mat" value="marca">Marca</mat-radio-button>
         <mat-radio-button  class="mat" value="modello">Modello</mat-radio-button>
       </mat-radio-group>
+     
+      <button style="margin-left: 25px; margin-bottom: 15px" class="btn" (click)="filter()">Cerca</button>
+      
     </div>
+    
 
   </div>
 <table class="table table-inverse table-hover">
@@ -36,10 +42,11 @@
         <th></th>
         <th></th>
         <th *ngIf="this.isAdmin"></th>
+        <th *ngIf="this.isAdmin"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let strumento of strumenti| filter :searchText:radioOption:searchText2:secondOption; let i = index"  (click)="onClickStrumento(strumento.id)">
+    <tr *ngFor="let strumento of strumenti; let i = index"  (click)="onClickStrumento(strumento.id)">
         <td>{{strumento.partId}}</td>
         <td>{{strumento.serialId}}</td>
         <td>{{strumento.nome}}</td>
@@ -48,9 +55,11 @@
         <td>{{strumento.modello}}</td>
         <td>{{strumento.posizione}}</td>
         <td ><button class="btn" *ngIf="strumento.pdfPath!=null" (click)="pdfOpen(strumento.pdfPath)">PDF</button></td>
-        <td *ngIf="strumento.prenotabile"> <button class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
-        <td *ngIf="!strumento.prenotabile">In Manutenzione</td>
+        <td *ngIf="strumento.status==1"> <button class="btn" (click)="onSubmit(strumento.id)">Prenota</button></td>
+        <td *ngIf="strumento.status==0">In Manutenzione</td>
+        <td *ngIf="strumento.status==2">Riservato</td>
         <td *ngIf="this.isAdmin"> <button class="btn" (click)="rimuovi(strumento.id)">Rimuovi</button></td>
+        <td *ngIf="this.isAdmin"> <button class="btn" (click)="riserva(strumento.id)">Riserva</button></td>
     </tr>
 </tbody>
 </table>

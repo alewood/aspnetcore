@@ -47,18 +47,19 @@ public async Task<ActionResult> PostStrumentoProvvisorio([FromBody]JObject data)
 {
     var desc=data["Descrizione"].ToObject<string>();
     var strumento=data["Strumento"].ToObject<Strumento>();
-    strumento.Prenotabile=true;
+    strumento.Status=1;
     strumento.Descrizione=desc;
     var s= new StrumentoProvvisorio();
         s.PartId=strumento.PartId;
         s.SerialId=strumento.SerialId;
         s.Descrizione=strumento.Descrizione;
-        s.Prenotabile=strumento.Prenotabile;
+        s.Status=strumento.Status;
         s.Nome=strumento.Nome;
         s.Marca=strumento.Marca;
         s.Modello=strumento.Modello;
         s.Posizione=strumento.Posizione;
         s.TTL=strumento.TTL;
+        s.Delicato=strumento.Delicato;
          if(strumento.PDFPath!=null)
          s.PDFPath=strumento.PDFPath;
       if(strumento.ImgPath!=null)
@@ -83,7 +84,7 @@ public async Task<ActionResult> ConfermaProv([FromBody]JObject data)
        str.Modello=data["Modello"].ToObject<string>();
        str.Descrizione=data["Descrizione"].ToObject<string>();
         str.Posizione=data["Posizione"].ToObject<string>();;
-        str.Prenotabile=data["Prenotabile"].ToObject<bool>();
+        str.Status=data["Status"].ToObject<int>();
         str.TTL=data["TTL"].ToObject<DateTime>();
     _context.Strumento.Add(str);
      await _context.SaveChangesAsync();

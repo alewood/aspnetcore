@@ -44,9 +44,9 @@ public Object GetPrenotazioni(int pageIndex,int pageSize)
 }
 [HttpGet("{id}")]
 [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
-public async Task<ActionResult<IEnumerable<DettaglioPrenotazione>>> GetPrenotazione(int id)
+public async Task<ActionResult<IEnumerable<DettaglioPrenotazione>>> GetPrenotazione(string id)
 {
-    var dettagli = await _context.DettaglioPrenotazione.Where(d=> d.IdPrenotazione==id).ToListAsync();
+    var dettagli = await _context.DettaglioPrenotazione.Where(d=> d.IdStrumento==id).ToListAsync();
 
     if (dettagli == null)
     {
@@ -111,12 +111,14 @@ public async Task<IActionResult> DeletePrenotazione(int id)
      [HttpGet]
      [Authorize(Roles="Admin,UtenteBase,UtenteAutorizzato")]
      [Route("perUtente")]
-    public async Task<ActionResult<IEnumerable<Prenotazione>>> GetPrenotazioniPerUtente()
+    public async Task<ActionResult<IEnumerable<DettaglioPrenotazione>>> GetPrenotazioniPerUtente()
 {
     var userId= User.Claims.First(c =>c.Type=="UserID").Value;
     var user= await _userManager.FindByIdAsync(userId);
 
-    return await _context.Prenotazione.Where(p => p.Utente.Id==(user.Id)).ToListAsync();
+    return await _context.DettaglioPrenotazione
+    .Where(p => p.Prenotazione.Utente.Id==(user.Id))
+    .Include(p=>p.Strumento).ToListAsync();
 }
 
 [HttpPut("{id}")]
@@ -131,6 +133,23 @@ public async Task<IActionResult> PutPrenotazione(int id,DettaglioPrenotazione pr
            }
            return Ok();
 
+}
+[HttpPut("{idStr}/{idPre}")]
+[Authorize]
+public async Task<IActionResult> PutDettaglioPre(string idStr,int idPre,[FromBody]JObject data)
+{
+    var pos=data["PosizioneRiconsegna"].ToObject<string>();
+    var strumento= await _context.Strumento.FindAsync(idStr);
+    _context.Update(strumento);
+    strumento.Posizione=pos;
+    var dettaglio=_context.DettaglioPrenotazione.Where(dp=>dp.IdPrenotazione==idPre&&dp.IdStrumento==idStr).FirstOrDefault();
+    dettaglio.OreUtilizzo=data["OreUtilizzo"].ToObject<int>();
+    dettaglio.PosizioneRiconsegna=pos;
+    dettaglio.Progetto=data["Progetto"].ToObject<string>();
+    dettaglio.Reparto=data["Reparto"].ToObject<string>();
+    _context.Update(dettaglio);
+    await _context.SaveChangesAsync();
+    return Ok();
 }
     }
 }

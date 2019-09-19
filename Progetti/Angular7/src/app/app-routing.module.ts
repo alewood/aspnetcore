@@ -28,6 +28,10 @@ import { PrenotazioniVicineComponent } from './home/prenotazioni-vicine/prenotaz
 import { PrenotazioniComponent } from './home/prenotazioni/prenotazioni.component';
 import { ChartStrumentoComponent } from './bi/chart-strumento/chart-strumento.component';
 import { ModificaPrenotazioneComponent } from './home/modifica-prenotazione/modifica-prenotazione.component';
+import { NotificheDelicateComponent } from './home/notifiche-delicate/notifiche-delicate.component';
+import { PrenotazioniEffettuateComponent } from './home/prenotazioni-effettuate/prenotazioni-effettuate.component';
+import { FormRiconsegnaComponent } from './home/form-riconsegna/form-riconsegna.component';
+import { PasswordFormComponent } from './user/password-form/password-form.component';
 
 
 const routes: Routes = [
@@ -46,10 +50,13 @@ children:[
   {path:'home',component :HomeComponent,
   children:[
     {path:'prenotazioni',component :PrenotazioniComponent,canActivate:[AuthGuard]},
+    {path:'prenotazioniEffettuate',component :PrenotazioniEffettuateComponent,canActivate:[AuthGuard]},
+    {path:'formRiconsegna',component :FormRiconsegnaComponent,canActivate:[AuthGuard]},
     {path:'modificaPrenotazione',component :ModificaPrenotazioneComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
     {path:'notificheStrumento',component :NotificationsComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
     {path:'gestioneStrumenti',component :GestioneStrumentiComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
-    {path:'prenotazioniVicine',component :PrenotazioniVicineComponent,canActivate:[AuthGuard],data:{permittedRoles:['Admin','UtenteAutorizzato']}}
+    {path:'prenotazioniVicine',component :PrenotazioniVicineComponent,canActivate:[AuthGuard],data:{permittedRoles:['Admin','UtenteAutorizzato']}},
+    {path:'prenotazioniDelicate',component :NotificheDelicateComponent,canActivate:[AuthGuard],data:{permittedRoles:['Admin','UtenteAutorizzato']}}
   ],
   canActivate:[AuthGuard]},
  
@@ -64,6 +71,7 @@ children:[
   ],canActivate:[AuthGuard]},
   {path:'utente',component:UserComponent,
     children:[
+      {path:'passwordForm',component :PasswordFormComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
       {path:'utenti',component :UtentiComponent,canActivate:[AuthGuard], data: {permittedRoles:['Admin','UtenteAutorizzato']}},
       {path:'registration',component:RegistrationComponent,canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}}
     ],canActivate:[AuthGuard], data:{permittedRoles:['Admin','UtenteAutorizzato']}},
@@ -86,7 +94,7 @@ children:[
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

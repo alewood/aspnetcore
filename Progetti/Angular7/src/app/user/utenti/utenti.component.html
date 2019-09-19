@@ -9,6 +9,7 @@
               <th>Role</th>
               <th ></th>
               <th></th>
+              <th *ngIf="this.isAdmin"></th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
               <td>{{utente.role}}</td>
               <td *ngIf="this.isAdmin&&(userIsAutorizzato(utente))"> <button class="btn" (click)="abilitaNotifiche(utente.id)">Abilita Notifiche</button></td>
               <td *ngIf="roleCheck(utente)"> <button class="btn" (click)="rimuoviUtente(utente.id)">Rimuovi</button></td>
+              <td *ngIf="this.isAdmin&&roleCheck(utente)"> <button class="btn" (click)="resetPwd(utente.id)">Reset Password</button></td>
           </tr>
           </tbody>
       </table>

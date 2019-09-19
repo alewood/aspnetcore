@@ -32,7 +32,7 @@ namespace LabWebApi.Controllers{
                  return null;
            }
 
-          IEnumerable<Strumento> strumenti=  _context.Strumento.Where(s=>(s.Prenotabile)) .ToList();
+          IEnumerable<Strumento> strumenti=  _context.Strumento.Where(s=>(s.Status==1)) .ToList();
           ICollection<Strumento> strumentiLowTTL= new List<Strumento>();
 
           foreach (var s in strumenti)
@@ -65,7 +65,7 @@ public async Task<ICollection<DettaglioPrenotazione>> GetPrenotazioniAttiveVicin
     var prenotazioni=  await _context.DettaglioPrenotazione
     .Include(dp=>dp.Prenotazione.Utente)
     .Include(dp=>dp.Strumento)
-    .Where(dp=> (dp.dataFine>=DateTime.Now.AddDays(this.GiornoLavorativoPrecedente(dp.dataFine)))&& dp.dataFine<=DateTime.Now.AddDays(5))
+    .Where(dp=> (dp.dataFine>=DateTime.Now.AddDays(this.GiornoLavorativoPrecedente(dp.dataFine)))&& dp.dataFine<=DateTime.Now.AddDays(2))
     .OrderByDescending(dp=>dp.dataFine)
     .ToListAsync();
     return prenotazioni;
@@ -80,6 +80,69 @@ public int GiornoLavorativoPrecedente(DateTime data)
     else
     return -2;
 }
+[HttpGet]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
+[Route("delicate")]
+public async Task<ICollection<DettaglioPrenotazione>> GetPrenotazioniDelicate()
+{
+    return await _context.DettaglioPrenotazione
+     .Include(dp=>dp.Prenotazione.Utente)
+     .Include(dp=> dp.Strumento)
+     .Where(dp=>!dp.Checked).ToListAsync();
+}
+ [HttpPut("{idStr}/{idPre}")]
+[Authorize(Roles="Admin,UtenteAutorizzato")]
+public async Task<IActionResult> AuthorizeDelicata(string idStr,int idPre)
+{
+    var dettaglio=  _context.DettaglioPrenotazione.Where(dp=>dp.IdStrumento==idStr&&dp.IdPrenotazione==idPre).ToList().FirstOrDefault();
+    if( !(await checkPrenotazioniStrumento(idStr,idPre,dettaglio.dataInizio,dettaglio.dataFine)))
+       return BadRequest();
+    dettaglio.Checked=true;
+   _context.DettaglioPrenotazione.Update(dettaglio);
+  await _context.SaveChangesAsync();
+   return Ok();
+
+
+}
+      public  async Task<bool> checkPrenotazioniStrumento(string idStrumento, int idPrenotazione,DateTime inizio,DateTime fine){
+            var result=true;
+            ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento&&d.IdPrenotazione!=idPrenotazione&& d.Checked).ToListAsync();
+            if(fine.CompareTo(inizio)<0)
+            return false;
+            foreach (var d in prenotazioni)
+            {
+              if(inizio.CompareTo(d.dataInizio)<0){
+              if(fine.CompareTo(d.dataInizio)>0){
+                 result=false;
+                 break;}
+                   if(fine.Equals(d.dataFine)||fine.Equals(d.dataInizio)){
+                      result=false;
+                     break;}}
+                 else if(inizio.CompareTo(d.dataFine)<0){
+                      if(fine.CompareTo(d.dataFine)>0){
+                      result=false;
+                      break;}
+                      if(fine.Equals(d.dataFine)||fine.Equals(d.dataInizio)){
+                      result=false;
+                     break;}
+
+                 }
+                 else if(inizio.Equals(d.dataInizio)||inizio.Equals(d.dataFine)){
+                     result=false;
+                     break;
+
+                 }
+                 else if(fine.Equals(d.dataFine)||fine.Equals(d.dataInizio)){
+                      result=false;
+                     break;
+                 }
+
+                  
+            }
+            return result;
+        }
+
+
 
     }
 }

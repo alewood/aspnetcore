@@ -49,9 +49,27 @@ namespace LabWebApi.Controllers{
            
              
       }
+       [HttpDelete("{idStr}/{idPre}")]
+      [Authorize(Roles="Admin,UtenteAutorizzato")]
+       public async Task<IActionResult> removeDettaglio(string idStr,int idPre)
+      {
+           string UserID = User.Claims.First(c =>c.Type=="UserID" ).Value;
+          Utente user= await _userManager.FindByIdAsync(UserID);
+           var roles= await _userManager.GetRolesAsync(user);
+           if(roles.FirstOrDefault()=="UtenteAutorizzato"){
+               if(!user.AbilitatoAlleNotifiche)
+                 return null;
+           }
+            var dettaglio=  _context.DettaglioPrenotazione.Where(dp=>dp.IdStrumento==idStr&&dp.IdPrenotazione==idPre).ToList().FirstOrDefault();
+            _context.DettaglioPrenotazione.Remove(dettaglio);
+            _context.SaveChanges();
+            return Ok();
+      }
+
+
        public  async Task<bool> checkPrenotazioniStrumento(string idStrumento, int idPrenotazione,DateTime inizio,DateTime fine){
             var result=true;
-            ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento&&d.IdPrenotazione!=idPrenotazione).ToListAsync();
+            ICollection<DettaglioPrenotazione> prenotazioni= await _context.DettaglioPrenotazione.Where(d=>d.IdStrumento==idStrumento&&d.IdPrenotazione!=idPrenotazione&& d.Checked).ToListAsync();
             if(fine.CompareTo(inizio)<0)
             return false;
             foreach (var d in prenotazioni)
@@ -86,6 +104,7 @@ namespace LabWebApi.Controllers{
             }
             return result;
         }
+        
 
     }
 }

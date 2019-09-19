@@ -13,14 +13,19 @@ export class PrenotazioneService {
  
 
   constructor(private fb:FormBuilder,private http:HttpClient,private datepipe:DatePipe) { }
-  readonly BaseURI= 'http://localhost:5000/api' ;
+  readonly BaseURI= 'https://localhost:5001/api' ;
   formModel=this.fb.group({
-    DataInizio:['Date',Validators.required],
-    DataFine:['Date',Validators.required],
+    date: [{begin: new Date(2018,6, 5), end: new Date(2018, 9, 25)},Validators.required],
     Posizione:['',Validators.required]
   });
   formModelUpdate=this.fb.group({
     DataFine:['Date',Validators.required]
+  });
+  form=this.fb.group({
+    Ore:['',Validators.required],
+    Progetto:['',Validators.required],
+    Reparto:['',Validators.required],
+    Posizione:['',Validators.required]
   });
 
 
@@ -28,16 +33,18 @@ export class PrenotazioneService {
     return this.http.post<Response>(this.BaseURI +'/prenotazione',null,{observe:'response'});
   }
   prenota(){
-    var dataInizio=this.datepipe.transform(this.formModel.value.DataInizio,this.format); 
-    var dataFine=this.datepipe.transform(this.formModel.value.DataFine,this.format);
+    console.log(this.formModel.value.date);
+    var dataInizio=this.datepipe.transform(this.formModel.value.date.begin,this.format); 
+    var dataFine=this.datepipe.transform(this.formModel.value.date.end,this.format);
    console.log(dataFine);
    console.log(dataInizio);
     var body={
       IdStrumento :localStorage.getItem("idStr"),
       IdPrenotazione: null,
+      PosizioneUtilizzo: this.formModel.value.Posizione,
       DataInizio:dataInizio,
       DataFine: dataFine,
-      PosizioneUtilizzo: this.formModel.value.Posizione
+    
 
     };
     return this.http.post<Response>(this.BaseURI +'/cart',body,{observe:'response'});
@@ -45,6 +52,15 @@ export class PrenotazioneService {
 
   }
 
+  compilaForm(idStr,idPre){
+    var body={
+      OreUtilizzo:this.form.value.Ore,
+      Reparto:this.form.value.Reparto,
+      Progetto:this.form.value.Progetto,
+      PosizioneRiconsegna:this.form.value.Posizione
+    }
+    return this.http.put(this.BaseURI+'/prenotazione/'+idStr+'/'+idPre,body,{observe:'response'});
+  }
   getCarrello(){
     return this.http.get(this.BaseURI +'/cart');
   }
@@ -73,4 +89,14 @@ export class PrenotazioneService {
        return this.http.put(this.BaseURI+"/dettaglio/"+idStr+"/"+idPre,body,{observe:'response'});
 
   }
+  getDelicate(){
+    return this.http.get(this.BaseURI+'/notifiche/delicate',{observe:'body'});
+  }
+  confermaDelicata(idStr,idPre){
+    return this.http.put(this.BaseURI+'/notifiche/'+idStr+'/'+idPre,{observe:'response'});}
+    rimuoviDelicata(idStr,idPre){
+      return this.http.delete(this.BaseURI+'/dettaglio/'+idStr+'/'+idPre,{observe:'response'});}
+    getPrenotazioniPerStrumento(idStr){
+      return this.http.get(this.BaseURI+'/prenotazione/'+idStr,{observe:'body'});
+    }
 }

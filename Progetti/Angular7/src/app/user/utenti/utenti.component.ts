@@ -39,6 +39,11 @@ rimuovi=false;
     );
     this.isAdmin=this.userService.roleMatch(['Admin']);
   }
+  resetPwd(id)
+  {
+    localStorage.setItem("idUtente",id);
+    this.router.navigateByUrl("/app/utente/passwordForm");
+  }
   rimuoviUtente(userName){
     this.service.rimuoviUtente(userName).subscribe(
       res=>{
@@ -77,6 +82,8 @@ roleCheck(utente){
   
   }
   else{
+    if(this.self.userName=="sudo")
+    return true;
   if(this.isAdmin){
     this.rimuovi=true;
       return true;
