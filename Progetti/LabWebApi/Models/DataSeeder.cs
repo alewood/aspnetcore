@@ -39,7 +39,7 @@ public static class DataSeeder{
 if(userManager.FindByNameAsync("sudo").Result ==null){
             Utente superUser= new Utente();
             superUser.UserName="sudo";
-             IdentityResult result2= userManager.CreateAsync(superUser,"Th@l3s4l3n14Sp4c3").Result;
+             IdentityResult result2= userManager.CreateAsync(superUser,"Th4l3s4l3n14Sp4c3").Result;
             
             if(result2.Succeeded)
             {

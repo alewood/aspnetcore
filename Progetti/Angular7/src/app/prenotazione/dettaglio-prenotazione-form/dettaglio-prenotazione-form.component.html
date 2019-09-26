@@ -16,7 +16,7 @@
                      placeholder="Choose a date"
                      [satDatepicker]="picker2"
                      formControlName="date">
-              <sat-datepicker   #picker2 [opened]="this.reset(picker2)" [rangeMode]="true"
+              <sat-datepicker [dateClass]="dateClass"   #picker2 [opened]="this.reset(picker2)" [rangeMode]="true"
               >
               </sat-datepicker>
               <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>

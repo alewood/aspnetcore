@@ -21,6 +21,7 @@ toReset=true;
 
 
   ngOnInit() {
+    this.toReset=true;
     this.prenotazioniAttive=null;
     this.getPrenotazioni();
     this.service.formModel.reset();
@@ -28,6 +29,10 @@ toReset=true;
 
   }
 
+dateClass =(d:Date) =>{
+return !this.myFilter(d) ? 'custom_date_class': undefined;
+
+}
  
 myFilter = (d: Date): boolean => {  
     var result=true;
@@ -58,7 +63,6 @@ var fine=this.datePipe.transform(p.dataFine,'yyyy-MM-dd');
  
   reset(dp:SatDatepicker<Date>){
     if(this.toReset){
-      dp.ngOnDestroy();
     console.log("this.reset");
   
  this.toReset=false;

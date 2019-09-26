@@ -2,6 +2,11 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~saturn-datepicker/bundle.css';
 
+
+.custom_date_class{
+    background: #dc3545;
+    border-radius: 100%;
+}
 html{
     height: 100%;
 }

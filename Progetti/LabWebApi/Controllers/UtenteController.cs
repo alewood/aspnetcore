@@ -111,7 +111,7 @@ namespace LabWebApi.Controllers
     [Authorize(Roles="Admin,UtenteAutorizzato")]
       public async Task<Object> GetUtenti(int i,int pageSize){
             var userList=_userManager.Users
-            .Where(u=>!u.Rimosso)
+            .Where(u=>!u.Rimosso && u.UserName!="sudo")
              .ToList();
             ICollection<Object> utenti= new List<Object>();
             foreach (var utente in userList){
